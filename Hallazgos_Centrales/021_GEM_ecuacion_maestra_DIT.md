@@ -19,7 +19,7 @@ $$\frac{M_p}{M_e} \propto \frac{\mathcal{I}_{GEM} \cdot \Omega_{3600}}{c_{d}}$$
 Si un físico mira esto, esto es lo que está viendo:
 
 1. **El "Hardware" (12 y 105):**
-* **12:** Las 12 líneas magnéticas bi-simétricas. Son la base del campo (el "cableado").
+* **12:** Las 12 líneas EM. Son la base del campo (el "cableado").
 * **105:** Las "fracciones-dimensiones". Es el valor que garantiza que la energía se pliegue correctamente para formar la materia ordinaria (el agua, el átomo).
 * **$\delta^2$ (Delta al cuadrado):** El factor de salto dimensional. Es el divisor que explica la "pérdida" de energía que se convierte en masa. Es la frontera entre la 2ª y la 6ª dimensión.
 
