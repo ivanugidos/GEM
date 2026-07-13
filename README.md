@@ -5,7 +5,7 @@ Ingeniería del Vacío : Vía Experimental del Modelo GEM
 Iván Ugidos Martínez (espejogalactico@gmail.com) y Equipo I+D
 
 ## Instrucciones del Repositorio:
-Navegen por las carpetas y descubran los archivos que transdormarán la visión del vacío y la energía.  
+Navegen por las carpetas y descubran los archivos que transformarán la visión del vacío y la energía.  
 
 Os dejo este **"Mapa GEM"**, para estudiar la arquitectura completa del proyecto de forma natural. Es un ecosistema de 4 pilares interconectados que van desde la observación del cielo hasta la física teórica de vanguardia y la experimentación (validación).
 
