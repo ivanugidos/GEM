@@ -1,0 +1,269 @@
+\section{Mathematical Framework}
+\label{sec:framework}
+
+The central postulate of the GEM is that the quantum vacuum is not a featureless Minkowski space but possesses an intrinsic geometric structure characterized by \textit{torsion}, \textit{non-metricity}, and a \textit{discrete substructure} at the Planck scale. We formalize this hypothesis using the language of differential geometry, fiber bundles, and topological field theory.
+% ------------------------------------------------------------
+\subsection{Spacetime as a Riemann-Cartan Manifold}
+% ------------------------------------------------------------
+\begin{definition}[Riemann-Cartan Manifold]
+Let $\manifold$ be a smooth, orientable, four-dimensional manifold. A \textbf{Riemann-Cartan manifold} is the quadruple
+\begin{equation}
+    (\manifold,\; g,\; \nabla,\; \torsion)
+\end{equation}
+where:
+\begin{itemize}
+    \item $g = g_{\mu\nu}\, dx^\mu \otimes dx^\nu$ is a pseudo-Riemannian metric of signature $(-,+,+,+)$,
+    \item $\nabla$ is a metric-compatible affine connection ($\nabla_\lambda g_{\mu\nu} = 0$),
+    \item $\torsion$ is the torsion 2-form, defined as the antisymmetric part of the connection.
+\end{itemize}
+\end{definition}
+
+Unlike General Relativity, where the Levi-Civita connection is uniquely determined by the metric (torsion-free), the Riemann-Cartan framework allows for independent degrees of freedom encoded in the torsion tensor.
+
+\begin{definition}[Torsion Tensor]
+The torsion tensor is defined as:
+\begin{equation}
+    \torsion^\lambda{}_{\mu\nu} \;=\; \connection^\lambda{}_{\mu\nu} - \connection^\lambda{}_{\nu\mu} \;=\; 2\,\connection^\lambda{}_{[\mu\nu]}
+\end{equation}
+where $\connection^\lambda{}_{\mu\nu}$ are the coefficients of the affine connection $\nabla$.
+\end{definition}
+
+\begin{postulate}[Non-Trivial Vacuum Torsion]
+\label{post:torsion}
+The quantum vacuum state $\ket{\vacuum}$ is characterized by a non-vanishing expectation value of the torsion tensor:
+\begin{equation}
+    \langle \vacuum | \, \hat{\torsion}^\lambda{}_{\mu\nu}(x) \, | \vacuum \rangle \;\neq\; 0
+\end{equation}
+This torsion background is not a dynamical excitation but a \textit{topological property} of the vacuum manifold itself.
+\end{postulate}
+
+% ------------------------------------------------------------
+\subsection{The Cartan Connection and Contortion Tensor}
+% ------------------------------------------------------------
+
+The full connection $\connection$ decomposes as:
+\begin{equation}
+    \connection^\lambda{}_{\mu\nu} \;=\; \mathring{\connection}^\lambda{}_{\mu\nu} \;+\; \contortion^\lambda{}_{\mu\nu}
+\end{equation}
+where $\mathring{\connection}^\lambda{}_{\mu\nu}$ is the Levi-Civita (torsion-free) connection and $\contortion^\lambda{}_{\mu\nu}$ is the \textbf{contortion tensor}, given by:
+\begin{equation}
+    \contortion_{\lambda\mu\nu} \;=\; \frac{1}{2}\big(\torsion_{\lambda\mu\nu} - \torsion_{\mu\nu\lambda} + \torsion_{\nu\lambda\mu}\big)
+\end{equation}
+
+The contortion tensor encodes all deviations from Riemannian geometry and serves as the primary dynamical variable in Einstein-Cartan theory.
+
+\begin{definition}[Irreducible Decomposition of Torsion]
+The torsion tensor decomposes into three irreducible representations under the Lorentz group $SO(1,3)$:
+\begin{align}
+    \torsion^\lambda{}_{\mu\nu} &= \frac{1}{3}\big(\delta^\lambda_\mu \,\mathcal{V}_\nu - \delta^\lambda_\nu \,\mathcal{V}_\mu\big) 
+                                   + \frac{1}{6}\,\epsilon_{\mu\nu}{}^{\lambda\rho}\,\mathcal{A}_\rho 
+                                   + \mathcal{Q}^\lambda{}_{\mu\nu} \\[0.3em]
+    \text{where:}\quad & \mathcal{V}_\mu = \torsion^\lambda{}_{\lambda\mu} \quad \text{(vector trace)} \\
+    & \mathcal{A}^\rho = \epsilon^{\mu\nu\lambda\rho}\,\torsion_{\mu\nu\lambda} \quad \text{(axial trace)} \\
+    & \mathcal{Q}^\lambda{}_{\mu\nu} \quad \text{(pure tensor, traceless)}
+\end{align}
+\end{definition}
+
+\begin{remark}
+In the GEM, the vector trace $\mathcal{V}_\mu$ is identified with the gradient of the scalar potential $w$ discussed in the phenomenological formulation:
+\begin{equation}
+    \mathcal{V}_\mu \;\propto\; \partial_\mu w
+\end{equation}
+This identification provides a geometric interpretation of the "scalar field" as a manifestation of spacetime torsion.
+\end{remark}
+
+% ------------------------------------------------------------
+\subsection{Fiber Bundle Structure and Gauge Fields}
+% ------------------------------------------------------------
+
+To incorporate gauge interactions, we lift the geometric structure to the level of principal fiber bundles.
+
+\begin{definition}[Principal Bundle of the Vacuum]
+Let $\fibbundle(\baseM, \structgrp)$ be a principal fiber bundle over the base manifold $\baseM \cong \manifold$ with structure group:
+\begin{equation}
+    \structgrp \;=\; SO(1,3) \times U(1)_Y \times SU(2)_L \times SU(3)_C
+\end{equation}
+The connection 1-form on $\fibbundle$ is denoted $\mathcal{A} \in \Omega^1(\fibbundle, \mathfrak{g})$, where $\mathfrak{g}$ is the Lie algebra of $\structgrp$.
+\end{definition}
+
+% --- Reemplazo para el Postulado 2.2 ---
+\begin{postulate}[Spontaneous Symmetry Breaking of the Spatial Structure Group]
+\label{post:bundle}
+We postulate that the quantum vacuum state induces a spontaneous symmetry breaking of the spatial structure group. Specifically, at scales $\ell \sim \ell_P$, the spatial rotation group $SO(3)$ is reduced to the discrete icosahedral subgroup $I_h$. 
+The torsion 2-form, defined via the vierbein $e^a$ and the spin connection $\omega^a{}_b$, acts as the order parameter for this symmetry breaking:
+\begin{equation}
+    T^a = d e^a + \omega^a{}_b \wedge e^b
+\end{equation}
+This reduction implies that the vacuum manifold possesses a discrete icosahedral frame field, breaking continuous spatial isotropy at the Planck scale while preserving local Lorentz invariance in the macroscopic limit.
+\end{postulate}
+
+This identification is crucial: torsion is not an ad hoc addition but a \textit{topological necessity} when the translational symmetry is gauged, as in Poincaré Gauge Theory (PGT).
+
+% ------------------------------------------------------------
+\subsection{Discrete Symmetries: Icosahedral Substructure}
+% ------------------------------------------------------------
+
+A distinctive feature of the GEM is the postulation of a \textit{discrete substructure} at the Planck scale. We formalize this through a discrete subgroup of the Lorentz group.
+
+% --- Reemplazo para la Definición 3.5 ---
+
+\begin{definition}[Icosahedral Subgroup]
+Let $I_h \subset SO(3)$ be the full icosahedral group (order 120), isomorphic to $A_5 \times \mathbb{Z}_2$. We postulate that the vacuum manifold admits a reduction of its spatial rotation subgroup:
+\begin{equation}
+    SO(3) \longrightarrow I_h
+\end{equation}
+at scales $\ell \sim \ell_P$, where $\ell_P = \sqrt{\hbar G/c^3}$ is the Planck length. This symmetry breaking occurs in the fiber of spatial rotations within the full Lorentz group $SO(1,3)$, preserving Lorentz invariance at macroscopic scales.
+\end{definition}
+
+\begin{theorem}[Existence of Twelve Preferred Directions]
+\label{thm:12lines}
+The icosahedral group $I_h$ possesses exactly 6 pairs of antipodal axes of rotational symmetry (corresponding to the 12 vertices of the icosahedron, or equivalently the 12 faces of the dodecahedron). These define a set of 12 preferred directions $\{n_i^\mu\}_{i=1}^{12}$ in the tangent space at each point:
+\begin{equation}
+    n_i^\mu \;\in\; T_p\manifold, \qquad i = 1, \dots, 12
+\end{equation}
+These directions are invariant under the action of $I_h$ and define a \textit{discrete frame field} on $\manifold$.
+\end{theorem}
+
+\begin{proof}
+The icosahedral group $I_h$ acts on $S^2$ with orbits corresponding to:
+\begin{itemize}
+    \item 12 vertices (5-fold axes)
+    \item 20 face centers (3-fold axes)
+    \item 30 edge midpoints (2-fold axes)
+\end{itemize}
+The 12 vertices come in 6 antipodal pairs, yielding 6 independent axes or, equivalently, 12 oriented directions. Each axis is invariant under a $\mathbb{Z}_5$ subgroup. \qed
+\end{proof}
+
+\begin{remark}[Physical Interpretation]
+The 12 directions $\{n_i^\mu\}$ correspond to what the phenomenological GEM literature calls the "12 bi-symmetric magnetic lines." In this rigorous formulation, they emerge not as ad hoc postulates but as \textit{consequences} of the discrete structure group reduction.
+\end{remark}
+
+% ------------------------------------------------------------
+\subsection{Scalar Field Coupling to Torsion}
+% ------------------------------------------------------------
+
+We introduce a real scalar field $\scalarfield$ that couples non-minimally to the torsion of the manifold.
+
+\begin{definition}[Torsion-Scalar Coupling]
+The coupling between $\scalarfield$ and torsion is mediated by the axial trace $\mathcal{A}_\mu$ and the vector trace $\mathcal{V}_\mu$:
+\begin{equation}
+    \lagrangian_{\text{int}} \;=\; \alpha\, \scalarfield\, \nabla_\mu \mathcal{V}^\mu \;+\; \beta\, \partial_\mu \scalarfield\, \mathcal{A}^\mu \;+\; \gamma\, \scalarfield^2\, \torsion_{\lambda\mu\nu}\torsion^{\lambda\mu\nu}
+\end{equation}
+where $\alpha, \beta, \gamma$ are dimensionless coupling constants.
+\end{definition}
+
+\begin{proposition}[Emergence of Effective Potential]
+Integrating out the torsion degrees of freedom at one-loop level generates an effective potential for $\scalarfield$:
+\begin{equation}
+    V_{\text{eff}}(\scalarfield) \;=\; \frac{\lambda}{4}\,\scalarfield^4 \;-\; \frac{\mu^2}{2}\,\scalarfield^2 \;+\; \Lambda_0 \;+\; \Delta V_{\text{torsion}}(\scalarfield)
+\end{equation}
+where $\Delta V_{\text{torsion}}$ contains non-polynomial terms arising from the discrete icosahedral structure:
+\begin{equation}
+    \Delta V_{\text{torsion}}(\scalarfield) \;\sim\; \sum_{i=1}^{12} f\big(\scalarfield\, n_i^\mu \partial_\mu \scalarfield\big)
+\end{equation}
+This potential is \textit{not} invariant under continuous $SO(3)$ rotations, reflecting the discrete substructure.
+\end{proposition}
+
+% ------------------------------------------------------------
+\subsection{The GEM Lagrangian}
+% ------------------------------------------------------------
+
+We now assemble the complete Lagrangian density of the model.
+
+\begin{definition}[Total GEM Lagrangian]
+The total Lagrangian density is:
+\begin{equation}
+\boxed{
+    \lagrangian_{\text{GEM}} \;=\; \lagrangian_{\text{grav}} \;+\; \lagrangian_{\text{torsion}} \;+\; \lagrangian_{\scalarfield} \;+\; \lagrangian_{\text{gauge}} \;+\; \lagrangian_{\text{matter}} \;+\; \lagrangian_{\text{top}}
+}
+\end{equation}
+where each term is defined as follows:
+
+\textbf{(i) Gravitational sector (Einstein-Cartan):}
+\begin{equation}
+    \lagrangian_{\text{grav}} \;=\; \frac{1}{2\kappa}\, \vierbein\, \mathring{R} \;=\; \frac{\sqrt{-g}}{16\pi G}\, \mathring{R}
+\end{equation}
+
+\textbf{(ii) Torsion kinetic term:}
+\begin{equation}
+    \lagrangian_{\text{torsion}} \;=\; \frac{1}{2\kappa}\big( a_1\, \torsion_{\lambda\mu\nu}\torsion^{\lambda\mu\nu} + a_2\, \torsion_{\lambda\mu\nu}\torsion^{\nu\mu\lambda} + a_3\, \mathcal{V}_\mu \mathcal{V}^\mu + a_4\, \mathcal{A}_\mu \mathcal{A}^\mu \big)
+\end{equation}
+
+\textbf{(iii) Scalar field:}
+\begin{equation}
+    \lagrangian_{\scalarfield} \;=\; -\frac{1}{2}\,g^{\mu\nu}\partial_\mu \scalarfield\, \partial_\nu \scalarfield \;-\; V(\scalarfield) \;+\; \lagrangian_{\text{int}}
+\end{equation}
+
+\textbf{(iv) Gauge fields (Standard Model):}
+\begin{equation}
+    \lagrangian_{\text{gauge}} \;=\; -\frac{1}{4}\, F_{\mu\nu}F^{\mu\nu} \;-\; \frac{1}{4}\, W^a_{\mu\nu}W^{a\mu\nu} \;-\; \frac{1}{4}\, G^A_{\mu\nu}G^{A\mu\nu}
+\end{equation}
+
+\textbf{(v) Topological term (Nieh-Yan invariant):}
+\begin{equation}
+    \lagrangian_{\text{top}} \;=\; \frac{\theta_{NY}}{16\pi^2}\, \big(\torsion^a \wedge \torsion_a - \vierbein^a \wedge \vierbein^b \wedge \curvature_{ab}\big)
+\end{equation}
+\end{definition}
+
+\begin{remark}
+The Nieh-Yan topological invariant \cite{NiehYan1982} is the characteristic class associated with torsion in Riemann-Cartan manifolds. The angle $\theta_{NY}$ plays a role analogous to the QCD $\theta$-angle and is a candidate for encoding the "Hunab Ku angle" $\theta_c$ in a gauge-invariant manner.
+\end{remark}
+
+% ------------------------------------------------------------
+\subsection{Field Equations}
+% ------------------------------------------------------------
+
+Varying the action $\action = \int d^4x\, \lagrangian_{\text{GEM}}$ with respect to the independent fields yields:
+
+\begin{theorem}[Field Equations of the GEM]
+The Euler-Lagrange equations are:
+
+\textbf{(i) Einstein-Cartan equations (metric variation):}
+\begin{equation}
+    G_{\mu\nu} \;-\; \Lambda g_{\mu\nu} \;=\; \kappa\big( T^{(\scalarfield)}_{\mu\nu} + T^{(\torsion)}_{\mu\nu} + T^{(\text{matter})}_{\mu\nu} \big)
+\end{equation}
+
+\textbf{(ii) Cartan equations (torsion variation):}
+\begin{equation}
+    \torsion_{\lambda\mu\nu} \;=\; \kappa\, S_{\lambda\mu\nu} \;+\; \text{gradient terms from } \scalarfield
+\end{equation}
+where $S_{\lambda\mu\nu}$ is the spin density tensor of matter fields.
+
+\textbf{(iii) Scalar field equation:}
+\begin{equation}
+    \square \scalarfield \;-\; \frac{dV}{d\scalarfield} \;+\; \alpha\, \nabla_\mu \mathcal{V}^\mu \;-\; \beta\, \nabla_\mu \mathcal{A}^\mu \;=\; 0
+\end{equation}
+
+\textbf{(iv) Gauge field equations (modified by torsion):}
+\begin{equation}
+    \nabla_\mu F^{\mu\nu} \;+\; \torsion_{\lambda\mu}{}^\mu\, F^{\lambda\nu} \;=\; j^\nu
+\end{equation}
+\end{theorem}
+
+\begin{corollary}[Vacuum Solution]
+In the absence of matter ($T_{\mu\nu} = 0$, $S_{\lambda\mu\nu} = 0$), a non-trivial vacuum solution exists where:
+\begin{equation}
+    \langle \scalarfield \rangle \;=\; \varphi_0 \;\neq\; 0, \qquad \langle \torsion^\lambda{}_{\mu\nu} \rangle \;\neq\; 0
+\end{equation}
+This corresponds to a \textit{torsion condensate} that spontaneously breaks the spatial rotation group SO(3) down to the discrete icosahedral subgroup $I_h$.
+\end{corollary}
+
+% ------------------------------------------------------------
+\subsection{Summary and Outlook}
+% ------------------------------------------------------------
+
+The mathematical framework established in this section provides:
+
+\begin{enumerate}
+    \item A \textbf{geometric foundation} for the vacuum as a Riemann-Cartan manifold with intrinsic torsion.
+    \item A \textbf{topological origin} for the discrete "12-line" structure via icosahedral subgroup reduction.
+    \item A \textbf{dynamical coupling} between scalar fields and torsion that enables energy extraction mechanisms.
+    \item A \textbf{gauge-invariant topological term} (Nieh-Yan) that may encode fundamental angular parameters.
+\end{enumerate}
+
+In the subsequent sections, we will exploit this framework to:
+\begin{itemize}
+    \item Derive the fine-structure constant $\alpha$ as a topological invariant (Section 3).
+    \item Establish charge quantization via discrete gauge subgroups (Section 4).
+    \item Compute corrections to the muon anomalous magnetic moment from torsion loops (Section 5).
+\end{itemize}
