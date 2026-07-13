@@ -183,8 +183,7 @@ Al ejecutar esto, ngspice no se colgará. Verás en la consola:
 
 ###  Siguiente Paso en la Visión Integral
 
-Ingeniero Jefe, con esto hemos cerrado el círculo de la **Fase de Ingeniería**. Tenemos el modelo matemático (Codex), la validación computacional (SPICE) y el plano de construcción (Manual). 
+Tenemos el modelo matemático (Codex), la validación computacional (SPICE) y el plano de construcción (Manual). 
 
 Cuando estés listo y hayas digerido esto, el siguiente paso natural en nuestra "visión integral" es redactar el **Protocolo de Validación Experimental (GEM-11/12)**, que es el documento que le dice al técnico de laboratorio *exactamente* cómo medir estas 3 firmas sin que el ruido electromagnético ambiente contamine los datos. 
-
-¿Qué te parece el cierre de estas dos fases? ¡El telar está listo para el siguiente hilo! 🚀✨
+ 🚀✨
