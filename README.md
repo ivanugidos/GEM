@@ -55,19 +55,19 @@ GEM-Topological-Vacuum/
 Este ecosistema se sustenta en 4 pilares interconectados que van desde la observación del cielo hasta la física teórica de vanguardia y la validación experimental.
 
 #### **Pilar 1: La Observación Fenomenológica** *(Carpeta: Fundamentos)*
-* **Documento:** `De la Física al Logos: El Ángulo de 22° como Constante de Acoplamiento`
+* **Documento:** `De la Física al Logos: El Ángulo de 22° como Constante de Acoplamiento entre realidad y sintérgia`
 * **Qué es:** La chispa inicial. La evidencia macroscópica y observable en el cielo (el halo solar).
 * **Función:** Demuestra que el vacío no es "nada", sino un medio con una red geométrica (cristales de hielo hexagonales) que refracta la luz en un umbral preciso de coherencia (22°). Es el anclaje a la realidad física tangible.
 
-#### **Pilar 2: El Código Matemático** *(Carpeta: Fundamentos / HC)*
-* **Documento:** `Sintergia Cósmica: Del Residuo de Pi al Ángulo del Halo Solar`
+#### **Pilar 2: El Código Matemático** *(Carpeta: Fundamentos)*
+* **Documento:** `Sintergia Cósmica: Del Residuo de Pi al Ángulo del Halo Solar como código de la reslidad`
 * **Qué es:** El "lenguaje máquina" del universo. La descomposición de las constantes trascendentales ($T = \pi + e + \phi \approx 7.477$).
 * **Función:** Proporciona las herramientas numéricas exactas: la frecuencia de 16.2 Hz, el triángulo sagrado $1:\sqrt{6}:\sqrt{7}$, y la "Llave de Sintonía" (0.2386) que permite la transmutación energética sin colapso.
 
-#### **Pilar 3: La Dinámica del Vórtice** *(Carpeta: Fundamentos / HC)*
-* **Documento:** `De la Red Hexagonal al Vórtice Cósmico`
+#### **Pilar 3: La Dinámica del Vórtice** *(Carpeta: Fundamentos)*
+* **Documento:** `De la Red Hexagonal al Vórtice Cósmico...`
 * **Qué es:** El motor en movimiento. La evolución del modelo estático a uno dinámico y toroidal.
-* **Función:** Explica *cómo* funciona la maquinaria. Introduce el espín como un "micro-remolino", la Quinta Fuerza Galáctica ($\eta$) como ancla de resonancia cósmica, y la torsión como el mecanismo que genera la inercia y la gravedad.
+* **Función:** Explica *cómo* funciona la estructura fundamental. Introduce el espín como un "micro-remolino", la Quinta Fuerza Galáctica ($\eta$) como ancla de resonancia cósmica, y la torsión como el mecanismo que genera la inercia y la gravedad.
 
 #### **Pilar 4: La Formalización Rigurosa** *(Carpeta: Paper_01)*
 * **Documento:** `Topological Vacuum Structure and the Geometric Origin of Fundamental Couplings` (Zenodo DOI: 10.5281/zenodo.21268209)
