@@ -1,0 +1,440 @@
+\documentclass[12pt, a4paper]{article}
+
+% --- Paquetes de Idioma y Codificación ---
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[spanish]{babel}
+
+% --- Paquetes Matemáticos ---
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsfonts}
+\usepackage{mathtools}
+
+% --- Paquetes de Diseño y Formato ---
+\usepackage{geometry}
+\geometry{margin=2.5cm}
+\usepackage{xcolor}
+\usepackage{titlesec}
+\usepackage{fancyhdr}
+\usepackage{tcolorbox}
+\tcbuselibrary{theorems, skins, breakable}
+\usepackage{booktabs}
+\usepackage{array}
+\usepackage{hyperref}
+\usepackage{enumitem}
+\usepackage{graphicx}
+
+% --- Colores Personalizados GEM ---
+\definecolor{gemblue}{RGB}{0, 51, 153}
+\definecolor{gemgold}{RGB}{204, 153, 0}
+\definecolor{gemdark}{RGB}{20, 20, 20}
+\definecolor{cosmicpurple}{RGB}{102, 0, 153}
+\definecolor{alertred}{RGB}{200, 0, 0}
+
+% --- Configuración de Encabezados y Pies ---
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\textcolor{cosmicpurple}{\textsc{Protocolo GEM-01}}}
+\fancyhead[R]{\textsc{Validación Experimental}}
+\fancyfoot[C]{\textcolor{gray}{\thepage}}
+\renewcommand{\headrulewidth}{0.4pt}
+
+% --- Estilos de Título ---
+\titleformat{\section}{\Large\bfseries\color{cosmicpurple}}{\thesection}{1em}{}[\titlerule]
+\titleformat{\subsection}{\large\bfseries\color{gemdark}}{\thesubsection}{1em}{}
+
+% --- Título del Documento ---
+\title{\textbf{\Huge \textcolor{cosmicpurple}{Protocolo de Validación Experimental GEM-01}} \\[0.5cm]
+\Large \textit{Medición de Reducción de Inercia Topológica en Agua bajo Resonancia Escalar} \\[0.3cm]
+\large \textcolor{gemgold}{\textbf{Ciencia Abierta / Replicable}}}
+\author{Investigación Colaborativa G.E.M. \\ \small Basado en el Teorema 02: La Válvula de Vacío \\ \small Junio 2026}
+\date{}
+
+\begin{document}
+
+\maketitle
+\thispagestyle{empty}
+\newpage
+
+\tableofcontents
+\newpage
+
+% ==========================================
+% SECCIÓN 1: OBJETIVO Y FUNDAMENTO TEÓRICO
+% ==========================================
+\section{Objetivo y Fundamento Teórico}
+
+\subsection{Objetivo Principal}
+Validar experimentalmente el \textbf{Teorema 02 del Modelo GEM} (La Válvula de Vacío) mediante la medición de reducción de inercia topológica en una muestra de agua ultrapura sometida a un gradiente de potencial escalar $\nabla w$ generado por nulificación vectorial a la frecuencia de resonancia de $16.2$ Hz.
+
+\subsection{Hipótesis a Validar}
+Según el Teorema 02, al aplicar un gradiente topológico $\nabla w$ sobre un transductor geométrico (agua con ángulo molecular $105^\circ$), se extrae energía del vacío cuántico según:
+\begin{equation}
+\dot{E}_{ext} = \eta_{GEM} \cdot \oint_{\partial V} [\nabla w \cdot \mathbf{J}_g] d\mathbf{S}
+\end{equation}
+
+Esta energía extraída se manifiesta como una \textbf{reducción de inercia} $\Delta I$ proporcional a:
+\begin{equation}
+\Delta I = \frac{E_{ext}}{1836 \cdot C_{105}}
+\end{equation}
+
+Donde:
+\begin{itemize}
+    \item $1836$ es la relación de masa protón/electrón (factor de confinamiento topológico)
+    \item $C_{105} \approx 0.98$ es el factor de corrección geométrica del agua
+    \item $\eta_{GEM} = \frac{\phi}{\pi} \cdot \delta^2 \approx 2.06 \times 10^{-4}$ es la eficiencia de acoplamiento
+\end{itemize}
+
+\subsection{Predicción Cuantitativa}
+Para una muestra de $50$ mL de agua Milli-Q sometida a un gradiente $\nabla w$ generado por bobinas de Helmholtz a $16.2$ Hz con amplitud de $5$ Vpp, el modelo predice:
+\begin{itemize}
+    \item \textbf{Reducción de masa esperada:} $\Delta m \approx 0.005$ g a $0.05$ g ($0.01\%$ - $0.1\%$)
+    \item \textbf{Tiempo de estabilización:} $5$ - $15$ minutos
+    \item \textbf{Histéresis topológica:} La reducción persiste $5$-$10$ minutos tras apagar el campo
+\end{itemize}
+
+% ==========================================
+% SECCIÓN 2: MATERIALES Y EQUIPAMIENTO
+% ==========================================
+\section{Materiales y Equipamiento Requerido}
+
+\subsection{Componentes del Rig GEM-01}
+
+\begin{table}[h!]
+\centering
+\caption{Lista de Materiales del Rig GEM-01}
+\begin{tabular}{@{}p{6cm}p{4cm}p{5cm}@{}}
+\toprule
+\textbf{Componente} & \textbf{Especificación} & \textbf{Función GEM} \\ \midrule
+Bobinas de Helmholtz (3 ejes) & Diámetro 20 cm, 50 espiras, AWG 22 & Generar nulificación vectorial $\mathbf{v}=0$ \\ \addlinespace
+Generador de señales DDS & Estabilidad 0.001 Hz, salida 0-10 Vpp & Generar señal de 16.2 Hz pura \\ \addlinespace
+Amplificador de audio & 20 W, respuesta 10 Hz-100 kHz & Amplificar señal para bobinas \\ \addlinespace
+Balanza analítica & Precisión 0.1 mg, capacidad 200 g & Medir reducción de masa $\Delta m$ \\ \addlinespace
+Vaso de precipitados & Cuarzo o vidrio borosilicato, 100 mL & Contener muestra de agua \\ \addlinespace
+Agua Milli-Q & Resistividad 18.2 MΩ·cm, TOC < 5 ppb & Transductor geométrico ($105^\circ$) \\ \addlinespace
+Termistor NTC & Precisión 0.01°C, respuesta rápida & Monitorear $\Delta T$ (entropía) \\ \addlinespace
+Jaula de Faraday & Malla cobre + blindaje Mu-Metal & Aislar de EMI externo \\ \addlinespace
+Osciloscopio & 100 MHz, 4 canales & Verificar nulificación vectorial \\ \addlinespace
+Gaussímetro & Rango 0-200 mT, resolución 0.01 mT & Medir campo magnético residual \\ \bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{Configuración del Sistema}
+
+\begin{figure}[h!]
+\centering
+\fbox{\parbox[c][6cm][c]{12cm}{\centering \textbf{DIAGRAMA ESQUEMÁTICO DEL RIG GEM-01} \\[1cm]
+[Espacio para insertar diagrama SVG/PDF] \\[1cm]
+Generador DDS $\rightarrow$ Amplificador $\rightarrow$ Bobinas Helmholtz (X,Y,Z) \\
+$\downarrow$ \\
+Muestra de Agua (50 mL) en Balanza \\
+$\downarrow$ \\
+Termistor NTC + Osciloscopio}}
+\caption{Configuración experimental del Rig GEM-01}
+\end{figure}
+
+% ==========================================
+% SECCIÓN 3: PROCEDIMIENTO EXPERIMENTAL
+% ==========================================
+\section{Procedimiento Experimental Paso a Paso}
+
+\subsection{Fase 1: Preparación y Calibración (Día 1)}
+
+\begin{enumerate}[label=\textbf{Paso \arabic*:}, leftmargin=*]
+    \item \textbf{Limpieza del Sistema:}
+    \begin{itemize}
+        \item Limpiar el vaso de precipitados con ácido nítrico al 10\% y enjuagar 3 veces con agua Milli-Q.
+        \item Secar en estufa a 60°C durante 30 minutos.
+        \item Manipular siempre con guantes de nitrilo para evitar contaminación.
+    \end{itemize}
+    
+    \item \textbf{Calibración de la Balanza:}
+    \begin{itemize}
+        \item Nivelar la balanza usando el nivel de burbuja integrado.
+        \item Calibrar con pesas patrón certificadas (10 g, 50 g, 100 g).
+        \item Verificar deriva térmica: la lectura debe ser estable ($\pm 0.1$ mg) durante 30 minutos.
+        \item Registrar temperatura ambiente: debe ser $20 \pm 0.5^\circ$C.
+    \end{itemize}
+    
+    \item \textbf{Configuración de Bobinas de Helmholtz:}
+    \begin{itemize}
+        \item Montar las 3 bobinas en configuración ortogonal (X, Y, Z).
+        \item Conectar en serie con polaridad correcta (verificar con multímetro).
+        \item Medir resistencia total: debe ser $R \approx 10-15 \, \Omega$.
+        \item Verificar inductancia: $L \approx 5-10$ mH.
+    \end{itemize}
+    
+    \item \textbf{Calibración del Generador DDS:}
+    \begin{itemize}
+        \item Configurar frecuencia: $f = 16.200$ Hz (exacto).
+        \item Configurar amplitud: $V_{pp} = 5.00$ V.
+        \item Configurar forma de onda: Senoidal pura (THD < 0.1\%).
+        \item Verificar con osciloscopio: medir frecuencia real y amplitud.
+    \end{itemize}
+\end{enumerate}
+
+\subsection{Fase 2: Línea Base y Control (Día 2)}
+
+\begin{enumerate}[label=\textbf{Paso \arabic*:}, leftmargin=*, start=5]
+    \item \textbf{Medición de Línea Base (Sin Campo):}
+    \begin{itemize}
+        \item Llenar el vaso con exactamente $50.00$ mL de agua Milli-Q (usar pipeta volumétrica).
+        \item Colocar el vaso en el centro de las bobinas de Helmholtz (intersección de los 3 ejes).
+        \item Colocar el termistor NTC en contacto con la pared exterior del vaso.
+        \item Cerrar la jaula de Faraday.
+        \item Esperar 30 minutos para estabilización térmica.
+        \item Registrar masa inicial $m_0$ cada minuto durante 10 minutos.
+        \item Calcular promedio: $\bar{m}_0 = \frac{1}{10} \sum_{i=1}^{10} m_i$
+        \item Calcular desviación estándar: $\sigma_0$ (debe ser $< 0.2$ mg).
+    \end{itemize}
+    
+    \item \textbf{Verificación de Nulificación Vectorial:}
+    \begin{itemize}
+        \item Encender el generador DDS a 16.2 Hz, 5 Vpp.
+        \item Conectar el gaussímetro en el centro de las bobinas.
+        \item Ajustar fase y amplitud de cada bobina (X, Y, Z) hasta minimizar el campo magnético.
+        \item \textbf{Criterio de éxito:} $|\mathbf{B}| < 0.05$ mT en los 3 ejes.
+        \item Verificar con osciloscopio que los campos $\mathbf{E}$ y $\mathbf{B}$ están en oposición de fase ($180^\circ$).
+    \end{itemize}
+\end{enumerate}
+
+\subsection{Fase 3: Experimento Principal (Día 3)}
+
+\begin{enumerate}[label=\textbf{Paso \arabic*:}, leftmargin=*, start=7]
+    \item \textbf{Aplicación del Gradiente $\nabla w$:}
+    \begin{itemize}
+        \item Verificar que la muestra está en las mismas condiciones que la línea base.
+        \item Registrar masa inicial $m_{inicio}$.
+        \item Registrar temperatura inicial $T_{inicio}$.
+        \item \textbf{Encender el generador DDS} a $t=0$.
+        \item Iniciar registro automático de datos cada 10 segundos:
+        \begin{itemize}
+            \item Masa $m(t)$
+            \item Temperatura $T(t)$
+            \item Voltaje en bobinas $V(t)$
+            \item Campo magnético residual $B(t)$
+        \end{itemize}
+    \end{itemize}
+    
+    \item \textbf{Monitoreo en Tiempo Real (60 minutos):}
+    \begin{itemize}
+        \item Minuto 0-10: Fase de transición (posibles oscilaciones).
+        \item Minuto 10-50: Fase de estabilización (buscar meseta).
+        \item Minuto 50-60: Fase de medición estable.
+        \item \textbf{Alerta:} Si $\Delta T > +2.0^\circ$C, APAGAR INMEDIATAMENTE (fuga vectorial).
+    \end{itemize}
+    
+    \item \textbf{Apagado y Medición de Histéresis:}
+    \begin{itemize}
+        \item En $t=60$ min, \textbf{apagar el generador DDS}.
+        \item Continuar registrando datos cada 10 segundos durante 30 minutos adicionales.
+        \item Esto mide la \textbf{histéresis topológica}: cuánto persiste el efecto tras apagar el campo.
+    \end{itemize}
+\end{enumerate}
+
+\subsection{Fase 4: Análisis de Datos}
+
+\begin{enumerate}[label=\textbf{Paso \arabic*:}, leftmargin=*, start=10]
+    \item \textbf{Cálculo de la Reducción de Masa:}
+    \begin{equation}
+    \Delta m = \bar{m}_{60} - \bar{m}_0
+    \end{equation}
+    Donde $\bar{m}_{60}$ es el promedio de los últimos 10 minutos del experimento.
+    
+    \item \textbf{Cálculo del Porcentaje de Reducción:}
+    \begin{equation}
+    \% \Delta m = \frac{\Delta m}{m_0} \times 100\%
+    \end{equation}
+    
+    \item \textbf{Análisis de Temperatura:}
+    \begin{equation}
+    \Delta T = T_{60} - T_0
+    \end{equation}
+    \textbf{Criterio de éxito:} $\Delta T \leq 0^\circ$C (entropía negativa) o $\Delta T < +0.5^\circ$C (mínima disipación).
+    
+    \item \textbf{Análisis de Histéresis:}
+    \begin{equation}
+    \tau = \text{tiempo para que } \Delta m \text{ decaiga al 50\% tras apagar}
+    \end{equation}
+    Predicción del modelo: $\tau \approx 5-15$ minutos.
+\end{enumerate}
+
+% ==========================================
+% SECCIÓN 4: CRITERIOS DE VALIDACIÓN
+% ==========================================
+\section{Criterios de Validación del Modelo GEM}
+
+\begin{tcolorbox}[
+    colback=gemgold!10,
+    colframe=gemgold,
+    title=\textbf{\textcolor{gemdark}{LAS 3 FIRMAS DEL ÉXITO (CRITERIOS DE VALIDACIÓN)}},
+    fonttitle=\bfseries\large,
+    boxrule=1.5pt,
+    arc=4pt
+]
+Para considerar el experimento como \textbf{validación del Teorema 02}, deben cumplirse \textbf{simultáneamente} las siguientes condiciones:
+
+\begin{enumerate}
+    \item \textbf{Firma 1: Reducción de Masa Medible}
+    \begin{itemize}
+        \item $\Delta m > 3\sigma_0$ (señal mayor que 3 veces el ruido)
+        \item $\% \Delta m \geq 0.01\%$ (reducción mínima del 0.01\%)
+        \item Valor esperado: $0.01\% - 0.1\%$ ($\Delta m \approx 5-50$ mg para 50 g)
+    \end{itemize}
+    
+    \item \textbf{Firma 2: Entropía Negativa o Neutra}
+    \begin{itemize}
+        \item $\Delta T \leq 0^\circ$C (enfriamiento = neguentropía) \textbf{IDEAL}
+        \item $\Delta T < +0.5^\circ$C (mínima disipación) \textbf{ACEPTABLE}
+        \item $\Delta T > +2.0^\circ$C \textbf{FALLO} (fuga vectorial, histéresis magnética)
+    \end{itemize}
+    
+    \item \textbf{Firma 3: Histéresis Topológica}
+    \begin{itemize}
+        \item La reducción de masa persiste $> 5$ minutos tras apagar el campo
+        \item Decaimiento exponencial con constante $\tau \approx 5-15$ min
+        \item Esto demuestra que el efecto no es electromagnético transitorio, sino topológico
+    \end{itemize}
+\end{enumerate}
+\end{tcolorbox}
+
+\subsection{Interpretación de Resultados}
+
+\begin{table}[h!]
+\centering
+\caption{Matriz de Interpretación de Resultados}
+\begin{tabular}{@{}p{4cm}p{4cm}p{5cm}@{}}
+\toprule
+\textbf{Resultado} & \textbf{Interpretación} & \textbf{Acción} \\ \midrule
+$\Delta m > 0$, $\Delta T \leq 0$, $\tau > 5$ min & \textbf{VALIDACIÓN EXITOSA} del Teorema 02 & Publicar datos, replicar en otro laboratorio \\ \addlinespace
+$\Delta m > 0$, $\Delta T > 0$ (pequeño), $\tau > 5$ min & Validación parcial, posible fuga vectorial menor & Optimizar nulificación, repetir \\ \addlinespace
+$\Delta m \approx 0$, $\Delta T \approx 0$ & Sin efecto detectable & Verificar calibración, aumentar amplitud \\ \addlinespace
+$\Delta m < 0$ (aumento), $\Delta T > 2^\circ$C & \textbf{FALLO}: efecto Joule dominante & APAGAR, revisar bobinas, verificar fase \\ \bottomrule
+\end{tabular}
+\end{table}
+
+% ==========================================
+% SECCIÓN 5: PROTOCOLO DE SEGURIDAD
+% ==========================================
+\section{Protocolo de Seguridad y Contingencias}
+
+\begin{tcolorbox}[
+    colback=alertred!10,
+    colframe=alertred,
+    title=\textbf{\textcolor{alertred}{⚠️ REGLAS DE SEGURIDAD CRÍTICAS}},
+    fonttitle=\bfseries,
+    boxrule=1.5pt
+]
+\begin{enumerate}
+    \item \textbf{Límite de Temperatura:} Si el termistor marca $\Delta T > +2.0^\circ$C, \textbf{APAGAR INMEDIATAMENTE} el generador. Esto indica fuga vectorial (histéresis magnética) que puede dañar las bobinas.
+    
+    \item \textbf{Límite de Corriente:} Monitorear corriente en bobinas. No exceder $I_{max} = 2$ A para evitar sobrecalentamiento.
+    
+    \item \textbf{Aislamiento Eléctrico:} Todas las conexiones deben estar aisladas. Usar guantes dieléctricos al manipular bobinas energizadas.
+    
+    \item \textbf{Campo Magnético:} Mantener objetos magnéticos (tarjetas, relojes, marcapasos) a > 1 m de distancia durante el experimento.
+\end{enumerate}
+\end{tcolorbox}
+
+\subsection{Contingencias y Solución de Problemas}
+
+\begin{table}[h!]
+\centering
+\caption{Tabla de Contingencias}
+\begin{tabular}{@{}p{5cm}p{6cm}@{}}
+\toprule
+\textbf{Problema} & \textbf{Solución} \\ \midrule
+La balanza muestra deriva térmica constante & Esperar más tiempo de estabilización (60 min). Verificar que la jaula de Faraday no tenga corrientes de aire. \\ \addlinespace
+No se logra nulificación vectorial ($B > 0.1$ mT) & Verificar polaridad de bobinas. Ajustar fase con osciloscopio. Verificar que las bobinas sean perfectamente ortogonales. \\ \addlinespace
+La muestra se calienta rápidamente ($\Delta T > 1^\circ$C/min) & APAGAR. Verificar que la frecuencia sea exactamente 16.2 Hz (no armónicos). Reducir amplitud a 2 Vpp y probar de nuevo. \\ \addlinespace
+Ruido excesivo en la balanza ($\sigma > 0.5$ mg) & Verificar aislamiento de vibraciones (mesa óptica). Cerrar jaula de Faraday herméticamente. Desconectar equipos innecesarios. \\ \addlinespace
+Efecto persistente tras apagar ($\tau > 30$ min) & Posible magnetización residual del vaso. Usar vaso de cuarzo en lugar de vidrio. Desmagnetizar bobinas con corriente alterna decreciente. \\ \bottomrule
+\end{tabular}
+\end{table}
+
+% ==========================================
+% SECCIÓN 6: REGISTRO DE DATOS
+% ==========================================
+\section{Formato de Registro de Datos}
+
+\subsection{Hoja de Datos Experimental}
+
+\begin{tcolorbox}[
+    colback=gemblue!5,
+    colframe=gemblue,
+    title=\textbf{\textcolor{white}{HOJA DE REGISTRO GEM-01}},
+    fonttitle=\bfseries
+]
+\textbf{Fecha:} \_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_ \quad \textbf{Operador:} \_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_ \\
+\textbf{Temperatura Ambiente:} \_\_\_\_\_\_\_\_ $^\circ$C \quad \textbf{Humedad Relativa:} \_\_\_\_\_\_\_\_ \% \\[0.3cm]
+
+\textbf{PARÁMETROS DEL EXPERIMENTO:} \\
+Volumen de agua: \_\_\_\_\_\_\_\_ mL \quad Masa inicial $m_0$: \_\_\_\_\_\_\_\_ g \\
+Frecuencia: \_\_\_\_\_\_\_\_ Hz \quad Amplitud: \_\_\_\_\_\_\_\_ Vpp \\
+Campo magnético residual: $B_x = $\_\_\_\_\_, $B_y = $\_\_\_\_\_, $B_z = $\_\_\_\_\_ mT \\[0.3cm]
+
+\textbf{RESULTADOS:} \\
+Masa final ($t=60$ min): $\bar{m}_{60} = $\_\_\_\_\_\_\_\_ g \\
+Reducción de masa: $\Delta m = $\_\_\_\_\_\_\_\_ g \\
+Porcentaje: $\% \Delta m = $\_\_\_\_\_\_\_\_ \% \\
+Temperatura final: $T_{60} = $\_\_\_\_\_\_\_\_ $^\circ$C \\
+Cambio de temperatura: $\Delta T = $\_\_\_\_\_\_\_\_ $^\circ$C \\
+Histéresis ($\tau$): \_\_\_\_\_\_\_\_ minutos \\[0.3cm]
+
+\textbf{OBSERVACIONES:} \\
+\rule{0.95\textwidth}{0.5pt} \\
+\rule{0.95\textwidth}{0.5pt} \\
+\rule{0.95\textwidth}{0.5pt} \\[0.3cm]
+
+\textbf{FIRMA DEL OPERADOR:} \_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_ \quad \textbf{FECHA:} \_\_\_\_\_\_\_\_\_\_\_\_
+\end{tcolorbox}
+
+% ==========================================
+% SECCIÓN 7: CONCLUSIÓN Y PRÓXIMOS PASOS
+% ==========================================
+\section{Conclusión y Próximos Pasos}
+
+\subsection{Importancia de este Protocolo}
+
+Este protocolo GEM-01 representa el \textbf{puente crítico} entre la teoría matemática del Modelo GEM y la realidad experimental. Si se validan las 3 firmas del éxito, habremos demostrado que:
+
+\begin{enumerate}
+    \item El vacío cuántico posee una presión base $P_0$ extraíble (Axioma 1 del Teorema 02).
+    \item El gradiente topológico $\nabla w$ actúa como motor termodinámico (Axioma 2).
+    \item La entropía negativa $S_w < 0$ es real y medible (Axioma 3).
+    \item La constante $1836$ es efectivamente el factor de conversión entre energía del vacío y reducción de inercia.
+\end{enumerate}
+
+\subsection{Próximos Pasos tras la Validación}
+
+\begin{enumerate}
+    \item \textbf{Replicación Independiente:} Enviar este protocolo a 3 laboratorios independientes (universidades o centros de investigación) para replicación doble-ciego.
+    
+    \item \textbf{Publicación en Preprint:} Subir resultados a arXiv (physics.gen-ph) con todos los datos brutos y código de análisis.
+    
+    \item \textbf{Optimización del Rig:} Si $\Delta m$ es detectable pero pequeño, optimizar:
+    \begin{itemize}
+        \item Aumentar amplitud a 10 Vpp (si no hay calentamiento)
+        \item Probar frecuencias cercanas: 15.8 Hz, 16.5 Hz (barrido fino)
+        \item Añadir agua estructurada (vortexizado) para aumentar $C_{105}$
+    \end{itemize}
+    
+    \item \textbf{GEM-02: Generación de Energía:} Si GEM-01 es exitoso, diseñar el siguiente experimento: conectar el sistema a un circuito de cosecha (diodos Schottky + condensador) para medir potencia eléctrica extraída.
+\end{enumerate}
+
+\begin{center}
+\vspace{1cm}
+\textbf{\Large "El territorio siempre tiene la última palabra."} \\
+\vspace{0.3cm}
+\textit{— Principio Fundamental del Modelo GEM}
+\end{center}
+
+\vspace{1cm}
+\begin{center}
+\textbf{Fin del Protocolo de Validación Experimental GEM-01} \\
+Versión 1.0 — Junio 2026 \\
+Licencia: CC BY-SA 4.0 (Ciencia Abierta)
+\end{center}
+
+\end{document}
