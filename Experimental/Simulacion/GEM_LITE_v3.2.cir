@@ -1,0 +1,35 @@
+* ========================================================================
+* GEM-LITE v3.2: VERSIÓN CON POLARIDAD CORREGIDA
+* ========================================================================
+
+V1 In 0 PULSE(0 3.5 0 1u 1u 30.85m 61.7m)
+
+* Emisor: Cobre (punto en In)
+L1 In N_L1_out 50mH
+R1 N_L1_out N_mid 2.0
+
+* Colector: Hierro (punto en N_L2_out - POLARIDAD INVERTIDA)
+L2 N_L2_out N_mid 50mH
+R2 N_L2_out 0 5.0
+
+C_parasitic In 0 15p
+
+* Acoplamiento Magnético
+K1 L1 L2 0.92
+
+* Módulo de Cosecha
+C1 In N_bomba 100n
+D1 0 N_bomba SCHOTTKY
+D2 N_bomba Out SCHOTTKY
+C2 Out 0 1u
+R_load Out 0 10k
+
+.model SCHOTTKY D (IS=2.0E-8 N=1.04 RS=0.5 CJO=0.5E-12 VJ=0.65 M=0.6 EG=1.16 XTI=2.0 FC=0.5 BV=40 IBV=500E-9)
+
+.tran 50u 5 0 50u uic
+
+.meas tran V_out_avg AVG V(Out) FROM=4.0 TO=5.0
+.meas tran V_in_avg AVG V(In) FROM=4.0 TO=5.0
+.meas tran I_in_avg AVG I(V1) FROM=4.0 TO=5.0
+
+.end

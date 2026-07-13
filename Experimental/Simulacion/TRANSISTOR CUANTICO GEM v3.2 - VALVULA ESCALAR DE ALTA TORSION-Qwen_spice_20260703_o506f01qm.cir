@@ -1,0 +1,94 @@
+========================================================================
+* TRANSISTOR CUÁNTICO GEM v3.2 - VÁLVULA ESCALAR DE ALTA TORSIÓN
+* Basado en: Tabla de Reactividad Topológica GEM (R_top)
+* Arquitectura: Par de Alta Torsión (Mu-Metal vs Bismuto)
+* Interfaz: d_interfaz = 0.01mm (Contacto nanométrico)
+========================================================================
+
+* --- ETAPA 1: EL MARTILLO (Pulso Balístico <10ns) ---
+* Flanco de subida de 5ns para esquivar el tiempo de relajación del Mu-Metal
+* Frecuencia: 16.2 Hz (Ciclo de Hunab Ku)
+V_pulse In 0 PULSE(0 5 0 5n 5n 30.85m 61.7m)
+
+* --- ETAPA 2: LA VÁLVULA ESCALAR (Topología Asimétrica) ---
+* La Base: Mu-Metal (Absorbente Vectorial, R_top = +Infinito)
+* Alta inductancia, bajísima resistencia (camino fácil para el vector v)
+L_mu In N_mu 100mH Rser=0.1
+
+* El Emisor (Camino Corto 'a'): Cobre (R_top = -Media)
+* Acoplamiento POSITIVO extremo con el Mu-Metal (k=0.99)
+L_cu N_mu N_cu 50uH Rser=0.05
+K_absorb L_mu L_cu 0.99
+
+* El Colector (Camino Largo 'b'): Bismuto (R_top = -Alta / Repulsor)
+* El Bismuto repele el campo vectorial. En SPICE, modelamos esta repulsión 
+* diamagnética extrema con un acoplamiento MUTUAMENTE NEGATIVO o muy débil.
+L_bi N_mu N_bi 50uH Rser=2.5
+K_repel L_mu L_bi -0.3
+
+* --- LA INTERFAZ CRÍTICA (d_interfaz = 0.01mm) ---
+* Resistencia de contacto casi nula que dispara el Gradiente de Torsión
+R_int_cu N_cu N_rect 0.001
+R_int_bi N_bi N_rect 0.001
+
+* Capacitancia parásita de la interfaz bifilar (Efecto de la "Olla a Presión")
+C_interface N_rect 0 15p
+
+* --- ETAPA 3: LA COSECHA (Rectificación de Corriente de Desplazamiento) ---
+* Diodos Schottky BAT15 (CJO = 0.5pF, cruciales para no frenar la alta frecuencia)
+D1 N_cu N_out BAT15
+D2 N_bi N_out BAT15
+
+* Filtro de RF y Almacenamiento DC (Inercia del sistema)
+C_out N_out 0 1u
+R_load N_out 0 10Meg
+
+* --- MODELO DEL DIODO SCHOTTKY BAT15 ---
+.model BAT15 D (IS=2.0E-8 N=1.04 RS=2.5 CJO=0.5E-12 VJ=0.65 M=0.6 EG=1.16 XTI=2.0 FC=0.5 BV=4.0 IBV=500E-9)
+
+* --- DIRECTIVAS DE SIMULACIÓN ---
+* Transitorio de 200ms para ver la carga del condensador y el estado estable
+.tran 0 200m 0 1n
+.options abstol=1e-12 reltol=1e-6 vntol=1e-9
+
+* --- MEDICIONES CLAVE (Las 3 Firmas del Éxito) ---
+* 1. Voltaje DC de salida (Predicción: ~4.8V)
+.meas tran V_out_avg AVG V(N_out) FROM=150m TO=200m
+
+* 2. Corriente de Desplazamiento en la interfaz (Predicción: ~8.854 mA)
+* Medimos la corriente que fluye a través de la capacitancia de la interfaz
+.meas tran I_disp_max MAX I(C_interface) FROM=150m TO=200m
+
+* 3. Diferencia de Potencial Topológico (La prueba de la Ley de Reequilibrio)
+.meas tran Delta_V_top MAX V(N_cu, N_bi) FROM=150m TO=200m
+
+* --- BLOQUE DE CONTROL ---
+.control
+  run
+  echo "============================================================"
+  echo "  RESULTADOS: TRANSISTOR GEM v3.2 (VÁLVULA ESCALAR)"
+  echo "  Arquitectura: Par de Alta Torsión (Mu-Metal vs Bismuto)"
+  echo "============================================================"
+  echo ""
+  echo "1. Voltaje DC en la Carga (V_out):"
+  print V_out_avg
+  echo ""
+  echo "2. Corriente de Desplazamiento Máxima (Firma del Vacío):"
+  print I_disp_max
+  echo ""
+  echo "3. Diferencia de Potencial Topológico (Delta V):"
+  print Delta_V_top
+  echo ""
+  echo "============================================================"
+  echo "  ANÁLISIS: Si I_disp_max se acerca a 8.854mA, la interfaz"
+  echo "  nanométrica ha disparado el Gradiente de Torsión (Nieh-Yan)."
+  echo "============================================================"
+  
+  * Gráficas
+  plot v(N_out) title "GEM v3.2: Cosecha DC (Entropía Negativa)"
+  plot i(C_interface) title "GEM v3.2: Corriente de Desplazamiento (Firma ε₀)"
+  plot v(N_cu) v(N_bi) title "GEM v3.2: Asimetría Topológica (Cu vs Bi)"
+  
+.endc
+
+.end

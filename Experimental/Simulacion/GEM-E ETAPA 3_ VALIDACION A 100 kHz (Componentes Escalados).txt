@@ -1,0 +1,59 @@
+* ========================================================================
+* GEM-E ETAPA 3: VALIDACIÓN A 100 kHz (Componentes Escalados)
+* Frecuencia reducida 143x para simulación de 100ms completa
+* ========================================================================
+
+* --- FUENTE DE SEÑAL ESCALAR (Escalada a 100 kHz) ---
+* Original: 14.28 MHz con envolvente de 16.2 Hz
+* Escalada: 100 kHz con envolvente de 16.2 Hz (misma envolvente)
+V_ant N_Antena 0 SIN(0 1.5 100k)
+
+* --- ANTENA BIFILAR (Componentes Escalados 143x) ---
+* L_original = 3µH → L_new = 428.4µH
+* C_par_original = 7.5pF → C_par_new = 1.07nF
+L_ant N_Antena N_Rect_Int 428.4u
+C_par N_Antena 0 1.07n
+
+* --- DIODOS SCHOTTKY BAT15 ---
+D1 N_Rect_Int N_Rect BAT15
+
+* --- FILTRADO Y ALMACENAMIENTO (Escalados + Optimizados) ---
+* C1: Filtra la portadora de 100 kHz (escalado 143x)
+C1 N_Rect 0 14.28n
+* C2: Condensador de almacenamiento DC (AUMENTADO para τ >> 61.7ms)
+C2 N_Rect 0 1u
+* R_load: Carga de prueba (AUMENTADA para mayor τ)
+R_load N_Rect 0 10Meg
+
+* --- MODELO DEL DIODO BAT15 ---
+.model BAT15 D (IS=2.0E-8 N=1.04 RS=2.5 CJO=0.5E-12 VJ=0.65 M=0.6 EG=1.16 XTI=2.0 FC=0.5 BV=4.0 IBV=500E-9)
+
+* --- SIMULACIÓN DE 100ms COMPLETOS ---
+.tran 0 100m 0 1u
+.options abstol=1e-12 reltol=1e-6 vntol=1e-9
+
+* --- MEDICIONES ---
+.meas tran V_out_avg AVG V(N_Rect) FROM=50m TO=100m
+.meas tran V_out_max MAX V(N_Rect) FROM=0 TO=100m
+.meas tran V_out_min MIN V(N_Rect) FROM=50m TO=100m
+.meas tran V_ripple PP V(N_Rect) FROM=50m TO=100m
+
+* --- BLOQUE DE CONTROL PARA VISUALIZACIÓN ---
+.control
+  run
+  echo "=== RESULTADOS DE LA SIMULACIÓN A 100 kHz ==="
+  print V_out_avg
+  print V_out_max
+  print V_out_min
+  print V_ripple
+  echo "=============================================="
+  
+  * Gráfica: Voltaje de salida DC
+  plot v(N_Rect) title "Carga del Condensador - Simulación 100ms a 100 kHz"
+  
+  * Gráfica comparativa: Señal de entrada vs salida
+  * plot v(N_Antena) v(N_Rect) title "Entrada (100 kHz) vs Salida DC"
+  
+.endc
+
+.end

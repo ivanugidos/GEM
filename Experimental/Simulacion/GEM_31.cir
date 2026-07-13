@@ -1,0 +1,35 @@
+GEM-Lite v3.1 - Transistor Cuantico Asimetrico
+*Corregido para ngspice - Arquitectura: Martillo + Yunque + Cosecha
+
+* --- ETAPA 1: EL MARTILLO (Pulso Balistico) ---
+* Generador de pulsos a 16.2 Hz con flancos rapidos
+V_martillo N_martillo 0 PULSE(0 5 0 5n 5n 30.85m 61.7m)
+
+* Bobina del Martillo con resistencia en serie separada
+L_martillo N_martillo N_acoplamiento 500uH
+R_martillo N_martillo N_acoplamiento 0.5
+
+* --- ETAPA 2: EL YUNQUE (Bobinado Bifilar Asimetrico) ---
+* Emisor: Cobre (Camino corto 'a')
+L_emisor N_acoplamiento N_emisor_out 50uH
+R_emisor N_acoplamiento N_emisor_out 0.1
+
+* Colector: Hierro (Camino largo 'b', mayor inductancia)
+L_colector N_acoplamiento N_colector_out 150uH
+R_colector N_acoplamiento N_colector_out 1.0
+
+* Base: Mu-Metal (Modulador de permeabilidad)
+L_mu N_mu_control 0 100mH
+R_mu N_mu_control 0 0.5
+
+* --- ACOPLAMIENTOS MUTUOS (Ajustados para convergencia) ---
+* Martillo inyecta el pulso en el Yunque
+K1 L_martillo L_emisor 0.85
+K2 L_martillo L_colector 0.85
+
+* Acoplamiento interno del bifilar (reducido para evitar matriz singular)
+K3 L_emisor L_colector 0.75
+
+* Mu-Metal modula ambas bobinas
+K4 L_mu L_emisor 0.7
+K

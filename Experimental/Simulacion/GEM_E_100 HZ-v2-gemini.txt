@@ -1,0 +1,46 @@
+* ========================================================================
+* GEM-E ETAPA 3: VALIDACIÓN A 100 kHz (CORREGIDO)
+* ========================================================================
+
+* --- FUENTE DE SEÑAL ESCALAR (Escalada a 100 kHz) ---
+V_ant N_Antena 0 SIN(0 1.5 100k)
+
+* --- ANTENA BIFILAR (Componentes Escalados) ---
+L_ant N_Antena N_Rect_Int 428.4u
+C_par N_Antena 0 1.07n
+
+* --- DIODOS SCHOTTKY BAT15 (Configuración de rectificación funcional) ---
+D1 N_Rect_Int N_Rect BAT15
+D2 0 N_Rect_Int BAT15
+
+* --- FILTRADO Y ALMACENAMIENTO (Escalados + Optimizados) ---
+C1 N_Rect 0 14.28n
+C2 N_Rect 0 1u
+R_load N_Rect 0 10Meg
+
+* --- MODELO DEL DIODO BAT15 ---
+.model BAT15 D (IS=2.0E-8 N=1.04 RS=2.5 CJO=0.5E-12 VJ=0.65 M=0.6 EG=1.16 XTI=2.0 FC=0.5 BV=4.0 IBV=500E-9)
+
+* --- SIMULACIÓN DE 100ms COMPLETOS ---
+* Tiempo total: 100ms | Paso de guardado: 1µs (Evita archivos masivos)
+.tran 1u 100m 0 1u
+.options abstol=1e-12 reltol=1e-5 vntol=1e-9
+
+* --- MEDICIONES AUTOMÁTICAS (Ngspice las procesa al finalizar) ---
+.meas tran V_out_avg AVG V(N_Rect) FROM=50m TO=100m
+.meas tran V_out_max MAX V(N_Rect) FROM=0 TO=100m
+.meas tran V_out_min MIN V(N_Rect) FROM=50m TO=100m
+.meas tran V_ripple PP V(N_Rect) FROM=50m TO=100m
+
+* --- BLOQUE DE CONTROL PARA VISUALIZACIÓN ---
+.control
+  run
+  
+  * Gráfica: Voltaje de salida DC en la carga
+  plot v(N_Rect) title "Carga del Condensador - Simulación 100ms a 100 kHz"
+  
+  * Opcional: Descomenta la línea de abajo si deseas ver la RF de entrada vs salida
+  * plot v(N_Antena) v(N_Rect) title "Entrada vs Salida"
+.endc
+
+.end

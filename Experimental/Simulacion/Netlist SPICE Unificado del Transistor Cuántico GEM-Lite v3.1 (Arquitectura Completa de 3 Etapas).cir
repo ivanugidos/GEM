@@ -1,0 +1,146 @@
+========================================================================
+* TRANSISTOR CUÁNTICO GEM-Lite v3.1 - SIMULACIÓN COMPLETA
+* Arquitectura: Martillo GEM-R + Yunque Asimétrico Cu/Fe + Cosecha
+* Simulador: ngspice / LTspice
+* Objetivo: Validar la extracción de energía escalar (Entropía Negativa)
+========================================================================
+
+* --- ETAPA 1: EL MARTILLO (GEM-R) ---
+* Generador de pulsos balísticos (<10ns) a 16.2 Hz
+* Simula la descarga del capacitor de 3 capas a través de la bobina AWG 22
+* Frecuencia: 16.2 Hz (Período = 61.7ms)
+* Tiempo de subida: 5ns (Balístico, esquivando histéresis)
+V_martillo N_martillo 0 PULSE(0 5 0 5n 5n 30.85m 61.7m)
+
+* Bobina del Martillo (AWG 22, 78 vueltas)
+* Alta inductancia para almacenar energía magnética
+L_martillo N_martillo N_acoplamiento 500uH Rser=2.0
+
+* --- ETAPA 2: EL YUNQUE / DIODO ESCALAR ---
+* Bobinado bifilar asimétrico sobre sustrato de Teflón
+* Acoplamiento inductivo con el Martillo (k=0.85)
+K_martillo_yunque L_martillo L_emisor 0.85
+
+* EMISOR: Cobre (AWG 18) - Camino corto 'a', baja resistencia
+* Diamagnético, reflector escalar
+L_emisor N_acoplamiento N_emisor_out 50uH Rser=0.1
+
+* COLECTOR: Hierro Dulce (AWG 21) - Camino largo 'b', alta resistencia
+* Ferromagnético, absorbente, mayor inductancia (permeabilidad alta)
+L_colector N_acoplamiento N_colector_out 150uH Rser=2.5
+
+* BASE: Mu-Metal (Simulado como inductor de control)
+* Modulador de permeabilidad a 16.2 Hz
+* Alta permeabilidad, baja resistencia
+L_mu N_mu_control 0 100mH Rser=0.5
+
+* Acoplamiento del Mu-Metal con el Emisor y Colector
+* El Mu-Metal modula ambas bobinas, creando el gradiente ∇μ
+K_mu_emisor L_mu L_emisor 0.8
+K_mu_colector L_mu L_colector 0.8
+
+* --- INTERFAZ CRÍTICA (d_interfaz = 0.01mm) ---
+* Resistencia de contacto casi nula (barniz/Kapton nanométrico)
+* Esta es la "Válvula Escalar" donde se dispara el Gradiente de Torsión
+R_interfaz_emisor N_emisor_out N_rect 0.001
+R_interfaz_colector N_colector_out N_rect 0.001
+
+* Capacitancia parásita de la interfaz bifilar
+* Efecto de la "Olla a Presión" topológica
+C_interfaz N_rect 0 15p
+
+* --- ETAPA 3: LA COSECHA (Rectificación Escalar) ---
+* Diodos Schottky BAT15 (baja caída, alta velocidad)
+* CJO = 0.5pF, cruciales para no frenar la alta frecuencia
+D1 N_emisor_out N_rect BAT15
+D2 N_colector_out N_rect BAT15
+
+* Filtrado de RF (elimina portadora de alta frecuencia)
+C_filtro N_rect 0 100p
+
+* Condensador de almacenamiento DC (Inercia del sistema)
+* MKP (Polipropileno metalizado), baja disipación
+C_almacenamiento N_rect 0 1u
+
+* Resistencia de carga (Alta impedancia para medir voltaje en circuito casi abierto)
+* 10MΩ permite que el condensador se cargue sin drenarse
+R_carga N_rect 0 10Meg
+
+* --- MODELO DEL DIODO SCHOTTKY BAT15 ---
+* Optimizado para rectificación de señales de baja amplitud y alta frecuencia
+.model BAT15 D (IS=2.0E-8 N=1.04 RS=2.5 CJO=0.5E-12 VJ=0.65 M=0.6 EG=1.16 XTI=2.0 FC=0.5 BV=4.0 IBV=500E-9)
+
+* --- DIRECTIVAS DE SIMULACIÓN ---
+* Transitorio de 500ms para ver la carga completa del condensador
+* Paso máximo de 1us para capturar los flancos de 5ns del Martillo
+.tran 0 500m 0 1u
+
+* Opciones de precisión para ngspice
+.options abstol=1e-12 reltol=1e-6 vntol=1e-9
+
+* --- MEDICIONES AUTOMÁTICAS (Las 3 Firmas del Éxito) ---
+* 1. Voltaje DC de salida (Predicción: ~4.8V)
+.meas tran V_out_avg AVG V(N_rect) FROM=400m TO=500m
+.meas tran V_out_max MAX V(N_rect) FROM=0 TO=500m
+
+* 2. Corriente de desplazamiento en la interfaz (Firma de ε₀ ≈ 8.854 mA)
+.meas tran I_disp_max MAX I(C_interfaz) FROM=400m TO=500m
+
+* 3. Diferencia de potencial topológica (Prueba de la Ley de Reequilibrio)
+.meas tran Delta_V_top MAX V(N_emisor_out, N_colector_out) FROM=400m TO=500m
+
+* 4. Potencia entregada a la carga
+.meas tran P_out_avg AVG V(N_rect)*I(R_carga) FROM=400m TO=500m
+
+* 5. Corriente de entrada del Martillo (Para calcular eficiencia)
+.meas tran I_martillo_avg AVG I(V_martillo) FROM=400m TO=500m
+
+* --- BLOQUE DE CONTROL PARA VISUALIZACIÓN ---
+.control
+  run
+  
+  echo "================================================================"
+  echo "  RESULTADOS: TRANSISTOR CUÁNTICO GEM-Lite v3.1"
+  echo "  Arquitectura: Martillo + Yunque Asimétrico + Cosecha"
+  echo "================================================================"
+  echo ""
+  echo "1. Voltaje DC de Salida (V_out):"
+  print V_out_avg
+  echo ""
+  echo "2. Voltaje DC Máximo:"
+  print V_out_max
+  echo ""
+  echo "3. Corriente de Desplazamiento Máxima (Firma del Vacío):"
+  print I_disp_max
+  echo ""
+  echo "4. Diferencia de Potencial Topológica (Cu vs Fe):"
+  print Delta_V_top
+  echo ""
+  echo "5. Potencia Entregada a la Carga:"
+  print P_out_avg
+  echo ""
+  echo "6. Corriente de Entrada del Martillo:"
+  print I_martillo_avg
+  echo ""
+  echo "================================================================"
+  echo "  ANÁLISIS:"
+  echo "  - Si V_out_avg > 2V: La cosecha escalar funciona"
+  echo "  - Si I_disp_max ≈ 8.854mA: Has detectado la firma de ε₀"
+  echo "  - Si Delta_V_top > 1V: La Ley de Reequilibrio está activa"
+  echo "================================================================"
+  
+  * Gráfica 1: Voltaje de salida DC (Carga del condensador)
+  plot v(N_rect) title "GEM-Lite v3.1: Carga del Condensador (Voltaje DC)"
+  
+  * Gráfica 2: Comparación de las tres etapas
+  plot v(N_martillo) v(N_emisor_out) v(N_colector_out) v(N_rect) title "GEM-Lite v3.1: Las 3 Etapas"
+  
+  * Gráfica 3: Corriente de desplazamiento (Firma del Vacío)
+  plot i(C_interfaz) title "GEM-Lite v3.1: Corriente de Desplazamiento (Firma ε₀)"
+  
+  * Gráfica 4: Diferencia de potencial topológica (Ley de Reequilibrio)
+  plot v(N_emisor_out, N_colector_out) title "GEM-Lite v3.1: Gradiente Topológico Cu vs Fe"
+  
+.endc
+
+.end

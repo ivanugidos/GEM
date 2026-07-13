@@ -1,0 +1,63 @@
+* ========================================================================
+* TRANSISTOR CUÁNTICO GEM-Lite v3.1 - COMPATIBLE CON QUCS-S
+* Archivo: gem_lite_v3.1_qucs.cir
+* ========================================================================
+
+* --- FUENTE DE ALIMENTACIÓN DEL MARTILLO ---
+* Pulso balístico a 16.2 Hz con flancos rápidos
+V_martillo N_martillo 0 PULSE(0 5 0 5n 5n 30.85m 61.7m)
+
+* --- ETAPA 1: EL MARTILLO (Bobina de Disparo) ---
+L_martillo N_martillo N_acoplamiento 500uH
+R_martillo N_martillo N_acoplamiento 2.0
+
+* --- ETAPA 2: EL YUNQUE (Bobinado Bifilar Asimétrico) ---
+* Emisor: Cobre (Camino corto)
+L_emisor N_acoplamiento N_emisor_out 50uH
+R_emisor N_acoplamiento N_emisor_out 0.1
+
+* Colector: Hierro (Camino largo)
+L_colector N_acoplamiento N_colector_out 150uH
+R_colector N_acoplamiento N_colector_out 2.5
+
+* Acoplamiento mutuo entre bobinas
+K1 L_martillo L_emisor 0.85
+K2 L_martillo L_colector 0.85
+K3 L_emisor L_colector 0.92
+
+* Base: Mu-Metal (Modulador)
+L_mu N_mu_control 0 100mH
+R_mu N_mu_control 0 0.5
+
+* Acoplamiento Mu-Metal con bobinas
+K4 L_mu L_emisor 0.8
+K5 L_mu L_colector 0.8
+
+* --- INTERFAZ CRÍTICA (d_interfaz = 0.01mm) ---
+R_int_emisor N_emisor_out N_rect 0.001
+R_int_colector N_colector_out N_rect 0.001
+C_interfaz N_rect 0 15p
+
+* --- ETAPA 3: LA COSECHA (Rectificador Schottky) ---
+D1 N_emisor_out N_rect BAT15
+D2 N_colector_out N_rect BAT15
+
+* Filtro y Almacenamiento
+C_filtro N_rect 0 100p
+C_almacenamiento N_rect 0 1u
+R_carga N_rect 0 10Meg
+
+* --- MODELO DEL DIODO BAT15 ---
+.model BAT15 D (IS=2.0E-8 N=1.04 RS=2.5 CJO=0.5E-12 VJ=0.65 M=0.6 EG=1.16 XTI=2.0 FC=0.5 BV=4.0 IBV=500E-9)
+
+* --- DIRECTIVAS DE SIMULACIÓN ---
+.tran 1u 500m 0 1u
+
+* --- MEDICIONES ---
+.meas tran V_out_avg AVG V(N_rect) FROM=400m TO=500m
+.meas tran V_emisor_max MAX V(N_emisor_out) FROM=400m TO=500m
+.meas tran V_colector_max MAX V(N_colector_out) FROM=400m TO=500m
+.meas tran Delta_V_top PARAM V_emisor_max - V_colector_max
+.meas tran I_martillo_avg AVG I(V_martillo) FROM=400m TO=500m
+
+.end
