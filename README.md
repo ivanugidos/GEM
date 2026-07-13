@@ -43,6 +43,15 @@ Imagina que el Mapa GEM es un puente:
 3. Entiendes la maquinaria invisible que mueve esos números (**Pilar 3**).
 4. Escribes las ecuaciones que demuestran que esa maquinaria es real y falsable (**Pilar 4**).
 
+## Licencia
+Copyright (c) 2026 Iván Ugidos Martínez. 
+Este trabajo esta bajo la licencia: Creative Commons Attribution-ShareAlike 4.0 International License (CC BY-SA 4.0).
+
+## Contacto
+
+Para preguntas, colaboraciones o propuestas de validación experimental, póngase en contacto con:
+espejogalactico@gmail.com
+
 ---
 ### 🚀 ¿Cuál es el siguiente paso?
 
