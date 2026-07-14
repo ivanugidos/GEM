@@ -23,7 +23,7 @@ La suma $T = \pi + e + \phi \approx 7.477$ se transforma de una estructura está
 *   **$\beta$ (Apertura de la espiral):** Cómo el vórtice se expande hacia el exterior.
 *   **Reguladores armónicos:** $\pi$ actúa como la "peonza" (espín puro/frecuencia) y $\phi$ como la "espiral áurea" (proporción de expansión sin colapso).
 
-### 2. El Espín Cuántico como Micro-Remolino y la Quinta Fuerza Galáctica ($\eta$)
+### 2. El Espín Cuántico como Micro-Remolino y la Quinta Fuerza Galáctica ⌘  ($\eta$)
 
 El electrón no "posee" espín; **el electrón "es" un micro-vórtice** en resonancia con una fuerza rotacional cósmica.
 *   **Topología Toroidal:** La estructura interna de las partículas elementales es inherentemente toroidal (vórtices ópticos toroidales, *ansatz* toroidal en QED).
@@ -46,7 +46,7 @@ El modelo demuestra cómo las constantes abstractas se convierten en cantidades 
 
 ---
 
-## 🌌 Implicaciones Teóricas Profundas
+## 🌌 Implicaciones Teóricas Profundas 
 
 ### 1. Emergencia del Espacio-Tiempo
 El espacio-tiempo no es fundamental; emerge como un campo dinámico y autoorganizado, un estado colectivo de la densa red de vórtices cuánticos y su interacción coherente (alineado con la Gravedad Cuántica de Bucles y modelos de redes aleatorias).
@@ -83,7 +83,7 @@ Las cuatro fuerzas fundamentales (gravedad, electromagnetismo, nuclear débil y 
 ---
 
 **Nota del Autor:**  
-*"El universo no es una máquina de engranajes rectos, sino una peonza áurea, un vórtice toroidal donde el espacio mismo se pliega sobre sí mismo. La carga, el espín y la gravedad son simplemente las sombras geométricas de esta rotación cósmica fundamental."*
+*"El universo no es una máquina de engranajes, sino una peonza áurea, un vórtice toroidal donde el espacio mismo se pliega sobre sí mismo. La carga, el espín y la gravedad son simplemente las sombras geométricas de esta rotación cósmica fundamental."*
 
 ---
 
