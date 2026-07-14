@@ -1,4 +1,4 @@
-# De la Red Hexagonal al Vórtice Cósmico: La Resonancia del Espín Cuántico con la Quinta Fuerza Galáctica
+# De la Red Hexagonal al Vórtice Cósmico: La Resonancia del Espín Cuántico con la Quinta Fuerza Galáctica ⌘ 
 
 **Fecha de creación:** 7 de junio de 2026  
 **Autor:** Iván Ugidos Martínez  
@@ -27,7 +27,7 @@ La suma $T = \pi + e + \phi \approx 7.477$ se transforma de una estructura está
 
 El electrón no "posee" espín; **el electrón "es" un micro-vórtice** en resonancia con una fuerza rotacional cósmica.
 *   **Topología Toroidal:** La estructura interna de las partículas elementales es inherentemente toroidal (vórtices ópticos toroidales, *ansatz* toroidal en QED).
-*   **La Quinta Fuerza Galáctica ($\eta$):** Es la manifestación macroscópica del diferencial de energía libre ($0.477...$). Conecta anomalías cosmológicas (Eje del Diablo en el CMB, quiralidad de espín de galaxias, tensión de Hubble) con la física cuántica.
+*   **La Quinta Fuerza Galáctica ⌘  ($\eta$):** Es la manifestación macroscópica del diferencial de energía libre ($0.477...$). Conecta anomalías cosmológicas (Eje del Diablo en el CMB, quiralidad de espín de galaxias, tensión de Hubble) con la física cuántica.
 *   **Carga Eléctrica:** Se reinterpreta como la **"fricción dimensional"** que ocurre cuando el vórtice 5D intersecta nuestro espacio tridimensional. El puente matemático es la identidad de Euler $i^i = e^{-\pi/2} \approx 0.2078$, que "congela" la rotación imaginaria en una propiedad real observable.
 
 ### 3. La Red Cristalina del Vacío y los 8 Dobles Conos
