@@ -20,7 +20,9 @@ Al analizar el denominador, notamos que:
 $$
 1 - \frac{1}{7} = 1 - 0.142857 = 0.857143
 $$
+
 Y,
+
 $$
 \frac{1}{7^2} = \frac{1}{49} \approx 0.020408
 $$
