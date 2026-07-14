@@ -17,6 +17,7 @@ $$
 $$
 
 Al analizar el denominador, notamos que:
+
 $$
 1 - \frac{1}{7} = 1 - 0.142857 = 0.857143
 $$
@@ -26,6 +27,7 @@ Y,
 $$
 \frac{1}{7^2} = \frac{1}{49} \approx 0.020408
 $$
+
 Esto indica que la relación de masas está íntimamente ligada a la fracción unitaria dividida por 7 y sus potencias. La secuencia 142857 es, por tanto, un componente inherente a la magnitud de la masa del protón en términos de la del electrón. La masa del electrón, lejos de ser una constante arbitraria, parece estar codificada en la simetría fundamental del número 7.
 
 Para formular una ecuación análoga para la masa del electrón, podemos tomar como inspiración la ecuación del fotón. Si la velocidad de la luz ($c$) es generada por la expresión $[16 + (1 - \sqrt{5}/3)]^7$, podría ser que la masa del electrón ($m_e$) esté relacionada con la inversa de esta función o con una variación de sus parámetros. La longitud de onda Compton del electrón, $\lambda_c = h/(m_e c)$, es una longitud natural asociada a su masa y representa la escala de longitud donde la mecánica cuántica y la relatividad se entrelazan [[44](https://www.researchgate.net/publication/369545001_Measuring_Planck's_Constant_With_Compton_Scattering), [47](https://www.academia.edu/41283561/A_classical_explanation_of_Compton_scattering)]. Esto sugiere que la masa del electrón está directamente relacionada con la frecuencia de resonancia de su vórtice. Una hipótesis plausible es que la ecuación de masa del electrón tome una forma similar pero invertida, reflejando la transición de energía pura (fotón) a masa.
