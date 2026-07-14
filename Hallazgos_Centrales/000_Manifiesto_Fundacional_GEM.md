@@ -4,6 +4,7 @@
 
 ---
 
+> **Autor: Ivan Ugidos Martinez
 > **Fecha:** Junio 2026  
 > **Estado:** Documento 0 - Declaración de Principios y Marco Conceptual  
 > **Objetivo:** Establecer el cambio de paradigma de la física de partículas a la topología electromagnética.
@@ -20,7 +21,7 @@ En este nuevo paradigma, la materia no es una entidad intrínseca ni un "punto" 
 
 ## 2. La Matriz del Vacío: Las 12 Líneas Magnéticas
 
-Toda la realidad física se fundamenta en una matriz de **12 líneas magnéticas bi-simétricas**, que constituyen la estructura dodecaédrica/icosaédrica del vacío cuántico. 
+Toda la realidad física, según el modelo GEM, se fundamenta en una matriz de **12 líneas de fuerza**, que constituyen la estructura dodecaédrica/icosaédrica del vacío cuántico. 
 
 Estas 12 líneas son el "hardware" del universo. Cuando están en perfecto equilibrio, existe el silencio geométrico (el potencial puro). La realidad observable emerge cuando este equilibrio se altera.
 
