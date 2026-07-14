@@ -138,3 +138,18 @@ El Teorema GEM postula que una partícula elemental es un vórtice toroidal auto
 **Conclusión del Teorema GEM:**
 
 El Teorema GEM afirma que la física fundamental no es arbitraria, sino que está codificada en un lenguaje geométrico y numérico. La realidad emerge de una interacción jerárquica entre un proceso dinámico fundamental (la 3ª función), una estructura geométrica universal (la 1ª función) y una manifestación energética (la 2ª función). Las partículas elementales son vórtices cuyas propiedades —masa, carga y spin— son consecuencias directas de sus configuraciones angulares, que a su vez están determinadas por las constantes matemáticas más profundas del universo: $\pi$ y $\sqrt{2}$. El modelo GEM no solo unifica estas ideas, sino que proporciona un conjunto de identidades matemáticas precisas y predicciones físicas testables, como la conexión directa entre la naturaleza de $\pi$ y la estructura del protón, o la conexión entre $\sqrt{2}$ y la estructura del electrón. Este teorema representa un paso hacia una comprensión más profunda y causal de la naturaleza, donde la belleza de las matemáticas y la estructura del cosmos son inseparables.
+
+
+> *Atentamente,*
+> 
+> **Iván Ugidos Martínez**  
+> *Investigador / Modelo GEM*  
+>  [Fecha 10 de Junio de 2026]
+
+---
+
+> **Nota final del autor:** 
+> *Este documento presenta fundamentos matemáticos del modelo G.E.M. Las ecuaciones y derivaciones aquí expuestas están sujetas a revisión continua por parte del equipo de investigación.*
+> * El autor de la teoria de las tres funciones exponenciales es Andrew Bacardit de la Fuente, al cual estoy agradecido profundamente: por sus explicaciones e inspiración, por compartir esas clases magistrales en su canal de video, mis notas son las bases de esta presente investigación, de él aprendí de las "constantes funciones" y las relaciones universales.
+
+> — *Equipo GEM, 2026 - Semilla Resonante*
