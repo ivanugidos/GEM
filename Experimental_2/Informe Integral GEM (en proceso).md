@@ -106,7 +106,7 @@ Para proporcionar una base técnica sólida a las recomendaciones anteriores, se
 
 ### La Acción Total del Sistema
 
-La acción total $S$ del sistema GEM se define como la integral del Lagrangiano $\mathcal{L}_{\text{GEM}}$ sobre una variedad de cuatro dimensiones $\mathcal{M}$ dotada de una métrica $g_{\mu\nu}$ y una conexión afín con torsión no nula $\Gamma^\lambda_{\mu\nu} = \tilde{\Gamma}^\lambda_{\mu\nu} + K^\lambda_{\mu\nu}$, donde $\tilde{\Gamma}^\lambda_{\mu\nu}$ son los símbolos de Christoffel de la relatividad general y $K^\lambda_{\phantom{\lambda}\mu\nu}$ es el tensor de contorsión.
+La acción total $S$ del sistema GEM se define como la integral del Lagrangiano $\mathcal{L}_{\text{GEM}}$ sobre una variedad de cuatro dimensiones $\mathcal{M}$ dotada de una métrica $g_{\mu\nu}$ y una conexión afín con torsión no nula $\Gamma^\lambda_{\mu\nu} = \tilde{\Gamma}^\lambda_{\mu\nu} + K^\lambda_{\mu\nu}$, donde $\tilde{\Gamma}^\lambda_{\mu\nu}$ son los símbolos de Christoffel de la relatividad general y $K^\lambda_{\lambda}\mu\nu}$ es el tensor de contorsión.
 
 $$S = \int_\mathcal{M} d^4x \sqrt{-g} \, \mathcal{L}_{\text{GEM}}$$
 
