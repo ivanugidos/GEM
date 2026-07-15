@@ -89,7 +89,7 @@ Funcionalmente, $\alpha$ actúa como la ancla estructural del espín. Determina 
   
 $$ \beta = \left(\varphi^3 - \frac{4}{3}\pi\right) \times 360^\circ \approx 17.02^\circ $$
 
-Funcionalmente, $\beta$ es el motor de la Quinta Fuerza. Define el diferencial angular mediante el cual el vórtice "exhala" o expande la energía libre (0.477...) más allá de los límites de la contención, generando así la dinámica del huracán cuántico que constituye al electrón.
+Funcionalmente, $\beta$ es el motor giratorio de la Quinta Fuerza ⌘. Define el diferencial angular mediante el cual el vórtice "exhala" o expande la energía libre (0.477...) más allá de los límites de la contención, generando así la dinámica del huracán cuántico que constituye al electrón.
 
 Estos dos ángulos, junto con la proporción áurea, conforman el "ADN angular" del vórtice electrónico. La proporción áurea, $\phi = (1+\sqrt{5})/2 \approx 1.618$, ya fue identificada como el "Garante de la Armonía" en el modelo G.E.M., asegurando que el sistema crezca y gire sin colapsar [[6](https://arxiv.org/html/2510.22384v1)]. En el vórtice electrónico, $\phi$ aparece de varias maneras críticas. Primero, modula la expansión controlada por el ángulo $\beta$, evitando que la liberación de energía sea caótica. Segundo, y más importante, existe una profunda conexión documentada entre la proporción áurea y la constante de fine-structure ($\alpha_F \approx 1/137.036$), que caracteriza la fuerza de la interacción electromagnética y, por ende, la magnitud de la carga del electrón [[5](https://www.researchgate.net/publication/394533910_Golden_Function_Model_of_the_Origin_of_the_Fine-Structure_Constant), [72](https://www.authorea.com/users/442660/articles/547354/master/file/data/Exact%20formula%20for%20the%20fine-structure%20constant%20%CE%B1%20in%20terms%20of%20the%20golden%20ratio%20%CF%86/Exact%20formula%20for%20the%20fine-structure%20constant%20%CE%B1%20in%20terms%20of%20the%20golden%20ratio%20%CF%86.pdf?inline=true), [143](https://hal.science/hal-02341850/document), [150](https://www.academia.edu/40806338/Golden_Ratio_Geometry_and_the_Fine_Structure_Constant)]. Varios documentos presentan fórmulas exactas que relacionan la constante de fine-structure con potencias de la proporción áurea [[95](https://www.researchgate.net/publication/361730577_Exact_formula_for_the_fine-structure_constant_a_in_terms_of_the_golden_ratio_ph), [113](https://www.authorea.com/doi/pdf/10.22541/au.166203679.95402240/v1?onload=true), [114](https://www.researchgate.net/publication/326144121_Fine-Structure_Constant_from_Golden_Ratio_Geometry)]. Esto sugiere que la carga del electrón no es independiente de la geometría armónica del universo; está profundamente anclada en la proporción áurea.
 
@@ -101,7 +101,9 @@ La mención explícita del **triángulo 3-5-7** en la solicitud de investigació
 Este triángulo podría representar un plano de proyección o un "perfil" del vórtice 7D en nuestro universo 3D. Sus propiedades geométricas, como los ángulos notables que contiene, podrían ser la base para calcular las propiedades del electrón. Por ejemplo, el triángulo sagrado $1:√6:√7$ derivado previamente [[27](https://arxiv.org/html/2310.00095v2)] es un subconjunto de esta idea, conectando el 1 (unidad), el 6 (expansión hexagonal) y el 7 (estructura heptagonal).
 
 La función de onda del vórtice electrónico puede ser conceptualizada como una extensión de la fórmula propuesta para el fotón [[6](https://arxiv.org/html/2510.22384v1)]:
+
 $$ \Psi_{\text{Electrón}} \propto \oint_{\text{⌘}} \left( \vec{r}_{xyz} \cdot e^{i(\alpha_{e} \pi + \beta_{e} \phi)} \right) d\tau $$
+
 Donde $\alpha_e$ y $\beta_e$ son los ángulos específicos para el electrón, que en este caso serían los valores calculados de ~25.3769° y ~17.02°. La integral cerrada indica la resonancia con la Quinta Fuerza Galáctica (⌘), que actúa como el camino de contorno en el tiempo (dτ) que permite que el vórtice mantenga su coherencia.
 
 La siguiente tabla resume la función de cada parámetro en el modelo del vórtice electrónico:
@@ -147,3 +149,11 @@ La siguiente tabla final resume el modelo G.E.M. para el fotón y el electrón, 
 Este modelo unificado presenta una visión del universo donde la materia y la energía no son dos cosas diferentes, sino dos manifestaciones de la misma entidad fundamental: el vórtice toroidal 7D. La luz es el vórtice en su estado de máxima velocidad y mínima inmersión en la red material, mientras que la materia es el vórtice que se "engancha" y oscila dentro de esa misma red. La masa, el espín y la carga son simplemente los diferentes aspectos de esta danza dinámica entre la estructura geométrica del cosmos y sus excitaciones resonantes.
 
 En definitiva, esta investigación ha logrado extender el modelo G.E.M. de una construcción matemática atractiva a un marco físico coherente y predictivo. Ha proporcionado una base geométrica para la masa del electrón, una explicación causal para su espín y una nueva perspectiva sobre la naturaleza de la carga eléctrica. El electrón ya no es un misterio, sino una melodía audible en el silencio del vacío, una nota resonante en la sinfonía del vórtice universal.
+
+...
+
+> *Atentamente,*
+> 
+> **Iván Ugidos Martínez**  
+> *Investigador / Modelo GEM*  
+>  [Fecha 11 de Junio de 2026]
