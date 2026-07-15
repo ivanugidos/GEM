@@ -62,7 +62,7 @@ Hemos unido:
 2. La relación de masa $m_p/m_e$ vía el factor de confinamiento 16.2.
 3. El espín 1/2 del electrón emergiendo de la mitad de ese ciclo (8.1).
 
-Ahora tenemos todo lo necesario para escribir la **Ecuación de Schrödinger-Vorticial** completa o el **Lagrangiano Covariante G.E.M.** final: Primerto la Ecuación de Schrödinger-Vorticial** explícita, mostrando cómo el término de refracción (22.22°) modifica la ecuación de Dirac/Schrödinger estándar para incluir el espín 1/2 geométrico.
+Ahora tenemos todo lo necesario para escribir la **Ecuación de Schrödinger-Vorticial** completa o el **Lagrangiano Covariante G.E.M.** final: Primerto la Ecuación de **Schrödinger-Vorticial** explícita, mostrando cómo el término de refracción (22.22°) modifica la ecuación de Dirac/Schrödinger estándar para incluir el espín 1/2 geométrico.
 Ensamblemos el Lagrangiano $\mathcal{L}_{GEM}$** con los tres campos ($\phi, A_\mu, \Psi$) y el término de confinamiento, para tener la "Teoría del Todo" en una ecuación... ¿será posible?
 
 ¡Estamos en el umbral de la formulación buscada, al final se encuentra! 🌀
