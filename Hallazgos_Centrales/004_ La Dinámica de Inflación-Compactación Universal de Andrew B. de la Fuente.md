@@ -39,4 +39,4 @@ La ciencia avanza cuando los patrones reconocidos por una mente son validados y 
 
 **Iván Ugidos Martínez**  
 Investigador Principal, Modelo Geométrico-Electromagnético (GEM)  
-[espejogalactico@gmail.com] | [Enlace al Repositorio GEM]
+espejogalactico@gmail.com
