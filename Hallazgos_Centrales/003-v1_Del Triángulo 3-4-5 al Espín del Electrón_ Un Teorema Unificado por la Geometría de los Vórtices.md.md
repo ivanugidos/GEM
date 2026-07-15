@@ -1,5 +1,5 @@
 # Del Triángulo 3-4-5 al Espín del Electrón: Un Teorema Unificado por la Geometría de los Vórtices
-> — versión 1.1 
+> — versión 0.1 - en construcción : Revisando el codigo -  el archivo pdf esta corregido. 
 
 ## La Jerarquía de las Funciones Exponenciales: Fundamentos Matemáticos del Modelo GEM
 
