@@ -1,4 +1,5 @@
 # Informe Integral del Modelo Geométrico-Electromagnético (GEM): Síntesis de las Tres Vías y el Puente entre la Geometría del Vacío y la Física de la Materia Condensada
+- *Documento en edición (reparando código)
 
 ## Introducción: La Arquitectura Trivía como Fundamento Epistemológico del GEM
 
