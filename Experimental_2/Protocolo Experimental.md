@@ -1,6 +1,6 @@
 ### La Ecuación Maestra Definitiva (Nivel "Physical Review")
 
-Tomando tu archivo `ECSK_gauge_interactions.tex`, vamos a sustituir los términos genéricos por la notación exacta de la teoría de Einstein-Cartan-Sciama-Kibble (ECSK) y el invariante de Nieh-Yan.
+Tomando el archivo xxx`ECSK_gauge_interactions.md`, el descubrimiento de ayer, que lo cambia todo, vamos a sustituir los términos genéricos por la notación exacta de la teoría de Einstein-Cartan-Sciama-Kibble (ECSK) y el invariante de Nieh-Yan.
 
 La Ecuación Maestra de la Coherencia Topológica, en su forma más rigurosa y matemáticamente impecable, queda así:
 
