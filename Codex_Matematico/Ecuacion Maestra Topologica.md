@@ -3,7 +3,7 @@
 ## I+D "Physical Review" 📐
 
 
-Tomando el "archivo matematico", la clave que contiene  `ECSK_gauge_interactions-sp-v1`, donde se muestra el descubrimiento de ayer, que modifica el experimento, al tema, vamos a sustituir los términos genéricos por la notación exacta de la teoría de Einstein-Cartan-Sciama-Kibble (ECSK) y el invariante de Nieh-Yan.
+**Nota I+D** *Tomando el "hilo matematico", la formula clave que contiene esta ultima investigación  "ECSK_gauge_interactions" , donde se muestra el descubrimiento de ayer, que modifica el experimento, vamos al tema y se comprende: vamos a sustituir los términos genéricos por la notación exacta de la teoría de Einstein-Cartan-Sciama-Kibble (ECSK) y el invariante de Nieh-Yan.*
 
 La Ecuación Maestra de la Coherencia Topológica, en su forma más rigurosa y matemáticamente impecable, queda así:
 
