@@ -1,7 +1,8 @@
 # Del Lagrangiano al Laboratorio: Cómo Separar la Teoría Puramente Formal de la Hipótesis Fenomenológica en el Modelo GEM
 
-* **Autor:** *Iván Ugidos Martínez* 
-*  **Informe:** NS1.38.13.25  (21 de julio de 2026)  
+*  **Informe Especial GEM - Experimental* 
+*  **Autor:** *Iván Ugidos Martínez* 
+*  **Informe:** NS1.38.13.25.224  (21 de julio de 2026)  
 
 ## De la Intuición Geométrica a la Formulación Matemática: El Viaje Inicial del Modelo GEM
 
