@@ -1,0 +1,152 @@
+\documentclass[12pt, a4paper]{article}
+
+% --- Paquetes de idioma y codificación ---
+\usepackage[spanish,es-tabla]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+
+% --- Paquetes matemáticos y de formato ---
+\usepackage{amsmath, amssymb, amsfonts, amsthm}
+\usepackage[margin=2.5cm]{geometry}
+\usepackage{hyperref}
+\usepackage{tensor} % Para notación de índices
+\usepackage{braket} % Para notación de Dirac
+
+% --- Comandos personalizados ---
+\newcommand{\diff}{\mathrm{d}}
+\newcommand{\Boxg}{\Box_g}
+
+% --- Información del documento ---
+\title{\textbf{Fundamentos Variacionales del Modelo Geométrico-Electromagnético (GEM)} \\[0.3cm]
+\large Formulación Lagrangiana Covariante en Variedades de Riemann-Cartan con Ruptura de Simetría Discreta}
+\author{Colaboración GEM \\ Iván Ugidos Martínez}
+\date{20 de Julio 2026 - Versión 1.0}
+
+\begin{document}
+
+\maketitle
+
+\begin{abstract}
+\noindent Este documento establece la formulación matemática rigurosa del Modelo Geométrico-Electromagnético (GEM) como una extensión de la teoría de Einstein-Cartan-Sciama-Kibble (ECSK). Se propone un marco de teoría de campos covariante en una variedad de Riemann-Cartan donde la torsión topológica, confinada a la escala de Planck, se acopla a las corrientes de espín fermiónicas. Se introduce un mecanismo de Ruptura Espontánea de Simetría (SSB) mediante el formalismo de tétradas para modelar la subestructura discreta icosaédrica ($I_h$) del vacío, preservando la covariancia general. Se discuten las implicaciones teóricas de este marco, reconociendo explícitamente las limitaciones de escala impuestas por la constante gravitacional en regímenes de materia condensada estándar.
+\end{abstract}
+
+\tableofcontents
+\newpage
+
+% ============================================================
+\section{Estructura Geométrica del Vacío}
+% ============================================================
+
+El vacío cuántico se modela como una variedad diferenciable cuadridimensional $\mathcal{M}$ equipada con:
+\begin{itemize}
+    \item \textbf{Métrica:} $g_{\mu\nu}$ (con signatura $+---$).
+    \item \textbf{Conexión Afín:} $\Gamma^\lambda_{\mu\nu} = \tilde{\Gamma}^\lambda_{\mu\nu} + K^\lambda_{\phantom{\lambda}\mu\nu}$, donde $\tilde{\Gamma}^\lambda_{\mu\nu}$ son los símbolos de Christoffel (conexión de Levi-Civita) y $K^\lambda_{\phantom{\lambda}\mu\nu}$ es el tensor de contorsión.
+\end{itemize}
+
+El tensor de torsión se define como la parte antisimétrica de la conexión:
+\begin{equation}
+    T^\lambda_{\phantom{\lambda}\mu\nu} = \Gamma^\lambda_{\mu\nu} - \Gamma^\lambda_{\nu\mu} = 2K^\lambda_{\phantom{\lambda}[\mu\nu]}
+\end{equation}
+
+% --- CAMBIO 3: Aclaración Torsión vs Campos Efectivos ---
+En el marco GEM, la \textbf{torsión geométrica en sí} no es un campo dinámico propagante de largo alcance, sino un grado de libertad topológico confinado a la escala de Planck, cuya estructura está gobernada por la simetría discreta del grupo icosaédrico $I_h$. Sin embargo, los \textbf{campos efectivos que emergen de ella} (como el modo escalar $\phi$ y la fase topológica $\theta(x)$) sí se propagan en el vacío macroscópico, mediando las interacciones a baja energía.
+
+% ============================================================
+\section{La Acción Total del Sistema GEM}
+% ============================================================
+
+La dinámica del sistema se deriva del principio de mínima acción:
+\begin{equation}
+    S_{\text{GEM}} = \int_{\mathcal{M}} \diff^4x \sqrt{-g} \, \mathcal{L}_{\text{GEM}}
+\end{equation}
+donde la densidad lagrangiana total se descompone en cuatro sectores fundamentales:
+\begin{equation}
+    \boxed{\mathcal{L}_{\text{GEM}} = \mathcal{L}_{\text{RC}} + \mathcal{L}_{\text{Dirac}} + \mathcal{L}_{\text{Gauge}} + \mathcal{L}_{\text{Top}}}
+\end{equation}
+
+% ============================================================
+\section{Descomposición del Lagrangiano Unificado}
+% ============================================================
+
+\textbf{Nota sobre los parámetros libres:} \textit{Las constantes $\beta_1$, $\beta_2$, $\lambda_{\text{NY}}$, $\lambda_{\text{3D}}$ y $M_{I_h}$ son parámetros libres de esta teoría de campos efectiva. A diferencia de los parámetros fenomenológicos descartados en versiones previas, estos no se introducen para ajustar discrepancias observacionales, sino que caracterizan la dinámica intrínseca de la geometría de Riemann-Cartan con ruptura de simetría discreta, al estilo de los acoplamientos no fijados en cualquier Lagrangiano de teoría de campos efectiva legítima.}
+
+\subsection{Sector de Gravedad de Riemann-Cartan ($\mathcal{L}_{\text{RC}}$)}
+El sector gravitacional está descrito por el lagrangiano de Einstein-Cartan, donde la curvatura escalar $R(g, \Gamma)$ se construye a partir de la conexión completa:
+\begin{equation}
+    \mathcal{L}_{\text{RC}} = \frac{1}{16\pi G} R(g, \Gamma) + \beta_1 T_{\mu\nu\rho}T^{\mu\nu\rho} + \beta_2 T_{\mu\nu\rho}T^{\rho\nu\mu}
+\end{equation}
+Las constantes adimensionales $\beta_1$ y $\beta_2$ gobiernan el confinamiento de la torsión, evitando la ``fricción de vacío'' macroscópica mientras permiten efectos topológicos microscópicos.
+
+\subsection{Materia Fermiónica y Corrientes de Espín ($\mathcal{L}_{\text{Dirac}}$)}
+La materia está representada por espinores de Dirac $\psi$. En presencia de torsión, la derivada covariante que actúa sobre el espinor es $D_\mu \psi = (\partial_\mu + \frac{1}{4}\omega_{\mu ab}\gamma^{[a}\gamma^{b]} - i q A_\mu)\psi$, donde $\omega_{\mu ab}$ es la conexión de espín. El lagrangiano de Dirac es:
+\begin{equation}
+    \mathcal{L}_{\text{Dirac}} = \bar{\psi} \left( i \gamma^\mu D_\mu - m \right) \psi
+\end{equation}
+Crucialmente, la parte totalmente antisimétrica del tensor de torsión (el vector axial de torsión $S_\mu = \epsilon_{\mu\nu\rho\sigma}T^{\nu\rho\sigma}$) se acopla mínimamente a la corriente de vector axial del fermión. Esto produce la interacción efectiva de cuatro fermiones conocida como el \textbf{término de Hehl-Datta}:
+\begin{equation}
+    \mathcal{L}_{\text{spin-torsion}} = \frac{3}{8} \kappa \left( \bar{\psi} \gamma^\mu \gamma^5 \psi \right) \left( \bar{\psi} \gamma_\mu \gamma^5 \psi \right)
+\end{equation}
+donde $\kappa = 8\pi G$. Este término demuestra que el espín fermiónico actúa como fuente intrínseca de la torsión topológica del vacío.
+
+\subsection{Sector del Campo Gauge ($\mathcal{L}_{\text{Gauge}}$)}
+El campo electromagnético $A_\mu$ está gobernado por el término estándar de Maxwell, modificado por la topología no trivial de la variedad:
+\begin{equation}
+    \mathcal{L}_{\text{Gauge}} = -\frac{1}{4} F_{\mu\nu} F^{\mu\nu}
+\end{equation}
+donde $F_{\mu\nu} = \nabla_\mu A_\nu - \nabla_\nu A_\mu = \partial_\mu A_\nu - \partial_\nu A_\mu - T^\lambda_{\phantom{\lambda}\mu\nu} A_\lambda$. La presencia de torsión en el tensor de intensidad de campo permite, en principio, modos de propagación no convencionales.
+
+\subsection{Interacción Topológica (Invariante de Nieh-Yan) ($\mathcal{L}_{\text{Top}}$)}
+Para dar cuenta de la cuantización topológica de la carga, introducimos un $\theta$-término acoplado al invariante de Nieh-Yan $\mathcal{N}$:
+\begin{equation}
+    \mathcal{L}_{\text{Top}} = \frac{\theta(x)}{4} \epsilon^{\mu\nu\rho\sigma} F_{\mu\nu} F_{\rho\sigma} + \lambda_{\text{NY}} \mathcal{N}
+\end{equation}
+donde $\mathcal{N} = T^a \wedge T_a - e^a \wedge e^b \wedge R_{ab}$ es la 4-forma de Nieh-Yan. El campo dinámico $\theta(x)$ representa la fase topológica de la red del vacío.
+
+\subsection{Interacción Multi-Eje Covariante (Teorema 04)}
+Para incorporar la extracción multi-eje sin romper la covariancia general, utilizamos el formalismo de tétradas (vielbeins) $e^a_\mu$. En lugar de sumar sobre ejes cartesianos fijos, definimos la interacción contrayendo los campos con las componentes espaciales de la tétrada:
+\begin{equation}
+    \mathcal{L}_{\text{Multi-Eje}} = \lambda_{\text{3D}} \sum_{a=1}^{3} \left( e^\mu_a \nabla_\mu \phi \right) \left( e^\nu_a J_{\nu}^{\text{spin}} \right) \cdot \mathcal{F}(\theta)
+\end{equation}
+
+% --- CAMBIO 1: Definición de F(theta) ---
+donde $\mathcal{F}(\theta)$ es una función de confinamiento angular. \textbf{Nota:} La forma funcional exacta de $\mathcal{F}(\theta)$ queda abierta y no se fija en este trabajo, aunque un ansatz natural para trabajo futuro sería una gaussiana centrada en el ángulo crítico $\theta_c$.
+
+\textbf{Nota sobre Covariancia:} La suma $\sum_{a=1}^3$ es un escalar bajo difeomorfismos. La selección de los índices espaciales $a=1,2,3$ (excluyendo $a=0$) representa una \textbf{Ruptura Espontánea de Simetría (SSB)} del estado de vacío, donde la tétrada adquiere un Valor Esperado en el Vacío (VEV) que rompe la simetría de Lorentz local $SO(1,3) \to SO(3) \to I_h$, definiendo un marco preferente sin violar la covariancia del Lagrangiano subyacente.
+
+% ============================================================
+\section{La Ecuación Maestra de la Coherencia Topológica}
+% ============================================================
+
+Al variar la acción total con respecto a la tétrada $e^a_\mu$ y la conexión de espín $\omega_{\mu ab}$, obtenemos las ecuaciones de campo generalizadas de Einstein-Cartan. En el límite de campo débil y baja energía, la propagación del modo escalar del vacío $\phi$ (asociado a la traza de la torsión) obedece a una ecuación tipo Klein-Gordon:
+
+\begin{equation}
+    \boxed{ \left( \Box_g + \frac{M_{I_h}^2 c^2}{\hbar^2} \right) \phi(x) = \lambda_{\text{NY}} \nabla_\mu J^\mu_{\text{spin}} }
+\end{equation}
+
+Donde:
+\begin{itemize}
+    \item $\Box_g = \frac{1}{\sqrt{-g}}\partial_\mu(\sqrt{-g}g^{\mu\nu}\partial_\nu)$ es el operador D'Alembertiano en la variedad de Riemann-Cartan.
+    \item $M_{I_h}$ es la masa topológica efectiva generada por la ruptura espontánea de simetría $SO(3) \to I_h$.
+    \item $J^\mu_{\text{spin}} = \bar{\psi}\gamma^\mu\gamma^5\psi$ es la corriente de espín axial de los fermiones.
+\end{itemize}
+
+% ============================================================
+\section{Discusión y Límites Teóricos}
+% ============================================================
+
+La formulación presentada es matemáticamente coherente y se alinea con los fundamentos de la teoría ECSK (Hehl et al., 1976). Sin embargo, es imperativo reconocer una limitación fundamental de este marco cuando se aplica a regímenes de baja energía:
+
+El término de acoplamiento espín-torsión (Hehl-Datta) está suprimido por la constante gravitacional $\kappa = 8\pi G$. Dado que la densidad de espín de la materia condensada ordinaria (como el agua a temperatura ambiente) es aproximadamente $10^{76}$ órdenes de magnitud menor que la densidad de Planck, el efecto de contacto espín-espín predicho por la ECSK estándar es del orden de $10^{-151}$, siendo estrictamente inobservable en configuraciones de laboratorio macroscópicas.
+
+Por lo tanto, este documento debe interpretarse como una \textbf{exploración teórica de la estructura geométrica del vacío}. Cualquier afirmación sobre la detectabilidad macroscópica de estos efectos requeriría una extensión del modelo hacia una teoría de campo efectivo de materia condensada topológica, donde mecanismos de amplificación colectiva (más allá de la ECSK estándar) puedan ser derivados desde primeros principios, lo cual queda fuera del alcance de esta formulación lagrangiana fundamental.
+
+% ============================================================
+\section{Referencias}
+% ============================================================
+\begin{thebibliography}{9}
+\bibitem{hehl1976} Hehl, F. W., Von Der Heyde, P., Kerlick, G. D., \& Nester, J. M. (1976). General relativity with spin and torsion: Foundations and prospects. \textit{Reviews of Modern Physics}, 48(3), 393.
+\bibitem{nieh1982} Nieh, H. T., \& Yan, M. L. (1982). An identity in Riemann-Cartan geometry. \textit{Journal of Mathematical Physics}, 23(3), 373-374.
+\bibitem{hehl1971} Hehl, F. W., \& Datta, B. K. (1971). Nonlinear spinor equation and asymmetric connection in general relativity. \textit{Journal of Mathematical Physics}, 12(7), 1334-1339.
+\end{thebibliography}
+
+\end{document}
