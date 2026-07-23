@@ -2,7 +2,7 @@
 # Documento de Síntesis del Modelo GEM (Hacia el Codex Matematico GEM v2.2)
 
 ---
-> *- Versión 1.0 (en proceso abierto a la creación colectiva)*
+> *- Versión 1.1 (en proceso abierto a la creación colectiva)*
 >
 >*Nota del Equipo I+D : A continuación en el "Marco Teórico GEM" proponemos y explicamos que el "Vacío Cuántico" es una "Estructura Energética Geométrica". Presentamos la redacción estructurada para el nuevo capitulo del documento: **"Síntesis del Codex Matematico GEM v2.2"** *, titulado: **"Interacciones Gauge en el Marco ECSK (Einstein-Cartan-Sciama-Kibble)"** con todo el rigor cientifico que fue posible. En este documento tambien esta el apendice con el nuevo teorema que llamamos "nudos de luz", que asienta en terreno fertil la semilla GEM !*.
 
@@ -22,11 +22,6 @@ Esta estructura energética (el vacío/energía oscura) actúa como el "lienzo" 
 En conclusión, el nuevo Teorema GEM unifica el espacio, la materia y la energía oscura bajo un mismo principio ontológico: **todo es una manifestación diferente de la geometría dinámica del vacío**. El vacío es la energía oscura que crea el espacio, y la materia es el vacío que ha adquirido una forma geométrica y vorticial específica.
 
 ---
-
-
----
-
-
 
 *"En el marco del Modelo GEM, el espacio volumétrico no debe entenderse como un contenedor vacío, sino como el medio físico subyacente (variedad tridimensional) que posee la capacidad de ser estructurado y deformado. El volumen, por su parte, emerge como una propiedad dinámica del vórtice toroidal: representa tanto la región efectiva de desplazamiento del medio (de la cual emerge la masa inercial) como la tasa de flujo radial hacia el núcleo del vórtice (de la cual emerge la carga eléctrica). Así, la 'configuración del volumen' descrita por la 2ª Función Exponencial es el mecanismo físico que traduce la geometría abstracta en propiedades cuantificables."*
 
@@ -53,7 +48,11 @@ En tu marco teórico, el volumen **no es un contenedor pasivo**, sino una propie
 **Definición Matemática (Geometría Diferencial):**
 Es la **variedad tridimensional** (o de dimensión superior, si se incluye el tiempo) sobre la cual se definen e integran los campos físicos. Es el "dominio de integración". 
 Por ejemplo, en la ecuación que revisamos antes:
-$$ \mathcal{Q} = \frac{1}{(4\pi)^2} \int_{\mathbb{R}^3} \mathbf{A} \cdot \mathbf{B} \, d^3x $$
+
+$$
+\mathcal{Q} = \frac{1}{(4\pi)^2} \int_{\mathbb{R}^3} \mathbf{A} \cdot \mathbf{B} \, d^3x
+$$
+
 El símbolo $\mathbb{R}^3$ representa ese **espacio volumétrico**: el escenario tridimensional donde el campo vectorial potencial ($\mathbf{A}$) y el campo magnético ($\mathbf{B}$) interactúan para producir un número topológico (el Invariante de Hopf).
 
 **Definición Física en el Modelo GEM:**
