@@ -20,7 +20,7 @@ El hardware se valida por separado antes de la integración total, siguiendo el 
 
 ### 📁 [`/02_Campana`](./02_Campana/)
 - **Función:** Válvula de vacío y tanque de negentropía.
-- **Componentes:** Diodo de contención (1N4148/BAT15), condensador asimétrico "Bio-Phi" (MKP o rollo de aluminio/PTFE), resistencia de fuga de 10MΩ.
+- **Componentes:**  diodo escalar + condensador asimétrico  (MKP o rollo de aluminio/PTFE),(( resistencia de fuga de 10MΩ. Diodo de contención (1N4148/BAT15)),
 - **Métrica de Éxito:** Observación de una rampa de voltaje DC ascendente lenta al inducir campo de 50 Hz, y mantenimiento de la carga al retirar la fuente (memoria del vacío).
 
 ### 📁 [`/03_Circuito_GEM`](./03_Circuito_GEM/)
