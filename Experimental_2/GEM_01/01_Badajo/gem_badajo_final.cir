@@ -1,0 +1,41 @@
+* ==========================================================
+* PROYECTO GEM: Badajo-Palanca Magnética (ngspice - FINAL)
+* Línea base clásica con medición completa de potencias
+* ==========================================================
+
+* 1. Fuente de Entrada (Variac a ~150V RMS -> 212V Pico, 50Hz)
+V1 Nin 0 SIN(0 212 50)
+
+* 2. Resistencia de Sentido (Amperímetro de Entrada)
+R1 Nin Nsense 0.01
+
+* 3. Condensador en Serie (Cámara de Presión Escalar - 5µF MKP)
+C1 Nsense Npri 5u
+
+* 4. Transformador Lineal Acoplado (Baseline Clásico)
+L1 Npri 0 1
+L2 Nsec 0 3m
+K1 L1 L2 0.99
+
+* 5. El "Badajo" (Interruptor en el Secundario)
+S1 Nsec 0 Nctrl 0 SW_MODEL
+.model SW_MODEL SW(Ron=0.1 Roff=10k Vt=0.5 Vh=0.1)
+
+* Control del Interruptor: Pulso a los 2.0 segundos
+Vctrl Nctrl 0 PULSE(0 1 2 10m 10m 50m 100m)
+
+* 6. Carga Resistiva CON MEDICIÓN DE CORRIENTE
+* Fuente de 0V para medir corriente (amperímetro ideal)
+Vload Nsec Nload 0
+* OPCIÓN A: Bombilla de baja potencia (100Ω) -> ~20mW
+Rload Nload 0 100
+* OPCIÓN B: Carga más exigente (10Ω) -> descomenta la línea de abajo y comenta la de arriba
+* Rload Nload 0 10
+
+* ==========================================================
+* COMANDOS DE SIMULACIÓN
+* ==========================================================
+.tran 10u 4 0 10u
+.options method=gear reltol=1e-3
+
+.end
