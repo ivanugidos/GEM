@@ -1,9 +1,5 @@
-
-
-
-
-
-# 📐 Manual de Construcción: Diodo Escalar y Condensador Asimétrico
+# I+D 📐 Manual de Construcción: Diodo Escalar y Condensador Asimétrico
+**Estado:** ✅ -Archivo Historico - en proceso de edición - ( se basan en los experimentos realizados por Ivan Ugidos) en la carpeta actual esta la I+D que surge de esta base inicial y el diseño mejorado.
 
 ---
 
@@ -263,20 +259,10 @@ Deberías tener:
 
 ---
 
-**Estado:** ✅ Manual de Construcción - Listo para Taller  
-**Próximo Hito:** Construcción física de los Módulos 2 y 3 del Sistema Integrado
+
+**Próximo Hito:** Construcción física de los Módulos (fases o dispositivos) 2 y 3 del Sistema Integrado
 
 ---
 
-¡Ahí lo tienes, Ingeniero Jefe! 📐🔧 
+Equipo I+D GEM! 📐🔧 
 
-Este manual complementa perfectamente el documento maestro. Tienes:
-- ✅ Especificaciones exactas de materiales
-- ✅ Paso a paso detallado con consejos prácticos
-- ✅ Tabla de especificaciones GEM
-- ✅ Diagramas de conexión
-- ✅ Pruebas de validación
-
-Con esto, el equipo I+D (o tú mismo) pueden construir los componentes con precisión. ¡Solo falta conseguir los materiales y ponerse manos a la obra! 
-
-¿Necesitas que aclare algo más sobre los aislantes, las longitudes exactas o las conexiones? 🌌✨
