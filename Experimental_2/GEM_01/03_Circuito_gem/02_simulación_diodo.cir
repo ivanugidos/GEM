@@ -1,0 +1,45 @@
+* ==========================================================
+* MODELO GEM - Simulación de Diodo Escalar Casero (50 Hz)
+* Versión corregida y blindada para NGSPICE
+* Objetivo: Validar la extracción de ∇w (DC) frente a ruido vectorial (AC)
+* ==========================================================
+
+* --- 1. FUENTE DE INDUCCIÓN (Red Eléctrica 50 Hz) ---
+V_ext ext 0 SIN(0 5 50) 
+
+* --- 2. EL TRANSDUCTOR (Bobina Cu + Bobina Fe en PTFE/Agua MQ) ---
+L_Cu cu_node 0 100u
+L_Fe fe_node 0 500m
+K1 L_Cu L_Fe 0.98
+C_water cu_node fe_node 10n 
+
+* --- 3. EL COLECTOR (Mu-metal) ---
+L_mu mu_node 0 10m
+L_ext ext 0 1
+K2 L_mu L_ext 0.95
+
+* --- 4. LA VÁLVULA DE VACÍO (Diodo Escalar) ---
+D_valve mu_node load_node 1N4148
+
+* --- 5. EL TANQUE DE NEGENTROPÍA (Capacitor Bio-Phi) ---
+C_bio load_node 0 1u
+R_leak load_node 0 10Meg
+
+* --- 6. MODELOS DE COMPONENTES (Corregido: vjo -> vj) ---
+.model 1N4148 D(IS=2.52n RS=0.568 N=1.752 CJO=2p TT=11.5n VJ=0.75 IKF=1m)
+
+* --- 7. ANÁLISIS TRANSITORIO (Corregido: .tr -> .tran) ---
+* Paso de 10 microsegundos, simulación total de 1 segundo
+.tran 10u 1 0 10u
+
+* --- 8. BLOQUE DE CONTROL PARA NGSPICE (Graficado automático) ---
+.control
+run
+* Graficamos el voltaje en el tanque (load_node) y el ruido en el colector (mu_node)
+plot v(load_node) 
+plot v(mu_node)
+* Si quieres ver los datos numéricos, descomenta la siguiente línea:
+* print v(load_node) v(mu_node)
+.endc
+
+.end

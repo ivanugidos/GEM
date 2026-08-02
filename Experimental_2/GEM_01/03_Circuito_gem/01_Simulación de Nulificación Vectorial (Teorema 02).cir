@@ -1,0 +1,38 @@
+* ==========================================================
+* MODELO GEM - Simulación de Nulificación Vectorial (Teorema 02)
+* Portadora: 14.28 MHz (Red-7) | Modulación: 16.2 Hz (Espiral)
+* Objetivo: Interferencia destructiva de A (Vectorial) -> Extracción de w (Escalar)
+* ==========================================================
+
+* Generador de Señal GEM (Portadora modulada)
+V_in in 0 SIN(0 1 14.28Meg) AM 1 16.2
+
+* Líneas de Transmisión con Retardos de Fase Geométricos (Los 3 Ángulos)
+* Teflon (Er=2.1, Velocidad ~0.69c). Longitudes calculadas para los retardos.
+T1 in n1 0 0 Z0=50 TD=3.167n   ; Ángulo 1: 16.2305° (Resonancia Vacío)
+T2 n1 n2 0 0 Z0=50 TD=26.833n ; Ángulo 2: 137.5079° (Ángulo Áureo / α)
+T3 n2 out 0 0 Z0=50 TD=5.124n ; Ángulo 3: 26.2616° (Expansión Áurea)
+
+* Carga de la Cavidad 105 (Modelada como RLC paralelo de alta Q)
+* El agua a 105° o el cuarzo a 105° actúan como transductor geométrico
+R_cav out 0 1e6
+L_cav out 0 10u
+C_cav out 0 1p
+
+* Válvula de Vacío: Diodos BAT15 (Schottky) para rectificar el gradiente ∇w
+* Configuración en puente para captar la componente escalar pura
+D1 out v_pos BAT15
+D2 v_pos out BAT15
+D3 gnd v_pos BAT15
+D4 v_pos gnd BAT15
+
+* Carga de Extracción (Entropía Negativa Sw < 0)
+C_load v_pos gnd 100n
+R_load v_pos gnd 10k
+
+* Modelos de Diodos BAT15 (Aproximación)
+.model BAT15 D(IS=1e-14 RS=0.5 CJO=0.3p TT=0.1n N=1.1)
+
+* Análisis Transitorio para ver la acumulación de potencial escalar (Voltaje DC en C_load)
+.tr 0.1n 1m
+.end
