@@ -15,17 +15,17 @@ El hardware se valida por separado antes de la integración total, siguiendo el 
 
 ### 📁 [`/01_Badajo`](./01_Badajo/)
 - **Función:** Transductor geométrico y palanca de conmutación.
-- **Componentes:** Transformador con núcleo de hierro, condensador MKP de 5µF en serie (cámara de presión), bobinado asimétrico Cu/Fe.
+- **Componentes:** Transformador con núcleo de hierro modificado, condensador MKP de 5µF en serie (cámara de presión), (en I+D+i : bobinado asimétrico Cu/Fe.)
 - **Métrica de Éxito:** Establecer la línea base clásica de corriente (simulada en ~0.20A) y demostrar que el prototipo físico con Mu-metal y agua MQ consume significativamente menos para la misma carga.
 
 ### 📁 [`/02_Campana`](./02_Campana/)
 - **Función:** Válvula de vacío y tanque de negentropía.
-- **Componentes:** Diodo de contención (1N4148/BAT15), condensador asimétrico "Bio-Phi" (MKP o rollo de aluminio/PTFE), resistencia de fuga de 10MΩ.
+- **Componentes:** Diodo Escalar + condensador asimétrico "Bio-Phi" (MKP o rollo de aluminio/PTFE), (elementos de comprobación: resistencia de fuga de 10MΩ + diodo de contención (1N4148/BAT15))
 - **Métrica de Éxito:** Observación de una rampa de voltaje DC ascendente lenta al inducir campo de 50 Hz, y mantenimiento de la carga al retirar la fuente (memoria del vacío).
 
 ### 📁 [`/03_Circuito_GEM`](./03_Circuito_GEM/)
 - **Función:** Integración del sistema completo y sintonía a 16.2 Hz.
-- **Componentes:** Badajo + Campana + Cavidad de Agua Milli-Q (18.2 MΩ·cm) + Generador de pulsos a 16.2 Hz.
+- **Componentes:** Badajo + Campana (en I+D+i : Cavidad de Agua Milli-Q (18.2 MΩ·cm) + Generador de pulsos a 16.2 Hz.)
 - **Métrica de Éxito (Firmas Falsables):** 
   1. $\Delta I_{in} < 0$ (reducción de amperaje de red).
   2. $\Delta T < 0$ (enfriamiento anómalo del agua, firma de entropía negativa $S_w < 0$).
