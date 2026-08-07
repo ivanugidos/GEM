@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>GEM Radios : Tabla Maestra de Radianes GEM — Estudio I+D</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/fontsource/css/space-grotesk@latest/index.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/fontsource/css/jetbrains-mono@latest/index.css">
+<style>
+:root{
+  --bg:#05070F; --card:#0b1120; --card2:#0e1730; --line:#1c2740; --line2:#2a3a5f;
+  --txt:#C8D8F0; --dim:#7d90b4; --acc:#00ffcc; --gold:#FFD700; --mag:#FF00FF;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+body{
+  background:
+    radial-gradient(1100px 500px at 75% -10%, rgba(0,255,204,.05), transparent 60%),
+    radial-gradient(900px 500px at 5% 110%, rgba(255,0,255,.04), transparent 60%),
+    var(--bg);
+  color:var(--txt); font-family:'Space Grotesk',system-ui,sans-serif; min-height:100vh;
+}
+.mono{font-family:'JetBrains Mono',monospace}
+header{
+  padding:20px 26px 14px; border-bottom:1px solid var(--line);
+  display:flex; flex-wrap:wrap; gap:8px 22px; align-items:baseline;
+  position:sticky; top:0; z-index:40; backdrop-filter:blur(8px);
+  background:linear-gradient(180deg, rgba(10,15,30,.92), rgba(5,7,15,.75));
+}
+header h1{font-size:clamp(17px,2.2vw,25px); letter-spacing:.12em; color:#fff}
+header h1 span{color:var(--acc)}
+header .sub{font-family:'JetBrains Mono',monospace; font-size:11.5px; color:var(--dim)}
+header .quote{margin-left:auto; font-size:11.5px; color:var(--gold); font-style:italic; opacity:.85}
+.wrap{display:grid; grid-template-columns:minmax(0,1fr) 380px; gap:16px; padding:16px; max-width:1720px; margin:0 auto}
+@media(max-width:1100px){.wrap{grid-template-columns:1fr}}
+.tablecard{background:var(--card); border:1px solid var(--line); border-radius:14px; padding:14px; min-width:0}
+.tools{display:flex; flex-wrap:wrap; gap:8px; align-items:center; margin-bottom:12px}
+#search{flex:1 1 220px; background:var(--card2); border:1px solid var(--line2); color:var(--txt);
+  font-family:'JetBrains Mono',monospace; font-size:12.5px; padding:9px 12px; border-radius:8px; outline:none}
+#search:focus{border-color:var(--acc)}
+.tools button{background:var(--card2); color:var(--gold); border:1px solid #4d3f14; border-radius:8px;
+  font-family:'JetBrains Mono',monospace; font-size:12px; padding:8px 12px; cursor:pointer; transition:.2s}
+.tools button:hover{background:#1a2340; box-shadow:0 0 10px rgba(255,215,0,.2)}
+.chips{display:flex; flex-wrap:wrap; gap:6px; margin-bottom:12px}
+.chip{--c:#fff; cursor:pointer; font-size:10.5px; padding:5px 11px; border-radius:99px; border:1px solid var(--c);
+  color:var(--c); background:transparent; font-family:'JetBrains Mono',monospace; transition:.2s; user-select:none}
+.chip.on{background:var(--c); color:#05070F; font-weight:700}
+.tbl-scroll{overflow:auto; max-height:calc(100vh - 230px); border:1px solid var(--line); border-radius:10px}
+table{width:100%; border-collapse:collapse; font-size:12.5px}
+thead th{position:sticky; top:0; z-index:5; background:var(--card2); color:var(--dim);
+  font-family:'JetBrains Mono',monospace; font-size:10.5px; letter-spacing:.14em; text-align:left;
+  padding:10px 10px; border-bottom:1px solid var(--line2)}
+tbody td{padding:9px 10px; border-bottom:1px solid var(--line); vertical-align:top; line-height:1.5}
+tbody tr{cursor:pointer; transition:background .15s; border-left:3px solid transparent}
+tbody tr:hover{background:#101c3a}
+tbody tr.sel{background:#13224a; border-left-color:var(--rc,#fff)}
+td.deg{font-family:'JetBrains Mono',monospace; font-weight:700; color:var(--rc,#fff); white-space:nowrap}
+td.expr{font-family:'JetBrains Mono',monospace; color:#ffe9a8; white-space:nowrap}
+td.rad{font-family:'JetBrains Mono',monospace; color:var(--acc); white-space:nowrap}
+td.fam{white-space:nowrap}
+td.fam i{display:inline-block; width:9px; height:9px; border-radius:50%; margin-right:6px; background:var(--rc)}
+td.ctx{color:var(--txt); min-width:280px}
+.viz{position:sticky; top:86px; display:flex; flex-direction:column; gap:14px; align-self:start}
+@media(max-width:1100px){.viz{position:static}}
+.vizcard{background:var(--card); border:1px solid var(--line); border-radius:14px; padding:14px}
+.vizcard h2{font-size:11px; letter-spacing:.18em; color:var(--dim); margin-bottom:10px; font-weight:600}
+#vizSvg{width:100%; height:auto; display:block}
+#vizSvg text{font-family:'JetBrains Mono',monospace}
+#detail .big{display:flex; align-items:baseline; gap:12px; flex-wrap:wrap}
+#detail .d{font-family:'JetBrains Mono',monospace; font-size:26px; font-weight:700}
+#detail .r{font-family:'JetBrains Mono',monospace; font-size:13px; color:var(--acc)}
+#detail .e{margin:10px 0; padding:9px 12px; background:var(--card2); border-left:3px solid var(--gold);
+  font-family:'JetBrains Mono',monospace; font-size:12.5px; color:#ffe9a8; border-radius:0 8px 8px 0}
+#detail .c{font-size:12.5px; line-height:1.6}
+#detail .f{margin-top:10px; font-family:'JetBrains Mono',monospace; font-size:10.5px; color:var(--dim)}
+footer{padding:14px 26px 24px; text-align:center; color:var(--dim); font-size:11.5px; border-top:1px solid var(--line)}
+footer b{color:var(--gold)}
+.toast{position:fixed; bottom:22px; left:50%; transform:translateX(-50%); background:var(--card2);
+  border:1px solid var(--acc); color:#eafff8; font-family:'JetBrains Mono',monospace; font-size:12.5px;
+  padding:10px 18px; border-radius:10px; z-index:99; display:none; box-shadow:0 0 20px rgba(0,255,204,.3)}
+</style>
+</head>
+<body>
+<header>
+  <h1>TABLA MAESTRA DE RADIANES <span>GEM</span></h1>
+  <div class="sub">ESTUDIO I+D · v1 · 43 ángulos · 9 familias · el arco de fricción 288°→288.8889° (residuo 8/9)</div>
+  <div class="quote">«La geometría es el código. La resonancia es la llave. El vacío es el medio.»</div>
+</header>
+
+<div class="wrap">
+  <section class="tablecard">
+    <div class="tools">
+      <input id="search" placeholder="buscar ángulo, fórmula, contexto… (ej. 288, Hunab Ku, pentágono)">
+      <button id="btnMD">📋 Copiar tabla (Markdown)</button>
+      <button id="btnAll">👁 Todas las familias</button>
+    </div>
+    <div class="chips" id="chips"></div>
+    <div class="tbl-scroll">
+      <table>
+        <thead><tr>
+          <th>ÁNGULO (°)</th><th>EXPRESIÓN EXACTA</th><th>RADIANES</th><th>FAMILIA</th><th>CONTEXTO I+D (VÍA 3 → VÍA 1)</th>
+        </tr></thead>
+        <tbody id="tbody"></tbody>
+      </table>
+    </div>
+  </section>
+
+  <aside class="viz">
+    <div class="vizcard">
+      <h2>ROSA DE RADIANES · VISUALIZADOR</h2>
+      <svg id="vizSvg" viewBox="0 0 400 400"></svg>
+    </div>
+    <div class="vizcard" id="detail"></div>
+  </aside>
+</div>
+
+<div class="toast" id="toast"></div>
+<footer>Modelo G.E.M. · <b>288 = 2·144 = 72·4</b> · <b>16.2305+137.5079+26.2616 = 180°</b> · residuo <b>8/9</b> = fricción dimensional · CC BY-SA 4.0</footer>
+
+<script>
+const FAMS={
+ nucleo:{n:"Núcleo",c:"#FF0033"},
+ v5:{n:"Vector 5",c:"#FF8C00"},
+ v7:{n:"Vector 7",c:"#FFEC8B"},
+ hunabku:{n:"Hunab Ku",c:"#00FFFF"},
+ tri:{n:"Triángulos",c:"#40E0D0"},
+ fermion:{n:"Fermiones",c:"#FF69B4"},
+ cubo:{n:"Cubo/SCR",c:"#9370DB"},
+ agua:{n:"Agua/Red",c:"#1E90FF"},
+ ciclos:{n:"Ciclos",c:"#6EE7B7"}
+};
+const DATA=[
+// ── NÚCLEO ──
+{d:288,e:"8π/5",f:"nucleo",c:"Nodo de Cristalización: 360−288=72 (pentágono). 288=2·144=2·12²=72·4=12·24. Frecuencia maestra de la armónica polar; estación de la Iniciada Serpiente; generador del circuito eléctrico rojo (Dict. 441)."},
+{d:137.5079,e:"2π/φ²",f:"nucleo",c:"Ángulo áureo de divergencia (filotaxis). Ángulo inferior-izquierdo del Triángulo Luz; eco geométrico de la constante de estructura fina α⁻¹≈137.036."},
+{d:105,e:"7π/12",f:"nucleo",c:"Transductor geométrico del agua (H-O-H). 105=3·5·7: las 105 fracciones-dimensiones. 360/105=3.428571… firma 142857."},
+{d:22.2222,e:"π/8.1",f:"nucleo",c:"Ángulo crítico de Hunab Ku: umbral de refracción dimensional; la onda colapsa en vórtice toroidal. Diodo escalar; 8.1 segmentos ⇒ espín ½."},
+{d:16.2,e:"9π/100",f:"nucleo",c:"Resonancia del vacío: 360/22.2222=16.2 segmentos. Latido de la Espiral de Cristal (Hz); reloj del vórtice; modulación GEM-01."},
+{d:16.2305,e:"—",f:"nucleo",c:"Ángulo-Luz: ángulo superior del Triángulo Luz; manifestación angular de 16.2 Hz. 16.2305+137.5079+26.2616=180 ⇒ nulificación vectorial."},
+// ── VECTOR 5 ──
+{d:72,e:"2π/5",f:"v5",c:"Pentágono (V5): ángulo central de la materia ordinaria (φ). Complemento del Nodo 288 (360−288=72)."},
+{d:36,e:"π/5",f:"v5",c:"Decágono áureo: mitad de 72; ángulo de la 1ª Función generadora."},
+{d:108,e:"3π/5",f:"v5",c:"Ángulo interior del pentágono; cristal pentagonal; campo GM108X; 108=3·36."},
+{d:144,e:"4π/5",f:"v5",c:"Dodecagonal: 12², la red magnética al cuadrado; Orden Místico; Fibonacci 12; 288=2·144."},
+// ── VECTOR 7 ──
+{d:51.4286,e:"2π/7",f:"v7",c:"Heptágono (V7): paso de la rosa de torsión k=7; el decimal .428571 es la firma del recombinante 142857."},
+{d:25.7143,e:"π/7",f:"v7",c:"Medio paso heptagonal (180/7); mitad de la Red-7."},
+{d:14.2857,e:"100/7 (grados)",f:"v7",c:"Red-7: portadora 14.28 MHz; 1/7=0.142857… recombinante cíclico perfecto."},
+// ── HUNAB KU ──
+{d:200,e:"10π/9",f:"hunabku",c:"Cierre exacto: paso 9 de la secuencia 200/9 (9×200/9=200), sin residuo; primer umbral dimensional."},
+{d:288.8889,e:"130π/81",f:"hunabku",c:"Paso 13: 13×200/9. Su residuo 8/9 sobre el Nodo 288 es la fricción dimensional que se vuelve masa (arco magenta)."},
+{d:333.3333,e:"50π/27",f:"hunabku",c:"Paso 15: 333=3·111, Vajra a la 9ª potencia; iniciación suprema (Dict. 441)."},
+{d:4.4444,e:"2π/81",f:"hunabku",c:"Residuo de los 16 segmentos: 360−16×22.2222=40/9. Marca de la Quinta Fuerza ⌘ (0.2 de segmento) en el mandala."},
+// ── TRIÁNGULOS ──
+{d:26.2616,e:"16.2305·φ",f:"tri",c:"Expansión áurea: ángulo inferior-derecho del Triángulo Luz; cierra la identidad de 180°."},
+{d:36.8699,e:"arctan(3/4)",f:"tri",c:"Triángulo sagrado 3-4-5: base geométrica del electrón y de c=1."},
+{d:53.1301,e:"arctan(4/3)",f:"tri",c:"Complemento del 3-4-5; proyección ortogonal del flujo toroidal."},
+{d:25.3769,e:"arcsin(3/7)",f:"tri",c:"Ángulo creativo α: inmersión estructural del vórtice en la materia (manifold 5D)."},
+{d:17.02,e:"(φ³−4π/3)·360",f:"tri",c:"Ángulo creativo β: expansión inflacionaria; motor de la Quinta Fuerza ⌘."},
+{d:22.2076,e:"arcsin(1/√7)",f:"tri",c:"Triángulo sagrado 1:√6:√7; ángulo ideal de refracción; Δ=0.0146° con 22.2222 = ruido armónico 0.477."},
+// ── FERMIONES ──
+{d:8.1301,e:"arcsin(√2/10)",f:"fermion",c:"Ángulo maestro del electrón: sin=√2/10 (geometría cuadrática). ×2 = 16.2602 (16'26'')."},
+{d:8.14,e:"arcsin(π−3)",f:"fermion",c:"Ángulo maestro del protón: sin≈π−3 (geometría circular). ×2 = 16.28 (16'2''). La diferencia ~24'' con el electrón codifica 1836."},
+// ── CUBO / SCR ──
+{d:126,e:"7π/10",f:"cubo",c:"Ley 13:7: 7/20 de 360. Principio del Synchronotron; primer término de la SCR-1998 (126-162-216-261-612-621)."},
+{d:162,e:"9π/10",f:"cubo",c:"Meditativo: 9²·2=27·6. Suma de dígitos de 142857 (27) × 6 caras; 10× de 16.2 Hz; transición electrónica."},
+{d:216,e:"6π/5",f:"cubo",c:"Cubo perfecto: 6³; frecuencia de estabilización; 54×4; 6 caras."},
+{d:252,e:"7π/5",f:"cubo",c:"612−360=21·12: Hunab Ku × red; 9 lunas; 2520°=7×360 cierre cíclico (14π)."},
+{d:261,e:"29π/20",f:"cubo",c:"9·29: frecuencia destino de la constante cósmica; invertido de 162; SCR."},
+{d:54,e:"3π/10",f:"cubo",c:"999999→54 (9×6): salto cuántico del 7º día; ×4=216; Bolontiku."},
+{d:27,e:"3π/20",f:"cubo",c:"Información conservada: 1+4+2+8+5+7=27; ×6=162; corazón del 9."},
+// ── AGUA / RED ──
+{d:45,e:"π/4",f:"agua",c:"Cierre dimensional: 3×105+45=360; transición entre dimensiones en la distribución del agua."},
+{d:315,e:"7π/4",f:"agua",c:"Volumétrico del agua: 7/8 de 360; total 3×105; 1+1/7."},
+{d:30,e:"π/6",f:"agua",c:"Red I_h: 360/12; las 12 líneas magnéticas bi-simétricas."},
+{d:120,e:"2π/3",f:"agua",c:"Orden icosaédrico: |I_h|=120; α⁻¹≈120+17 (traza vectorial de torsión)."},
+{d:180,e:"π",f:"agua",c:"Nulificación vectorial: q₁+q₂=2w; cuando los vectores mueren, emerge el escalar."},
+{d:2.703,e:"(π−3)·360/(6π)",f:"agua",c:"Cuanto angular: residuo de π en la red hexagonal; unidad de sintonía; semilla del espín."},
+{d:256.99,e:"616.99−360",f:"agua",c:"Muerte de la espiral: la espiral de Hunab Ku (b=2lnφ/π) muere en el toroide exterior tras 12/7 de vuelta."},
+// ── CICLOS ──
+{d:360,e:"2π",f:"ciclos",c:"Tun: círculo completo; 16.2×22.2222; 20×18; métrica maestra 3600/10."},
+{d:616.99,e:"ln(Rt/r0)/b",f:"ciclos",c:"θ_max de la espiral: muere en Rt=270.844; ≈12·360/7; el 12 y el 7 cierran la espiral."},
+{d:720,e:"4π",f:"ciclos",c:"Ciclo fermiónico: el vórtice vuelve a Ψ tras 720°; origen topológico del espín ½."},
+{d:1008,e:"28π/5",f:"ciclos",c:"Espín material: 14×72°=(2·3·4·5·6·7·8·9)/360; 14 ciclos materiales (7+7)."}
+];
+
+const state={fams:new Set(Object.keys(FAMS)), q:"", sel:0};
+const $=s=>document.querySelector(s);
+const rad=d=>d*Math.PI/180;
+
+/* ── chips ── */
+const chips=$("#chips");
+Object.entries(FAMS).forEach(([k,f])=>{
+  const n=DATA.filter(r=>r.f===k).length;
+  const b=document.createElement("button");
+  b.className="chip on"; b.style.setProperty("--c",f.c);
+  b.textContent=`${f.n} (${n})`; b.dataset.f=k;
+  b.onclick=()=>{ if(state.fams.has(k)) state.fams.delete(k); else state.fams.add(k);
+    b.classList.toggle("on"); render(); };
+  chips.appendChild(b);
+});
+$("#btnAll").onclick=()=>{ state.fams=new Set(Object.keys(FAMS));
+  document.querySelectorAll(".chip").forEach(c=>c.classList.add("on")); render(); };
+
+/* ── tabla ── */
+function visible(){ return DATA.map((r,i)=>({r,i}))
+  .filter(o=>state.fams.has(o.r.f))
+  .filter(o=>!state.q || (o.r.d+" "+o.r.e+" "+o.r.c+" "+FAMS[o.r.f].n).toLowerCase().includes(state.q)); }
+
+function render(){
+  const tb=$("#tbody"); tb.innerHTML="";
+  visible().forEach(({r,i})=>{
+    const col=FAMS[r.f].c;
+    const tr=document.createElement("tr");
+    if(i===state.sel) tr.classList.add("sel");
+    tr.style.setProperty("--rc",col);
+    tr.innerHTML=`<td class="deg">${r.d}°</td><td class="expr">${r.e}</td>
+      <td class="rad">${rad(r.d).toFixed(6)}</td>
+      <td class="fam"><i style="background:${col}"></i>${FAMS[r.f].n}</td>
+      <td class="ctx">${r.c}</td>`;
+    tr.onclick=()=>{ state.sel=i; render(); drawViz(); };
+    tb.appendChild(tr);
+  });
+  drawViz();
+}
+$("#search").oninput=e=>{ state.q=e.target.value.trim().toLowerCase(); render(); };
+
+/* ── visualizador ── */
+function drawViz(){
+  const svg=$("#vizSvg"); const r=DATA[state.sel]||DATA[0]; const col=FAMS[r.f].c;
+  const cx=200,cy=200,R=150;
+  let s=`<rect width="400" height="400" fill="#05070F"/>`;
+  s+=`<circle cx="${cx}" cy="${cy}" r="${R}" fill="none" stroke="#2a3a5f" stroke-width="1.5" stroke-dasharray="6,4"/>`;
+  for(let k=0;k<12;k++){ const a=k*Math.PI/6;
+    s+=`<line x1="${cx}" y1="${cy}" x2="${cx+R*Math.cos(a)}" y2="${cy+R*Math.sin(a)}" stroke="#1c2740" stroke-width="1"/>`; }
+  const a=rad(r.d%360), x=cx+R*Math.cos(a), y=cy+R*Math.sin(a);
+  const large=(r.d%360)>180?1:0;
+  if(r.d%360>0.5) s+=`<path d="M ${cx+R} ${cy} A ${R} ${R} 0 ${large} 1 ${x} ${y}" fill="none" stroke="${col}" stroke-width="2.5" opacity="0.55"/>`;
+  s+=`<line x1="${cx}" y1="${cy}" x2="${x}" y2="${y}" stroke="${col}" stroke-width="3.5"/>`;
+  s+=`<circle cx="${x}" cy="${y}" r="6" fill="${col}"/>`;
+  s+=`<circle cx="${cx}" cy="${cy}" r="4" fill="#fff"/>`;
+  const lx=cx+(R+22)*Math.cos(a), ly=cy+(R+22)*Math.sin(a);
+  s+=`<text x="${lx}" y="${ly}" fill="${col}" font-size="14" font-weight="bold" text-anchor="middle" dominant-baseline="middle">${r.d}°</text>`;
+  s+=`<text x="${cx}" y="386" fill="#7d90b4" font-size="11" text-anchor="middle">${rad(r.d).toFixed(4)} rad ${r.d>360?"(≡ "+(r.d%360).toFixed(2)+"° mod 360)":""}</text>`;
+  svg.innerHTML=s;
+  $("#detail").innerHTML=`<h2 style="font-size:11px;letter-spacing:.18em;color:var(--dim);margin-bottom:10px">FICHA DE ESTUDIO</h2>
+    <div class="big"><span class="d" style="color:${col}">${r.d}°</span><span class="r">= ${rad(r.d).toFixed(6)} rad</span></div>
+    <div class="e">${r.e}</div><p class="c">${r.c}</p>
+    <div class="f">FAMILIA: ${FAMS[r.f].n.toUpperCase()} · ÍNDICE #${state.sel} · ${DATA.length} ángulos</div>`;
+}
+
+/* ── export markdown ── */
+$("#btnMD").onclick=()=>{
+  let md="# Tabla Maestra de Radianes GEM (v1)\n\n| Ángulo (°) | Expresión | Radianes | Familia | Contexto I+D |\n|---|---|---|---|---|\n";
+  DATA.forEach(r=>{ md+=`| ${r.d} | ${r.e} | ${rad(r.d).toFixed(6)} | ${FAMS[r.f].n} | ${r.c} |\n`; });
+  md+="\n*Arco de fricción: 288° → 288.8889° (residuo 8/9 = fricción dimensional que se vuelve masa).*\n";
+  const ta=document.createElement("textarea"); ta.value=md; ta.style.position="fixed"; ta.style.opacity="0";
+  document.body.appendChild(ta); ta.select();
+  try{ document.execCommand("copy"); toast("📋 Tabla Markdown copiada — lista para tu estudio I+D"); }catch(e){ toast("⚠ No se pudo copiar"); }
+  ta.remove();
+};
+function toast(m){ const t=$("#toast"); t.textContent=m; t.style.display="block"; setTimeout(()=>t.style.display="none",2600); }
+
+render();
+</script>
+</body>
+</html>
