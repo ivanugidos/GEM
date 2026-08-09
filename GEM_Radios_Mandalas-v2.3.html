@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>RADIOS GEM — EL TELAR COMPLETO · v2.3</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/fontsource/css/space-grotesk@latest/index.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/fontsource/css/jetbrains-mono@latest/index.css">
+<style>
+:root{
+  --bg:#04060c; --card:#0b1120; --card2:#0e1730; --line:#1c2740; --line2:#2a3a5f;
+  --txt:#C8D8F0; --dim:#7d90b4; --acc:#00ffcc; --gold:#FFD700; --mag:#FF00FF;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+body{
+  background:
+    radial-gradient(1100px 560px at 72% -10%, rgba(0,255,204,.05), transparent 60%),
+    radial-gradient(900px 500px at 8% 110%, rgba(255,0,255,.04), transparent 60%),
+    var(--bg);
+  color:var(--txt); font-family:'Space Grotesk',system-ui,sans-serif; min-height:100vh;
+}
+header{
+  padding:18px 26px 12px; border-bottom:1px solid var(--line);
+  display:flex; flex-wrap:wrap; align-items:baseline; gap:8px 20px;
+  background:linear-gradient(180deg, rgba(10,15,30,.92), rgba(4,6,12,.7));
+  position:sticky; top:0; z-index:50; backdrop-filter:blur(8px);
+}
+header h1{font-size:clamp(16px,2.2vw,24px); letter-spacing:.14em; color:#fff}
+header h1 span{color:var(--acc)}
+header .sub{font-family:'JetBrains Mono',monospace; font-size:11px; color:var(--dim)}
+header .quote{margin-left:auto; font-size:11px; color:var(--gold); font-style:italic; opacity:.85}
+.wrap{display:grid; grid-template-columns:minmax(0,1fr) 400px; gap:16px; padding:16px; max-width:1720px; margin:0 auto}
+@media(max-width:1100px){.wrap{grid-template-columns:1fr}}
+.canvas-card{background:var(--card); border:1px solid var(--line); border-radius:14px; padding:10px; position:relative; overflow:hidden}
+.canvas-card svg{width:100%; height:auto; display:block}
+.canvas-card svg text{font-family:'JetBrains Mono',monospace}
+.radio{cursor:pointer; transition:opacity .35s}
+.radio.dim{opacity:.22}
+.radio:hover{opacity:1 !important}
+.radio.sel line{stroke-width:6px}
+#fric{cursor:pointer}
+.bar{display:flex; flex-wrap:wrap; gap:8px; align-items:center; border-top:1px solid var(--line); margin-top:8px; padding:10px 6px 4px}
+.bar button{background:var(--card2); color:var(--acc); border:1px solid #1f3a5c; border-radius:8px;
+  font-family:'JetBrains Mono',monospace; font-size:12.5px; padding:7px 12px; cursor:pointer; transition:all .2s}
+.bar button:hover{background:#13224a; box-shadow:0 0 12px rgba(0,255,204,.25)}
+#tourCap{font-size:12.5px; flex:1 1 260px; min-height:32px; line-height:1.45}
+#tourCap b{color:var(--gold)}
+.panel{display:flex; flex-direction:column; gap:14px}
+.card{background:var(--card); border:1px solid var(--line); border-radius:14px; padding:16px}
+.card h2{font-size:12px; letter-spacing:.18em; color:var(--dim); margin-bottom:12px; font-weight:600}
+#selCard .big{display:flex; align-items:baseline; gap:12px; flex-wrap:wrap}
+#selCard .deg{font-family:'JetBrains Mono',monospace; font-size:30px; font-weight:700; color:#fff}
+#selCard .rad{font-family:'JetBrains Mono',monospace; font-size:13px; color:var(--acc)}
+.famchip{font-size:10.5px; padding:3px 10px; border-radius:99px; border:1px solid; letter-spacing:.08em; font-family:'JetBrains Mono',monospace}
+#selCard .formula{margin:12px 0; padding:10px 12px; background:var(--card2); border-left:3px solid var(--gold);
+  font-family:'JetBrains Mono',monospace; font-size:12.5px; color:#ffe9a8; border-radius:0 8px 8px 0}
+#selCard .desc{font-size:13px; line-height:1.6}
+#selCard .hc{margin-top:10px; font-family:'JetBrains Mono',monospace; font-size:10.5px; color:var(--dim)}
+.chips{display:flex; flex-wrap:wrap; gap:7px}
+.chip{--c:#fff; cursor:pointer; font-size:10.5px; padding:5px 11px; border-radius:99px; border:1px solid var(--c); color:var(--c);
+  background:transparent; font-family:'JetBrains Mono',monospace; transition:all .2s; user-select:none}
+.chip.on{background:var(--c); color:#04060c; font-weight:700}
+.togs{display:flex; flex-wrap:wrap; gap:7px; margin-top:10px}
+.tog{cursor:pointer; font-size:10.5px; padding:4px 10px; border-radius:6px; border:1px dashed #33456b; color:var(--dim); font-family:'JetBrains Mono',monospace; transition:all .2s}
+.tog.on{border-style:solid; color:#dfe9ff; border-color:#5b77ad; background:#101c3a}
+#search{width:100%; background:var(--card2); border:1px solid #1f3a5c; color:var(--txt);
+  font-family:'JetBrains Mono',monospace; font-size:12px; padding:9px 12px; border-radius:8px; outline:none}
+#search:focus{border-color:var(--acc)}
+#list{max-height:420px; overflow:auto; padding-right:4px}
+#list::-webkit-scrollbar{width:8px}#list::-webkit-scrollbar-thumb{background:#1f3a5c; border-radius:8px}
+.famhead{display:flex; align-items:center; gap:8px; margin:12px 0 5px; font-size:10.5px; letter-spacing:.14em; color:var(--dim)}
+.famhead i{width:10px; height:10px; border-radius:3px; display:inline-block}
+.item{display:grid; grid-template-columns:14px 1fr auto; gap:8px; align-items:center; padding:6px 8px; border-radius:8px; cursor:pointer;
+  font-family:'JetBrains Mono',monospace; font-size:11.5px; border:1px solid transparent; transition:all .15s}
+.item:hover{background:#101c3a}
+.item.sel{background:#13224a; border-color:var(--acc)}
+.item i{width:10px; height:10px; border-radius:50%}
+.item .nm{overflow:hidden; text-overflow:ellipsis; white-space:nowrap}
+.item .dg{color:var(--dim)}
+.expBtns{display:flex; flex-wrap:wrap; gap:8px; margin-bottom:10px}
+.expBtns button{background:var(--card2); color:var(--gold); border:1px solid #4d3f14; border-radius:8px; font-family:'JetBrains Mono',monospace; font-size:12px; padding:8px 12px; cursor:pointer; transition:all .2s}
+.expBtns button:hover{background:#1a2340; box-shadow:0 0 12px rgba(255,215,0,.25)}
+.expTxt{font-size:12.5px; line-height:1.6}
+.expTxt b{color:var(--acc)}
+.tooltip{position:absolute; pointer-events:none; z-index:20; display:none; background:rgba(8,12,26,.95);
+  border:1px solid var(--acc); border-radius:8px; padding:8px 12px; font-family:'JetBrains Mono',monospace;
+  font-size:12px; color:#eafff8; box-shadow:0 0 18px rgba(0,255,204,.25); max-width:280px}
+footer{padding:14px 26px 22px; text-align:center; color:var(--dim); font-size:11px; border-top:1px solid var(--line)}
+footer b{color:var(--gold)}
+</style>
+</head>
+<body>
+<header>
+  <h1>RADIOS <span>GEM</span> — EL TELAR COMPLETO · v2.3</h1>
+  <div class="sub" id="subTit">Tabla Maestra completa · Mandala I+D 238 (EC.1–EC.4) · anillo de 360 puntos · arco de fricción 8/9</div>
+  <div class="quote">«La geometría es el código. La resonancia es la llave. El vacío es el medio.»</div>
+</header>
+
+<div class="wrap">
+  <div class="canvas-card" id="canvasCard">
+    <div id="svgHost"></div>
+    <div class="tooltip" id="tip"></div>
+    <div class="bar">
+      <button id="btnPrev">⏮ ant</button>
+      <button id="btnPlay">▶ recorrido</button>
+      <button id="btnNext">sig ⏭</button>
+      <button id="btnClear">✕ limpiar</button>
+      <div id="tourCap">v2.3: clic en cualquier radio, polígono o en el arco magenta 8/9. El anillo exterior son ahora 360 puntos (grados del círculo).</div>
+    </div>
+  </div>
+
+  <aside class="panel">
+    <!-- 1) ÍNDICE -->
+    <div class="card">
+      <h2>ÍNDICE · TABLA MAESTRA</h2>
+      <input id="search" placeholder="buscar ángulo, fórmula, contexto…">
+      <div id="list" style="margin-top:10px"></div>
+    </div>
+    <!-- 2) RADIO SELECCIONADO -->
+    <div class="card" id="selCard"></div>
+    <!-- 3) CAPAS DEL TELAR -->
+    <div class="card">
+      <h2>CAPAS DEL TELAR</h2>
+      <div class="togs" id="mandTogs"></div>
+      <h2 style="margin-top:14px">POLÍGONOS (vértice en 288°)</h2>
+      <div class="togs" id="polyTogs"></div>
+      <h2 style="margin-top:14px">FAMILIAS DE RADIOS</h2>
+      <div class="chips" id="chips"></div>
+    </div>
+    <!-- 4) EXPORTAR -->
+    <div class="card">
+      <h2>EXPORTAR / COMPARTIR</h2>
+      <div class="expBtns">
+        <button id="btnDlHtml">⬇ Descargar v2.3</button>
+        <button id="btnCopy">📋 Copiar código</button>
+        <button id="btnDlSvg">🖼 Exportar SVG</button>
+        <button id="btnMD">📋 Tabla Maestra (MD)</button>
+      </div>
+      <div class="expTxt">Artefacto <b>100% HTML+CSS+JS</b>. «Tabla Maestra (MD)» copia las <b id="nExp"></b> filas (ángulo · expresión · radianes · familia · contexto) listas para el Codex / HC de los Radianes.</div>
+    </div>
+  </aside>
+</div>
+
+<footer>Modelo G.E.M. v2.3 · 288 = 2·144 = 72·4 · residuo 8/9 = fricción dimensional · 16.2305+137.5079+26.2616 = 180° · CC BY-SA 4.0</footer>
+
+<script>
+/* ================= CONSTANTES ================= */
+const CX=750, CY=700, R=500, SC=R/460;
+const PHI=(1+Math.sqrt(5))/2, S12=Math.sin(Math.PI/12);
+const R2u=460/(1+S12), RHu=R2u*S12, RTu=R2u-RHu, RT2u=RTu/(PHI*Math.sqrt(3));
+const B=2*Math.log(PHI)/Math.PI, THMAX=Math.log(RTu/10)/B;
+const rad=d=>d*Math.PI/180;
+const pt=(d,rr)=>[CX+rr*Math.cos(rad(d)), CY+rr*Math.sin(rad(d))];
+const mpt=(ru,t)=>[CX+ru*SC*Math.cos(t), CY+ru*SC*Math.sin(t)];
+
+/* ================= FAMILIAS ================= */
+const FAMS={
+ nucleo:{n:"Núcleo",c:"#FF0033"},
+ v5:{n:"Vector 5 · Materia",c:"#FF8C00"},
+ v7:{n:"Vector 7 · Magnetismo",c:"#FFEC8B"},
+ hunabku:{n:"Secuencia Hunab Ku",c:"#00FFFF"},
+ luz:{n:"Triángulo Luz",c:"#FFD700"},
+ tri345:{n:"Triángulo 3-4-5",c:"#40E0D0"},
+ alfabeta:{n:"Ángulos α·β",c:"#FF69B4"},
+ pi:{n:"Residuo de π",c:"#FF00FF"},
+ fermion:{n:"Fermiones",c:"#ADFF2F"},
+ scr:{n:"Cubo / SCR-1998",c:"#9370DB"},
+ agua:{n:"Agua",c:"#1E90FF"},
+ espiral:{n:"Espiral",c:"#E457C9"},
+ red:{n:"Red I_h",c:"#8ECFFF"},
+ ciclos:{n:"Ciclos",c:"#6EE7B7"}
+};
+
+/* ================= TABLA MAESTRA (43 RADIOS) ================= */
+const DATA=[
+/* Núcleo */
+{deg:288.0, e:"8π/5", f:"nucleo", off:55, sw:4.5, op:.95, d:"Nodo de Cristalización: 360−288=72 (pentágono). 288=2·144=2·12²=72·4. Frecuencia maestra de la armónica polar."},
+{deg:137.5079, e:"2π/φ²", f:"nucleo", off:55, sw:4, op:.95, d:"Ángulo áureo de divergencia (filotaxis); eco de la estructura fina α⁻¹≈137."},
+{deg:105.0, e:"7π/12", f:"nucleo", off:55, sw:4, op:.95, d:"Transductor H₂O: 105=3·5·7; 360/105=3.428571… firma 142857."},
+{deg:22.2222, e:"π/8.1", f:"nucleo", off:95, sw:4, op:.95, d:"Hunab Ku: umbral de refracción dimensional; la onda colapsa en vórtice toroidal."},
+{deg:16.2, e:"9π/100", f:"nucleo", off:55, sw:4, op:.95, d:"Resonancia del vacío: 360/22.22=16.2 segmentos; latido de la Espiral de Cristal."},
+/* Vector 5 */
+{deg:36.0, e:"π/5", f:"v5", off:95, sw:2.5, op:.8, d:"Decágono áureo: mitad de 72; geometría de la 1ª Función."},
+{deg:72.0, e:"2π/5", f:"v5", off:55, sw:2.5, op:.8, d:"Pentágono: ángulo central del Vector 5 (materia ordinaria, φ)."},
+{deg:108.0, e:"3π/5", f:"v5", off:95, sw:2.5, op:.8, d:"Ángulo interior del pentágono; cristal pentagonal (GM108X)."},
+{deg:144.0, e:"4π/5", f:"v5", off:55, sw:2.5, op:.8, d:"Dodecagonal: 12², la red magnética al cuadrado."},
+/* Vector 7 */
+{deg:14.2857, e:"π/12.6", f:"v7", off:160, sw:2, op:.7, d:"Red-7: portadora 100/7 MHz; recombinante cíclico perfecto."},
+{deg:25.7143, e:"π/7", f:"v7", off:175, sw:2, op:.7, d:"Medio paso heptagonal."},
+{deg:51.4286, e:"2π/7", f:"v7", off:95, sw:2.5, op:.8, d:"Heptágono: paso de la rosa de torsión k=7; firma .428571 (142857)."},
+/* Hunab Ku */
+{deg:4.4444, e:"2π/81", f:"hunabku", off:95, sw:2, op:.7, d:"Residuo de los 16 segmentos (0.2 seg); marca de la Quinta Fuerza ⌘."},
+{deg:200.0, e:"10π/9", f:"hunabku", off:55, sw:1.5, op:.55, d:"Cierre exacto: paso 9 de la secuencia 200/9."},
+{deg:288.8889, e:"130π/81", f:"hunabku", off:125, sw:2, op:.8, d:"Paso 13: residuo sobre el Nodo 288 = 8/9, fricción dimensional → masa."},
+{deg:333.3333, e:"50π/27", f:"hunabku", off:55, sw:1.5, op:.55, d:"Paso 15: 333=3·111, Vajra a la 9ª potencia."},
+/* Triángulo Luz */
+{deg:16.2305, e:"Ángulo-Luz", f:"luz", off:125, sw:2.5, op:.85, d:"Ángulo superior del Triángulo Luz; manifestación angular de 16.2 Hz."},
+{deg:26.2616, e:"16.2305·φ", f:"luz", off:55, sw:2.5, op:.85, d:"Expansión áurea; cierre geométrico del Triángulo (Σ=180°)."},
+{deg:22.2076, e:"arcsin(1/√7)", f:"luz", off:160, sw:2, op:.7, d:"Ángulo ideal de refracción (1:√6:√7); Δ=0.0146° con 22.2222 = ruido armónico."},
+/* 3-4-5 */
+{deg:36.8699, e:"arctan(3/4)", f:"tri345", off:55, sw:2, op:.8, d:"Triángulo sagrado 3-4-5: base geométrica del electrón."},
+{deg:53.1301, e:"arctan(4/3)", f:"tri345", off:95, sw:2, op:.8, d:"Complemento del 3-4-5."},
+/* α·β */
+{deg:25.3769, e:"arcsin(3/7)", f:"alfabeta", off:135, sw:2, op:.8, d:"α creativo: inmersión estructural del vórtice."},
+{deg:17.02, e:"(φ³−4π/3)·360", f:"alfabeta", off:135, sw:2, op:.8, d:"β creativo: expansión inflacionaria."},
+/* Residuo π */
+{deg:2.7, e:"(π−3)·360/(6π)", f:"pi", off:55, sw:2.5, op:.9, d:"Cuanto angular mínimo: residuo de π en la red hexagonal."},
+/* Fermiones */
+{deg:8.1301, e:"arcsin(√2/10)", f:"fermion", off:95, sw:2.5, op:.85, d:"Ángulo maestro del electrón; ×2 = 16'26''."},
+{deg:8.14, e:"arcsin(π−3)", f:"fermion", off:135, sw:2.5, op:.85, d:"Ángulo maestro del protón; ×2 = 16'2''; Δ≈24'' → 1836."},
+/* Cubo / SCR */
+{deg:27.0, e:"3π/20", f:"scr", off:95, sw:2, op:.7, d:"Información conservada: Σ dígitos de 142857."},
+{deg:54.0, e:"3π/10", f:"scr", off:135, sw:2, op:.7, d:"9×6; Bolontiku; 54×4=216."},
+{deg:126.0, e:"7π/10", f:"scr", off:95, sw:2, op:.8, d:"Ley 13:7; principio del Synchronotron; SCR-1998."},
+{deg:162.0, e:"9π/10", f:"scr", off:55, sw:2, op:.8, d:"9²·2; meditado; frecuencia de transición; SCR."},
+{deg:216.0, e:"6π/5", f:"scr", off:95, sw:2, op:.8, d:"Cubo perfecto 6³; estabilización."},
+{deg:252.0, e:"7π/5", f:"scr", off:55, sw:2, op:.8, d:"21·12; 612−360; SCR plegado."},
+{deg:261.0, e:"29π/20", f:"scr", off:135, sw:2, op:.8, d:"9·29; constante cósmica; invertido de 162."},
+/* Agua */
+{deg:45.0, e:"π/4", f:"agua", off:55, sw:2, op:.8, d:"Cierre dimensional: 3·105+45=360."},
+{deg:315.0, e:"7π/4", f:"agua", off:95, sw:2, op:.8, d:"Volumétrico del agua: 7/8·360."},
+/* Espiral */
+{deg:256.99, e:"616.99−360", f:"espiral", off:95, sw:2, op:.8, d:"Muerte de la espiral en el toroide exterior (12/7 de vuelta)."},
+/* Red */
+{deg:30.0, e:"π/6", f:"red", off:135, sw:1.5, op:.6, d:"Red I_h: 360/12 líneas bi-simétricas."},
+{deg:120.0, e:"2π/3", f:"red", off:55, sw:1.5, op:.6, d:"Orden icosaédrico |I_h|=120; α⁻¹≈120+17."},
+{deg:180.0, e:"π", f:"red", off:95, sw:1.5, op:.6, d:"Nulificación vectorial: q₁+q₂=2w."},
+/* Ciclos */
+{deg:360.0, e:"2π", f:"ciclos", off:55, sw:2, op:.8, d:"Tun: círculo completo; 16.2×22.2222."},
+{deg:616.99, e:"ln(Rt/r0)/b", f:"ciclos", off:125, sw:2, op:.8, d:"θmax de la espiral de Hunab Ku; muere en Rt."},
+{deg:720.0, e:"4π", f:"ciclos", off:95, sw:2, op:.8, d:"Ciclo fermiónico: el vórtice retorna a 720°."},
+{deg:1008.0, e:"28π/5", f:"ciclos", off:135, sw:2, op:.8, d:"Espín material: 14×72°=(2·3·…·9)/360."}
+];
+document.getElementById('nExp').textContent=DATA.length;
+document.getElementById('subTit').textContent=`Tabla Maestra completa (${DATA.length} radianes + contexto) · Mandala I+D 238 · anillo de 360 puntos · arco 8/9`;
+
+/* ================= POLÍGONOS Y CAPAS ================= */
+const POLYS=[
+ {id:"p5", n:5, c:"#FF6B35", name:"Pentágono (V5)"},
+ {id:"p6", n:6, c:"#A78BFA", name:"Hexágono (cubo)"},
+ {id:"p7", n:7, c:"#FFE066", name:"Heptágono (V7)"},
+ {id:"p12", n:12, c:"#6EE7B7", name:"Dodecágono (I_h)"}
+];
+const MAND=[
+ {id:"L_red", name:"Red 360 (fondo)"},
+ {id:"L_anillo", name:"Anillo 360 puntos"},
+ {id:"L_ejes", name:"12 Líneas Bi-simétricas"},
+ {id:"L_flor", name:"Flor Empaquetamiento (EC.2)"},
+ {id:"L_rosa", name:"Rosa de Torsión k=7 (EC.1)"},
+ {id:"L_toro", name:"Toroide Áureo φ√3 (EC.3)"},
+ {id:"L_esp", name:"Espiral Hunab Ku (EC.4)"}
+];
+
+/* ================= CONSTRUCCIÓN SVG ================= */
+let S=[];
+S.push(`<svg id="gemSvg" viewBox="0 0 1500 1420" xmlns="http://www.w3.org/2000/svg">`);
+S.push(`<defs><filter id="glow" x="-30%" y="-30%" width="160%" height="160%"><feGaussianBlur stdDeviation="2.5" result="blur"/><feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge></filter></defs>`);
+/* fondo 360 líneas */
+S.push(`<g id="L_red" stroke="#16203a" stroke-width="0.5" opacity="0.5">`);
+for(let i=0;i<360;i++){const a=rad(i);S.push(`<line x1="${CX}" y1="${CY}" x2="${(CX+R*Math.cos(a)).toFixed(1)}" y2="${(CY+R*Math.sin(a)).toFixed(1)}"/>`);}
+S.push(`</g>`);
+/* ANILLO EXTERIOR: 360 PUNTOS */
+S.push(`<g id="L_anillo">`);
+S.push(`<circle cx="${CX}" cy="${CY}" r="${R}" fill="none" stroke="#3b4c74" stroke-width="1" opacity="0.25"/>`);
+for(let i=0;i<360;i++){
+  const [x,y]=pt(i,R);
+  const big=i%30===0, mid=i%10===0;
+  S.push(`<circle cx="${x.toFixed(1)}" cy="${y.toFixed(1)}" r="${big?2.8:mid?1.9:1.15}" fill="${big?'#ffffff':mid?'#9AB4D0':'#5f77a8'}" opacity="${big?0.95:mid?0.8:0.55}"/>`);
+}
+S.push(`</g>`);
+/* 12 ejes */
+S.push(`<g id="L_ejes" stroke="#8ECFFF" stroke-width="1" opacity="0.45">`);
+for(let k=0;k<12;k++){const a=k*Math.PI/6;const [x,y]=mpt(460,a);S.push(`<line x1="${CX}" y1="${CY}" x2="${x.toFixed(1)}" y2="${y.toFixed(1)}"/>`);}
+S.push(`</g>`);
+/* toroide */
+S.push(`<g id="L_toro" fill="none" stroke="#F5F5F5" stroke-width="2.2" opacity="0.7"><circle cx="${CX}" cy="${CY}" r="${(RTu*SC).toFixed(1)}"/><circle cx="${CX}" cy="${CY}" r="${(RT2u*SC).toFixed(1)}"/></g>`);
+/* flor */
+S.push(`<g id="L_flor" fill="none" stroke="#4FC3F7" stroke-width="1.8" opacity="0.65">`);
+for(let k=0;k<12;k++){const a=k*Math.PI/6;const [x,y]=mpt(R2u,a);S.push(`<circle cx="${x.toFixed(1)}" cy="${y.toFixed(1)}" r="${(RHu*SC).toFixed(1)}"/>`);}
+S.push(`</g>`);
+/* rosa k=7 */
+let rose=[];for(let i=0;i<=700;i++){const t=i/700*Math.PI;const r=460*Math.cos(7*t);rose.push(mpt(r,t).map(v=>v.toFixed(1)).join(' '));}
+S.push(`<g id="L_rosa"><path d="M ${rose.join(' L ')}" fill="none" stroke="#D4AF37" stroke-width="2" opacity="0.8"/></g>`);
+/* espiral */
+let sp=[];for(let t=0;t<=THMAX;t+=0.04){const r=10*Math.exp(B*t);sp.push(mpt(r,t).map(v=>v.toFixed(1)).join(' '));}
+S.push(`<g id="L_esp"><path d="M ${sp.join(' L ')}" fill="none" stroke="#E457C9" stroke-width="2" opacity="0.85" filter="url(#glow)"/></g>`);
+/* polígonos */
+POLYS.forEach(p=>{
+  const pts=Array.from({length:p.n},(_,i)=>{const a=rad(288+i*360/p.n);return `${(CX+R*Math.cos(a)).toFixed(1)},${(CY+R*Math.sin(a)).toFixed(1)}`;}).join(" ");
+  S.push(`<polygon id="${p.id}" points="${pts}" stroke="${p.c}" stroke-width="3" fill="none" stroke-linejoin="round" opacity="0.6" filter="url(#glow)"/>`);
+});
+S.push(`<g id="wedge"></g>`);
+/* radios */
+DATA.forEach((r,i)=>{
+  const col=FAMS[r.f].c, a=rad(r.deg), [rx,ry]=pt(r.deg,R), [tx,ty]=pt(r.deg,R+r.off);
+  const anch=Math.cos(a)>0.15?"start":(Math.cos(a)<-0.15?"end":"middle");
+  S.push(`<g class="radio" data-i="${i}" data-fam="${r.f}">`);
+  S.push(`<line x1="${CX}" y1="${CY}" x2="${rx.toFixed(1)}" y2="${ry.toFixed(1)}" stroke="${col}" stroke-width="${r.sw}" opacity="${r.op}" filter="url(#glow)"/>`);
+  S.push(`<circle cx="${rx.toFixed(1)}" cy="${ry.toFixed(1)}" r="${Math.max(3,r.sw)}" fill="${col}" opacity="${r.op}" filter="url(#glow)"/>`);
+  S.push(`<text x="${tx.toFixed(1)}" y="${ty.toFixed(1)}" fill="${col}" font-size="16" font-weight="bold" text-anchor="${anch}" dominant-baseline="middle">${r.e.length<=8?r.deg:r.deg}</text></g>`);
+});
+/* arco de fricción 8/9 */
+const [f1x,f1y]=pt(288,R),[f2x,f2y]=pt(288.8889,R);
+S.push(`<path id="fric" data-i="14" d="M ${f1x.toFixed(1)} ${f1y.toFixed(1)} A ${R} ${R} 0 0 1 ${f2x.toFixed(1)} ${f2y.toFixed(1)}" stroke="#FF00FF" stroke-width="9" fill="none" filter="url(#glow)"><animate attributeName="opacity" values="1;.3;1" dur="2.4s" repeatCount="indefinite"/><animate attributeName="stroke-width" values="9;13;9" dur="2.4s" repeatCount="indefinite"/></path>`);
+const [lx,ly]=pt(292,R+42);
+S.push(`<text x="${lx.toFixed(1)}" y="${ly.toFixed(1)}" fill="#FF00FF" font-size="16" filter="url(#glow)">8/9</text>`);
+/* centro */
+S.push(`<circle cx="${CX}" cy="${CY}" r="12" fill="#FFFFFF" filter="url(#glow)"/>`);
+S.push(`<circle cx="${CX}" cy="${CY}" r="18" fill="none" stroke="#00ffcc" stroke-width="1.5"><animate attributeName="r" values="14;46;14" dur="4s" repeatCount="indefinite"/><animate attributeName="opacity" values=".8;0;.8" dur="4s" repeatCount="indefinite"/></circle>`);
+S.push(`</svg>`);
+document.getElementById('svgHost').innerHTML=S.join("\n");
+
+/* ================= INTERACCIÓN ================= */
+const state={sel:null, fams:new Set(Object.keys(FAMS)), tour:-1, playing:false, timer:null};
+const $=s=>document.querySelector(s);
+const svgHost=$('#svgHost'), tip=$('#tip'), card=$('#canvasCard');
+
+function wedge(i){
+  const g=$('#wedge'); if(i==null){g.innerHTML='';return;}
+  const r=DATA[i], col=FAMS[r.f].c, large=r.deg>180?1:0, [x0,y0]=pt(0,R), [x1,y1]=pt(r.deg,R);
+  g.innerHTML=`<path d="M ${CX} ${CY} L ${x0} ${y0} A ${R} ${R} 0 ${large} 1 ${x1} ${y1} Z" fill="${col}" opacity="0.07"/>
+  <path d="M ${x0} ${y0} A ${R} ${R} 0 ${large} 1 ${x1} ${y1}" fill="none" stroke="${col}" stroke-width="3" opacity="0.65" filter="url(#glow)"/>`;
+}
+function renderCard(i){
+  const c=$('#selCard');
+  if(i==null){c.innerHTML=`<h2>RADIO SELECCIONADO</h2><div class="deg" style="font-size:20px;color:var(--acc)">∇w · telar completo</div><p class="desc" style="margin-top:10px">${DATA.length} radios en 14 familias sobre el mandala I+D 238. Selecciona cualquier radio, polígono o el arco magenta 8/9.</p><div class="hc">HC_06 · HC_07 · HC_08 · HC_13 · I+D 224/238</div>`;return;}
+  const r=DATA[i], F=FAMS[r.f];
+  c.innerHTML=`<h2>RADIO SELECCIONADO</h2><div class="big"><span class="deg" style="color:${F.c}">${r.deg.toFixed(4)}°</span><span class="rad">= ${rad(r.deg).toFixed(6)} rad</span><span class="famchip" style="color:${F.c};border-color:${F.c}">${F.n}</span></div><div class="formula">${r.e}</div><p class="desc">${r.d}</p><div class="hc">índice #${i} · ${F.n}</div>`;
+}
+function select(i){
+  state.sel=i;
+  document.querySelectorAll('.radio').forEach(g=>{const gi=+g.dataset.i;g.classList.toggle('sel',gi===i);g.classList.toggle('dim',i!=null&&gi!==i);});
+  wedge(i); renderCard(i);
+  document.querySelectorAll('.item').forEach(el=>el.classList.toggle('sel',+el.dataset.i===i));
+  if(i!=null){const el=document.querySelector(`.item[data-i="${i}"]`);if(el)el.scrollIntoView({block:'nearest',behavior:'smooth'});}
+}
+/* toggles capas */
+MAND.forEach(m=>{
+  const b=document.createElement('button');b.className='tog on';b.textContent=m.name;
+  b.onclick=()=>{const el=document.getElementById(m.id);const on=b.classList.toggle('on');el.style.display=on?'':'none';};
+  $('#mandTogs').appendChild(b);
+});
+POLYS.forEach(p=>{
+  const b=document.createElement('button');b.className='tog on';b.textContent=p.name;
+  b.onclick=()=>{const el=document.getElementById(p.id);const on=b.classList.toggle('on');el.style.display=on?'':'none';};
+  $('#polyTogs').appendChild(b);
+});
+/* chips familias */
+Object.entries(FAMS).forEach(([k,f])=>{
+  const b=document.createElement('button');b.className='chip on';b.style.setProperty('--c',f.c);b.textContent=f.n;
+  b.onclick=()=>{if(state.fams.has(k))state.fams.delete(k);else state.fams.add(k);b.classList.toggle('on');applyVis();};
+  $('#chips').appendChild(b);
+});
+function applyVis(){
+  document.querySelectorAll('.radio').forEach(g=>{g.style.display=state.fams.has(g.dataset.fam)?'':'none';});
+  renderList();
+  if(state.sel!=null&&!state.fams.has(DATA[state.sel].f))select(null);
+}
+/* lista */
+function renderList(){
+  const q=$('#search').value.trim().toLowerCase();let html='';
+  Object.entries(FAMS).forEach(([k,f])=>{
+    if(!state.fams.has(k))return;
+    const items=DATA.map((r,i)=>({r,i})).filter(o=>o.r.f===k).filter(o=>!q||(o.r.e+' '+o.r.deg+' '+o.r.d).toLowerCase().includes(q));
+    if(!items.length)return;
+    html+=`<div class="famhead"><i style="background:${f.c}"></i>${f.n.toUpperCase()}</div>`;
+    items.forEach(o=>{html+=`<div class="item ${state.sel===o.i?'sel':''}" data-i="${o.i}"><i style="background:${f.c}"></i><span class="nm">${o.r.deg}° — ${o.r.e}</span><span class="dg">${rad(o.r.deg).toFixed(3)} rad</span></div>`;});
+  });
+  $('#list').innerHTML=html||'<div class="famhead">SIN RESULTADOS</div>';
+}
+$('#search').addEventListener('input',renderList);
+$('#list').addEventListener('click',e=>{const it=e.target.closest('.item');if(it)select(+it.dataset.i);});
+/* svg eventos */
+svgHost.addEventListener('click',e=>{
+  const g=e.target.closest('.radio');const fr=e.target.closest('#fric');const pg=e.target.closest('polygon[id^="p"]');
+  if(g)select(+g.dataset.i);
+  else if(fr)select(+fr.dataset.i);
+  else if(pg){renderCard(null);wedge(null);}
+  else select(null);
+});
+svgHost.addEventListener('mousemove',e=>{
+  const g=e.target.closest('.radio');const fr=e.target.closest('#fric');
+  const i=g?+g.dataset.i:(fr?+fr.dataset.i:null);
+  if(i==null){tip.style.display='none';return;}
+  const r=DATA[i];
+  tip.innerHTML=fr?`<b style="color:#FF00FF">ARCO 8/9</b> · fricción dimensional<br>288.8889°−288° → masa`:`<b style="color:${FAMS[r.f].c}">${r.deg}°</b> · ${rad(r.deg).toFixed(4)} rad<br>${FAMS[r.f].n}`;
+  const rect=card.getBoundingClientRect();
+  tip.style.display='block';
+  tip.style.left=Math.min(e.clientX-rect.left+14,rect.width-290)+'px';
+  tip.style.top=(e.clientY-rect.top+14)+'px';
+});
+svgHost.addEventListener('mouseleave',()=>tip.style.display='none');
+/* recorrido */
+const TOUR_DEG=[22.2222,16.2,105,137.5079,288,288.8889,72,51.4286,8.1301,162,216,256.99,30,180,360,1008];
+const TOUR=TOUR_DEG.map(v=>DATA.findIndex(d=>Math.abs(d.deg-v)<1e-4));
+function tourStep(n){
+  state.tour=(n+TOUR.length)%TOUR.length;
+  const i=TOUR[state.tour], r=DATA[i];
+  if(!state.fams.has(r.f)){state.fams.add(r.f);const ch=[...document.querySelectorAll('.chip')].find(c=>c.textContent===FAMS[r.f].n);if(ch)ch.classList.add('on');applyVis();}
+  select(i);
+  $('#tourCap').innerHTML=`<b style="color:${FAMS[r.f].c}">[${state.tour+1}/${TOUR.length}] ${r.deg}°</b> — ${r.d}`;
+}
+$('#btnNext').onclick=()=>tourStep(state.tour+1);
+$('#btnPrev').onclick=()=>tourStep(state.tour-1);
+$('#btnPlay').onclick=function(){
+  state.playing=!state.playing;this.textContent=state.playing?'⏸ pausa':'▶ recorrido';
+  if(state.playing){tourStep(state.tour+1);state.timer=setInterval(()=>tourStep(state.tour+1),6000);}
+  else clearInterval(state.timer);
+};
+$('#btnClear').onclick=()=>{select(null);state.tour=-1;$('#tourCap').textContent='Selección limpiada. El arco magenta 8/9 sigue latiendo: tócalo.';};
+/* exportar */
+function serialize(){return '<!DOCTYPE html>\n'+document.documentElement.outerHTML;}
+function download(n,c,m){const b=new Blob([c],{type:m});const a=document.createElement('a');a.href=URL.createObjectURL(b);a.download=n;document.body.appendChild(a);a.click();setTimeout(()=>{URL.revokeObjectURL(a.href);a.remove();},500);}
+$('#btnDlHtml').onclick=()=>download('GEM_Radios_Mandalas-v2.3.html',serialize(),'text/html');
+$('#btnCopy').onclick=()=>{const code=serialize();if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(code).catch(()=>fb(code));}else fb(code);};
+function fb(code){const ta=document.createElement('textarea');ta.value=code;ta.style.position='fixed';ta.style.opacity='0';document.body.appendChild(ta);ta.select();try{document.execCommand('copy');}catch(e){}ta.remove();}
+$('#btnDlSvg').onclick=()=>download('GEM_telar_v2.3.svg','<?xml version="1.0" encoding="UTF-8"?>\n'+new XMLSerializer().serializeToString(document.getElementById('gemSvg')),'image/svg+xml');
+$('#btnMD').onclick=()=>{
+  let md=`# Tabla Maestra de Radianes GEM (v2.3) — ${DATA.length} filas\n\n| Ángulo (°) | Expresión | Radianes | Familia | Contexto |\n|---|---|---|---|---|\n`;
+  DATA.forEach(r=>{md+=`| ${r.deg} | ${r.e} | ${rad(r.deg).toFixed(6)} | ${FAMS[r.f].n} | ${r.d} |\n`;});
+  md+=`\n*Arco de fricción: 288° → 288.8889° (residuo 8/9 = fricción dimensional → masa).*\n`;
+  if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(md).catch(()=>fb(md));}else fb(md);
+};
+/* init */
+renderCard(null);renderList();
+</script>
+</body>
+</html>
