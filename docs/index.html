@@ -3,264 +3,439 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>GEM Radios : Tabla Maestra de Radianes GEM — Estudio I+D</title>
+<title>MODELO GEM · Portal de Estudio — El Telar Cósmico</title>
+<meta name="description" content="Portal de estudio del Modelo Geométrico-Electromagnético: mándala interactivo de radios, tabla maestra de radianes y zona en obras. La geometría es el código.">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/fontsource/css/space-grotesk@latest/index.css">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/fontsource/css/jetbrains-mono@latest/index.css">
 <style>
 :root{
   --bg:#05070F; --card:#0b1120; --card2:#0e1730; --line:#1c2740; --line2:#2a3a5f;
   --txt:#C8D8F0; --dim:#7d90b4; --acc:#00ffcc; --gold:#FFD700; --mag:#FF00FF;
+  --red:#FF0033; --cyan:#00FFFF; --blue:#00BFFF; --pack:#4FC3F7; --rose:#D4AF37;
 }
 *{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
 body{
   background:
-    radial-gradient(1100px 500px at 75% -10%, rgba(0,255,204,.05), transparent 60%),
-    radial-gradient(900px 500px at 5% 110%, rgba(255,0,255,.04), transparent 60%),
+    radial-gradient(1100px 560px at 78% -10%, rgba(0,255,204,.06), transparent 60%),
+    radial-gradient(900px 520px at 6% 108%, rgba(255,0,255,.05), transparent 60%),
+    radial-gradient(700px 400px at 40% 50%, rgba(212,175,55,.04), transparent 65%),
     var(--bg);
   color:var(--txt); font-family:'Space Grotesk',system-ui,sans-serif; min-height:100vh;
 }
 .mono{font-family:'JetBrains Mono',monospace}
+::selection{background:rgba(0,255,204,.25)}
+
+/* ══════════ HEADER ══════════ */
 header{
-  padding:20px 26px 14px; border-bottom:1px solid var(--line);
-  display:flex; flex-wrap:wrap; gap:8px 22px; align-items:baseline;
-  position:sticky; top:0; z-index:40; backdrop-filter:blur(8px);
-  background:linear-gradient(180deg, rgba(10,15,30,.92), rgba(5,7,15,.75));
+  position:sticky; top:0; z-index:60; backdrop-filter:blur(10px);
+  background:linear-gradient(180deg, rgba(10,15,30,.92), rgba(5,7,15,.72));
+  border-bottom:1px solid var(--line);
+  display:flex; align-items:center; gap:18px; padding:12px 26px; flex-wrap:wrap;
 }
-header h1{font-size:clamp(17px,2.2vw,25px); letter-spacing:.12em; color:#fff}
+header .glyph{width:42px;height:42px;flex:0 0 auto; filter:drop-shadow(0 0 8px rgba(0,255,204,.45))}
+header h1{font-size:clamp(15px,2vw,21px); letter-spacing:.16em; color:#fff}
 header h1 span{color:var(--acc)}
-header .sub{font-family:'JetBrains Mono',monospace; font-size:11.5px; color:var(--dim)}
-header .quote{margin-left:auto; font-size:11.5px; color:var(--gold); font-style:italic; opacity:.85}
-.wrap{display:grid; grid-template-columns:minmax(0,1fr) 380px; gap:16px; padding:16px; max-width:1720px; margin:0 auto}
-@media(max-width:1100px){.wrap{grid-template-columns:1fr}}
-.tablecard{background:var(--card); border:1px solid var(--line); border-radius:14px; padding:14px; min-width:0}
-.tools{display:flex; flex-wrap:wrap; gap:8px; align-items:center; margin-bottom:12px}
-#search{flex:1 1 220px; background:var(--card2); border:1px solid var(--line2); color:var(--txt);
-  font-family:'JetBrains Mono',monospace; font-size:12.5px; padding:9px 12px; border-radius:8px; outline:none}
-#search:focus{border-color:var(--acc)}
-.tools button{background:var(--card2); color:var(--gold); border:1px solid #4d3f14; border-radius:8px;
-  font-family:'JetBrains Mono',monospace; font-size:12px; padding:8px 12px; cursor:pointer; transition:.2s}
-.tools button:hover{background:#1a2340; box-shadow:0 0 10px rgba(255,215,0,.2)}
-.chips{display:flex; flex-wrap:wrap; gap:6px; margin-bottom:12px}
-.chip{--c:#fff; cursor:pointer; font-size:10.5px; padding:5px 11px; border-radius:99px; border:1px solid var(--c);
-  color:var(--c); background:transparent; font-family:'JetBrains Mono',monospace; transition:.2s; user-select:none}
-.chip.on{background:var(--c); color:#05070F; font-weight:700}
-.tbl-scroll{overflow:auto; max-height:calc(100vh - 230px); border:1px solid var(--line); border-radius:10px}
-table{width:100%; border-collapse:collapse; font-size:12.5px}
-thead th{position:sticky; top:0; z-index:5; background:var(--card2); color:var(--dim);
-  font-family:'JetBrains Mono',monospace; font-size:10.5px; letter-spacing:.14em; text-align:left;
-  padding:10px 10px; border-bottom:1px solid var(--line2)}
-tbody td{padding:9px 10px; border-bottom:1px solid var(--line); vertical-align:top; line-height:1.5}
-tbody tr{cursor:pointer; transition:background .15s; border-left:3px solid transparent}
-tbody tr:hover{background:#101c3a}
-tbody tr.sel{background:#13224a; border-left-color:var(--rc,#fff)}
-td.deg{font-family:'JetBrains Mono',monospace; font-weight:700; color:var(--rc,#fff); white-space:nowrap}
-td.expr{font-family:'JetBrains Mono',monospace; color:#ffe9a8; white-space:nowrap}
-td.rad{font-family:'JetBrains Mono',monospace; color:var(--acc); white-space:nowrap}
-td.fam{white-space:nowrap}
-td.fam i{display:inline-block; width:9px; height:9px; border-radius:50%; margin-right:6px; background:var(--rc)}
-td.ctx{color:var(--txt); min-width:280px}
-.viz{position:sticky; top:86px; display:flex; flex-direction:column; gap:14px; align-self:start}
-@media(max-width:1100px){.viz{position:static}}
-.vizcard{background:var(--card); border:1px solid var(--line); border-radius:14px; padding:14px}
-.vizcard h2{font-size:11px; letter-spacing:.18em; color:var(--dim); margin-bottom:10px; font-weight:600}
-#vizSvg{width:100%; height:auto; display:block}
-#vizSvg text{font-family:'JetBrains Mono',monospace}
-#detail .big{display:flex; align-items:baseline; gap:12px; flex-wrap:wrap}
-#detail .d{font-family:'JetBrains Mono',monospace; font-size:26px; font-weight:700}
-#detail .r{font-family:'JetBrains Mono',monospace; font-size:13px; color:var(--acc)}
-#detail .e{margin:10px 0; padding:9px 12px; background:var(--card2); border-left:3px solid var(--gold);
-  font-family:'JetBrains Mono',monospace; font-size:12.5px; color:#ffe9a8; border-radius:0 8px 8px 0}
-#detail .c{font-size:12.5px; line-height:1.6}
-#detail .f{margin-top:10px; font-family:'JetBrains Mono',monospace; font-size:10.5px; color:var(--dim)}
-footer{padding:14px 26px 24px; text-align:center; color:var(--dim); font-size:11.5px; border-top:1px solid var(--line)}
-footer b{color:var(--gold)}
-.toast{position:fixed; bottom:22px; left:50%; transform:translateX(-50%); background:var(--card2);
-  border:1px solid var(--acc); color:#eafff8; font-family:'JetBrains Mono',monospace; font-size:12.5px;
-  padding:10px 18px; border-radius:10px; z-index:99; display:none; box-shadow:0 0 20px rgba(0,255,204,.3)}
+header .sub{font-family:'JetBrains Mono',monospace; font-size:10.5px; color:var(--dim); letter-spacing:.08em}
+nav{margin-left:auto; display:flex; gap:8px; flex-wrap:wrap}
+nav a{
+  font-family:'JetBrains Mono',monospace; font-size:11.5px; text-decoration:none;
+  color:var(--dim); border:1px solid var(--line); border-radius:99px; padding:6px 14px; transition:.25s;
+}
+nav a:hover{color:var(--acc); border-color:var(--acc); box-shadow:0 0 14px rgba(0,255,204,.25)}
+
+/* ══════════ HERO ══════════ */
+.hero{
+  max-width:1500px; margin:0 auto; padding:34px 26px 10px;
+  display:grid; grid-template-columns:minmax(320px,1.05fr) minmax(300px,.95fr);
+  gap:34px; align-items:center;
+}
+@media(max-width:980px){.hero{grid-template-columns:1fr}}
+.hero .stage{position:relative}
+.hero .stage::before{
+  content:""; position:absolute; inset:6%;
+  background:conic-gradient(from 0deg, transparent 0 40deg, rgba(0,255,204,.05) 40deg 42deg, transparent 42deg 120deg, rgba(255,215,0,.05) 120deg 122deg, transparent 122deg 220deg, rgba(255,0,255,.05) 220deg 222deg, transparent 222deg 360deg);
+  border-radius:50%; animation:rot 90s linear infinite;
+}
+#heroMandala{width:100%; height:auto; display:block; position:relative; animation:breathe 9s ease-in-out infinite}
+@keyframes breathe{0%,100%{filter:drop-shadow(0 0 14px rgba(0,255,204,.10))}50%{filter:drop-shadow(0 0 26px rgba(0,255,204,.22))}}
+@keyframes rot{to{transform:rotate(360deg)}}
+.kicker{font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:.3em; color:var(--acc); margin-bottom:14px}
+.hero h2{font-size:clamp(30px,4.4vw,54px); line-height:1.04; color:#fff; letter-spacing:.02em; margin-bottom:18px}
+.hero h2 em{font-style:normal; color:var(--gold)}
+.hero p{font-size:15.5px; line-height:1.75; color:var(--txt); max-width:56ch; margin-bottom:14px}
+.hero p b{color:#fff}
+.chips{display:flex; flex-wrap:wrap; gap:8px; margin:18px 0 26px}
+.chips span{
+  font-family:'JetBrains Mono',monospace; font-size:11.5px; padding:6px 13px; border-radius:99px;
+  border:1px solid var(--line2); color:var(--dim); background:rgba(14,23,48,.5);
+}
+.chips span b{color:var(--acc); font-weight:600}
+.hero .cta{display:flex; gap:12px; flex-wrap:wrap}
+.btn{
+  font-family:'JetBrains Mono',monospace; font-size:12.5px; text-decoration:none;
+  padding:12px 22px; border-radius:10px; border:1px solid var(--acc); color:var(--acc);
+  background:rgba(0,255,204,.06); transition:.25s; letter-spacing:.06em;
+}
+.btn:hover{background:rgba(0,255,204,.16); box-shadow:0 0 22px rgba(0,255,204,.3); transform:translateY(-2px)}
+.btn.gold{border-color:var(--gold); color:var(--gold); background:rgba(255,215,0,.06)}
+.btn.gold:hover{background:rgba(255,215,0,.14); box-shadow:0 0 22px rgba(255,215,0,.28)}
+
+/* ══════════ SECCIONES ══════════ */
+section{max-width:1500px; margin:0 auto; padding:44px 26px}
+.sec-head{display:flex; align-items:center; gap:16px; margin-bottom:26px}
+.sec-head .dia{width:12px;height:12px;background:var(--acc);transform:rotate(45deg);box-shadow:0 0 12px rgba(0,255,204,.6);flex:0 0 auto}
+.sec-head h3{font-size:clamp(19px,2.4vw,27px); color:#fff; letter-spacing:.08em}
+.sec-head .rule{flex:1; height:1px; background:linear-gradient(90deg,var(--line2),transparent)}
+.sec-head .tag{font-family:'JetBrains Mono',monospace; font-size:10.5px; color:var(--dim); letter-spacing:.2em}
+
+/* conceptos */
+.concepts{display:grid; grid-template-columns:repeat(auto-fit,minmax(270px,1fr)); gap:16px}
+.concept{
+  background:var(--card); border:1px solid var(--line); border-radius:14px; padding:22px;
+  position:relative; overflow:hidden; transition:.3s;
+}
+.concept::after{content:""; position:absolute; top:0; left:0; right:0; height:2px; background:linear-gradient(90deg,var(--c,#00ffcc),transparent)}
+.concept:hover{transform:translateY(-4px); border-color:var(--line2); box-shadow:0 12px 34px rgba(0,0,0,.5)}
+.concept .num{font-family:'JetBrains Mono',monospace; font-size:30px; color:var(--c,var(--acc)); font-weight:700; margin-bottom:8px; text-shadow:0 0 18px currentColor}
+.concept h4{color:#fff; font-size:16px; margin-bottom:10px; letter-spacing:.04em}
+.concept p{font-size:13.5px; line-height:1.7; color:var(--txt)}
+.concept p code{font-family:'JetBrains Mono',monospace; font-size:12px; color:var(--gold)}
+
+/* artefactos */
+.artifacts{display:grid; grid-template-columns:repeat(auto-fit,minmax(330px,1fr)); gap:20px}
+.artifact{
+  background:linear-gradient(160deg, var(--card2), var(--card)); border:1px solid var(--line2);
+  border-radius:16px; padding:26px; display:flex; flex-direction:column; gap:16px;
+  position:relative; overflow:hidden; transition:.3s;
+}
+.artifact:hover{transform:translateY(-5px); box-shadow:0 16px 44px rgba(0,0,0,.55), 0 0 0 1px var(--acc)}
+.artifact .preview{border:1px solid var(--line); border-radius:12px; background:#070b16; padding:10px; display:flex; justify-content:center}
+.artifact .preview svg{width:100%; max-width:340px; height:auto}
+.artifact h4{color:#fff; font-size:18px; letter-spacing:.05em}
+.artifact h4 span{color:var(--acc)}
+.artifact p{font-size:13.5px; line-height:1.7; flex:1}
+.artifact .meta{font-family:'JetBrains Mono',monospace; font-size:10.5px; color:var(--dim); display:flex; gap:14px; flex-wrap:wrap}
+.artifact a.open{
+  align-self:flex-start; font-family:'JetBrains Mono',monospace; font-size:12px; text-decoration:none;
+  color:#05070F; background:linear-gradient(90deg,var(--acc),#7dfcd0); padding:11px 20px; border-radius:9px;
+  font-weight:700; letter-spacing:.08em; transition:.25s;
+}
+.artifact a.open:hover{box-shadow:0 0 26px rgba(0,255,204,.5); transform:translateY(-2px)}
+.artifact.gold a.open{background:linear-gradient(90deg,var(--gold),#ffe98a)}
+.artifact.gold a.open:hover{box-shadow:0 0 26px rgba(255,215,0,.45)}
+
+/* ══════════ ZONA EN OBRAS ══════════ */
+.tape{
+  height:12px; border-radius:6px; margin-bottom:22px;
+  background:repeating-linear-gradient(45deg, var(--gold) 0 14px, #0b0d14 14px 28px);
+  box-shadow:0 0 18px rgba(255,215,0,.25); animation:tapeMove 24s linear infinite;
+  background-size:200% 100%;
+}
+@keyframes tapeMove{to{background-position:200% 0}}
+.obras-note{font-size:14px; line-height:1.7; color:var(--txt); max-width:78ch; margin-bottom:24px}
+.obras-note b{color:var(--gold)}
+.obras{display:grid; grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); gap:16px}
+.obra{
+  background:var(--card); border:1px dashed var(--line2); border-radius:14px; padding:20px;
+  transition:.3s; position:relative;
+}
+.obra:hover{border-style:solid; border-color:var(--gold); transform:translateY(-3px); box-shadow:0 10px 30px rgba(0,0,0,.5)}
+.obra .code{font-family:'JetBrains Mono',monospace; font-size:10.5px; color:var(--acc); letter-spacing:.18em; margin-bottom:8px}
+.obra h5{color:#fff; font-size:15px; margin-bottom:8px}
+.obra p{font-size:12.5px; line-height:1.65; color:var(--txt); margin-bottom:14px}
+.obra .bar{height:6px; background:#101c3a; border-radius:99px; overflow:hidden; margin-bottom:8px}
+.obra .bar i{display:block; height:100%; border-radius:99px; background:linear-gradient(90deg,var(--acc),var(--gold)); box-shadow:0 0 10px rgba(0,255,204,.5)}
+.obra .status{font-family:'JetBrains Mono',monospace; font-size:10px; letter-spacing:.12em; color:var(--dim)}
+.obra .status .pct{color:var(--gold)}
+
+/* footer */
+footer{border-top:1px solid var(--line); padding:26px; text-align:center}
+footer .q{color:var(--gold); font-style:italic; font-size:14px; margin-bottom:10px}
+footer .m{font-family:'JetBrains Mono',monospace; font-size:11px; color:var(--dim); line-height:2}
+footer a{color:var(--acc); text-decoration:none}
+footer a:hover{text-decoration:underline}
+
+@media print{ header,nav,.cta,.tape{display:none} body{background:#fff;color:#000} }
 </style>
 </head>
 <body>
+
 <header>
-  <h1>TABLA MAESTRA DE RADIANES <span>GEM</span></h1>
-  <div class="sub">ESTUDIO I+D · v1 · 43 ángulos · 9 familias · el arco de fricción 288°→288.8889° (residuo 8/9)</div>
-  <div class="quote">«La geometría es el código. La resonancia es la llave. El vacío es el medio.»</div>
+  <svg class="glyph" viewBox="0 0 100 100" aria-hidden="true">
+    <circle cx="50" cy="50" r="46" fill="none" stroke="#00ffcc" stroke-width="2" opacity=".7"/>
+    <g stroke="#FFD700" stroke-width="2" fill="none">
+      <path d="M50 50 Q78 42 96 50 Q78 58 50 50 Z"/>
+      <path d="M50 50 Q58 78 50 96 Q42 78 50 50 Z"/>
+      <path d="M50 50 Q22 58 4 50 Q22 42 50 50 Z"/>
+      <path d="M50 50 Q42 22 50 4 Q58 22 50 50 Z"/>
+    </g>
+    <circle cx="50" cy="50" r="6" fill="#fff"/>
+  </svg>
+  <div>
+    <h1>MODELO <span>GEM</span> · PORTAL DE ESTUDIO</h1>
+    <div class="sub">GEOMETRÍA × ELECTROMAGNETISMO × HERMÉTICA — github.com/ivanugidos/GEM</div>
+  </div>
+  <nav>
+    <a href="#conceptos">CONCEPTOS</a>
+    <a href="#artefactos">ARTEFACTOS</a>
+    <a href="#obras">ZONA EN OBRAS</a>
+  </nav>
 </header>
 
-<div class="wrap">
-  <section class="tablecard">
-    <div class="tools">
-      <input id="search" placeholder="buscar ángulo, fórmula, contexto… (ej. 288, Hunab Ku, pentágono)">
-      <button id="btnMD">📋 Copiar tabla (Markdown)</button>
-      <button id="btnAll">👁 Todas las familias</button>
+<!-- ═══════════════════ HERO ═══════════════════ -->
+<div class="hero">
+  <div class="stage">
+    <svg id="heroMandala" viewBox="0 0 1000 1000" role="img" aria-label="Mándala GEM: rosa de torsión k=7, empaquetamiento dodecaédrico, toroide áureo y espiral de Hunab Ku"></svg>
+    <noscript><p class="mono" style="text-align:center;color:#7d90b4">Activa JavaScript para ver el mándala vivo.</p></noscript>
+  </div>
+  <div>
+    <div class="kicker">PROYECTO G.E.M. — CÓDIGO ABIERTO · CC BY-SA 4.0</div>
+    <h2>EL <TELAR</TELAR> CÓSMICO<br>SE ESTUDIA <em>DIBUJÁNDOLO</em></h2>
+    <p>El <b>Modelo Geométrico-Electromagnético</b> lee el vacío como una red viva: <b>12 líneas magnéticas bi-simétricas</b> tejidas en simetría icosaédrica, un <b>ángulo crítico de 22.22°</b> donde la luz se anuda en materia, y un <b>latido de 16.2 Hz</b> que respira en el agua.</p>
+    <p>Este portal reúne los <b>artefactos de estudio</b> del proyecto: mándalas interactivos, tablas de radianes para imprimir y meditar, y un semillero de páginas por inventar. <b>La geometría es el código; la resonancia es la llave; el vacío es el medio.</b></p>
+    <div class="chips mono">
+      <span><b>12</b> líneas</span><span><b>22.22°</b> Hunab Ku</span><span><b>16.2</b> Hz</span>
+      <span><b>105°</b> agua</span><span><b>288°</b> nodo</span><span><b>φ√3</b> toroide</span><span><b>8/9</b> fricción</span>
     </div>
-    <div class="chips" id="chips"></div>
-    <div class="tbl-scroll">
-      <table>
-        <thead><tr>
-          <th>ÁNGULO (°)</th><th>EXPRESIÓN EXACTA</th><th>RADIANES</th><th>FAMILIA</th><th>CONTEXTO I+D (VÍA 3 → VÍA 1)</th>
-        </tr></thead>
-        <tbody id="tbody"></tbody>
-      </table>
+    <div class="cta">
+      <a class="btn" href="#artefactos">⌘ ENTRAR AL ESTUDIO</a>
+      <a class="btn gold" href="#obras">🚧 ZONA EN OBRAS</a>
     </div>
-  </section>
-
-  <aside class="viz">
-    <div class="vizcard">
-      <h2>ROSA DE RADIANES · VISUALIZADOR</h2>
-      <svg id="vizSvg" viewBox="0 0 400 400"></svg>
-    </div>
-    <div class="vizcard" id="detail"></div>
-  </aside>
+  </div>
 </div>
 
-<div class="toast" id="toast"></div>
-<footer>Modelo G.E.M. · <b>288 = 2·144 = 72·4</b> · <b>16.2305+137.5079+26.2616 = 180°</b> · residuo <b>8/9</b> = fricción dimensional · CC BY-SA 4.0</footer>
+<!-- ═══════════════════ CONCEPTOS BÁSICOS ═══════════════════ -->
+<section id="conceptos">
+  <div class="sec-head"><div class="dia"></div><h3>¿POR DÓNDE EMPIEZO?</h3><div class="rule"></div><div class="tag">DIVULGACIÓN · 3 MIN</div></div>
+  <div class="concepts">
+    <div class="concept" style="--c:#4FC3F7">
+      <div class="num">12</div>
+      <h4>LA RED — el vacío no está vacío</h4>
+      <p>El vacío cuántico se modela como una red dodecaédrica de <b>12 líneas magnéticas bi-simétricas</b>. Cuando están en equilibrio hay "silencio geométrico"; cuando dos se descompensan, nace la luz. En el nodo <code>288°</code> el pentágono (materia, 72°) choca con el heptágono (magnetismo, 51.43°): ahí se cristaliza la masa.</p>
+    </div>
+    <div class="concept" style="--c:#00ffcc">
+      <div class="num">16.2</div>
+      <h4>EL LATIDO — el reloj del vórtice</h4>
+      <p>Divide el círculo por el ángulo de Hunab Ku: <code>360 / 22.22° = 16.2</code> segmentos. Ese número es la frecuencia de resonancia del vacío (<code>16.2 Hz</code>), el paso de la espiral áurea y el "clock" que sintoniza el agua como transductor geométrico universal.</p>
+    </div>
+    <div class="concept" style="--c:#FF00FF">
+      <div class="num">2w</div>
+      <h4>LA COSECHA — vector cero, escalar vivo</h4>
+      <p>En los cuaterniones originales de Maxwell vivía una parte escalar <code>w</code> que Heaviside amputó. El truco GEM: cancelar los vectores (<code>⟨H⟩ = 0</code>) para que <code>q₁ + q₂ = 2w</code>. La firma del éxito es termodinámica: <code>ΔT &lt; 0</code>, el sistema se enfría mientras cosecha.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════ ARTEFACTOS ═══════════════════ -->
+<section id="artefactos">
+  <div class="sec-head"><div class="dia"></div><h3>ARTEFACTOS DE ESTUDIO</h3><div class="rule"></div><div class="tag">PÁGINAS VIVAS · SVG INTERACTIVO</div></div>
+  <div class="artifacts">
+
+    <div class="artifact">
+      <div class="preview">
+        <svg viewBox="0 0 200 200" aria-hidden="true">
+          <circle cx="100" cy="100" r="88" fill="none" stroke="#2a3a5f" stroke-width="1" stroke-dasharray="4 4"/>
+          <g stroke="#00ffff" stroke-width="1.4" opacity=".8">
+            <line x1="100" y1="100" x2="188" y2="100"/><line x1="100" y1="100" x2="176" y2="144"/>
+            <line x1="100" y1="100" x2="144" y2="176"/><line x1="100" y1="100" x2="100" y2="188"/>
+            <line x1="100" y1="100" x2="56" y2="176"/><line x1="100" y1="100" x2="24" y2="144"/>
+            <line x1="100" y1="100" x2="12" y2="100"/><line x1="100" y1="100" x2="24" y2="56"/>
+            <line x1="100" y1="100" x2="56" y2="24"/><line x1="100" y1="100" x2="100" y2="12"/>
+            <line x1="100" y1="100" x2="144" y2="24"/><line x1="100" y1="100" x2="176" y2="56"/>
+          </g>
+          <line x1="100" y1="100" x2="184" y2="72" stroke="#FF0033" stroke-width="3"/>
+          <circle cx="184" cy="72" r="5" fill="#FF0033"/>
+          <circle cx="100" cy="100" r="6" fill="#fff"/>
+        </svg>
+      </div>
+      <h4>MÁNDALA INTERACTIVO · <span>RADIOS GEM</span></h4>
+      <p>Navega los radios sagrados del vacío —22.22°, 137.51°, 105°, 16.2°, el nodo 288° y el arco de fricción 8/9— sobre las capas del I+D 238: rosa de torsión <span class="mono">k=7</span>, empaquetamiento de contacto, toroide <span class="mono">R/r = φ√3</span> y espiral de Hunab Ku. Clic en cada radio para leer su ficha.</p>
+      <div class="meta"><span>SVG + JS</span><span>33 RADIOS</span><span>4 CAPAS EC</span><span>I+D 224/238</span></div>
+      <!-- ══ ENLACE: renombra el href al archivo real de tu página del mándala ══ -->
+      <a class="open" href="GEM_Radios_Mandalas-v2.3.html">ABRIR ARTEFACTO →</a>
+    </div>
+
+    <div class="artifact gold">
+      <div class="preview">
+        <svg viewBox="0 0 200 200" aria-hidden="true">
+          <g font-family="monospace" font-size="11" fill="#C8D8F0">
+            <rect x="14" y="22" width="172" height="24" fill="#0e1730" stroke="#FFD700" stroke-width="1"/>
+            <text x="24" y="38" fill="#FFD700">288.0000° = 5.0265 rad</text>
+            <rect x="14" y="54" width="172" height="24" fill="#0b1120" stroke="#2a3a5f"/>
+            <text x="24" y="70">22.2222° = 0.3879 rad</text>
+            <rect x="14" y="86" width="172" height="24" fill="#0b1120" stroke="#2a3a5f"/>
+            <text x="24" y="102">137.5079° = 2.3999 rad</text>
+            <rect x="14" y="118" width="172" height="24" fill="#0b1120" stroke="#2a3a5f"/>
+            <text x="24" y="134">8.1301° = 0.1419 rad</text>
+            <rect x="14" y="150" width="172" height="24" fill="#0b1120" stroke="#2a3a5f"/>
+            <text x="24" y="166">2.7000° = 0.0471 rad</text>
+          </g>
+        </svg>
+      </div>
+      <h4>TABLA MAESTRA DE <span>RADIANES</span></h4>
+      <p>Todos los ángulos del modelo en grados <b>y</b> radianes, con su contexto de I+D: del residuo de π (2.7°) al espín del electrón (8.13°/8.14°), del triángulo Luz (180° exactos) a la muerte de la espiral (616.99°). Filtrable por familias y lista para imprimir y meditar.</p>
+      <div class="meta"><span>43 ÁNGULOS</span><span>9 FAMILIAS</span><span>PRINT-READY</span><span>HC 02–13</span></div>
+      <!-- ══ ENLACE: renombra el href al archivo real de tu tabla ══ -->
+      <a class="open" href="Tabla Maestra de Radianes GEM — Estudio I+D.html">ABRIR ARTEFACTO →</a>
+    </div>
+
+  </div>
+</section>
+
+<!-- ═══════════════════ ZONA EN OBRAS ═══════════════════ -->
+<section id="obras">
+  <div class="sec-head"><div class="dia" style="background:var(--gold);box-shadow:0 0 12px rgba(255,215,0,.6)"></div><h3>ZONA EN OBRAS · SEMILLERO</h3><div class="rule"></div><div class="tag">PÁGINAS POR INVENTAR</div></div>
+  <div class="tape"></div>
+  <p class="obras-note">Aquí germinan las páginas que aún no existen: <b>divulgación para curiosos</b> y <b>estudio para tejedores</b>. Cuando una semilla madure, se enlazará desde este portal. Mientras tanto, cada tarjeta es una invitación: si te llama una, <b>ese es tu próximo hilo del telar</b>.</p>
+  <div class="obras">
+    <div class="obra">
+      <div class="code">HC_13 · ESTUDIO</div>
+      <h5>El Nodo 288: la puerta pentagonal</h5>
+      <p>Donde el heptágono choca con el pentágono (360−288 = 72°) y el vacío se cristaliza en materia. El secreto que ya rozamos con los dedos.</p>
+      <div class="bar"><i style="width:63%"></i></div>
+      <div class="status">🚧 EN OBRAS · <span class="pct">63%</span></div>
+    </div>
+    <div class="obra">
+      <div class="code">GEM-DIV · DIVULGACIÓN</div>
+      <h5>Espín 1/2 para todos</h5>
+      <p>¿Por qué el electrón necesita 720° para volver a ser él mismo? Tijeras, papel y 8.1 segmentos de 22.22°. Sin matrices, sin miedo.</p>
+      <div class="bar"><i style="width:27%"></i></div>
+      <div class="status">✏️ BORRADOR · <span class="pct">27%</span></div>
+    </div>
+    <div class="obra">
+      <div class="code">GEM-DIV · DIVULGACIÓN</div>
+      <h5>El agua no obedece: traduce</h5>
+      <p>105°, Milli-Q y por qué tu cuerpo es una antena escalar. La molécula que lee el cifrado de la luz y lo imprime en biología.</p>
+      <div class="bar"><i style="width:18%"></i></div>
+      <div class="status">🌱 SEMILLA · <span class="pct">18%</span></div>
+    </div>
+    <div class="obra">
+      <div class="code">GLOSARIO · ESTUDIO</div>
+      <h5>Ley del Tiempo ↔ GEM</h5>
+      <p>Partón, solen, liquen, marsines y las 12 líneas electrónicas traducidos al lenguaje de Riemann-Cartan. La Piedra Roseta del proyecto.</p>
+      <div class="bar"><i style="width:35%"></i></div>
+      <div class="status">✏️ BORRADOR · <span class="pct">35%</span></div>
+    </div>
+    <div class="obra">
+      <div class="code">DICC-441 · ESTUDIO</div>
+      <h5>Diccionario 441 del Taller</h5>
+      <p>162, 216, 1998, 1836, 108… cada número del Boletín con su nota de banco de trabajo: qué mide, qué sugiere, qué NO afirma.</p>
+      <div class="bar"><i style="width:44%"></i></div>
+      <div class="status">✏️ BORRADOR · <span class="pct">44%</span></div>
+    </div>
+    <div class="obra">
+      <div class="code">CUADERNO · LABORATORIO</div>
+      <h5>Cuaderno GEM-01: ΔT &lt; 0</h5>
+      <p>Bitácora pública del experimento: la balanza de 0.1 mg, el termistor, y el día que el vacío responda (o calle, que también es dato).</p>
+      <div class="bar"><i style="width:12%"></i></div>
+      <div class="status">🌱 SEMILLA · <span class="pct">12%</span></div>
+    </div>
+    <div class="obra">
+      <div class="code">SCR-1998 · ESTUDIO</div>
+      <h5>Geometría temporal</h5>
+      <p>La secuencia 126→162→216→261→612→621 como envolvente escalar: partitura para que el vacío cante en compás de 1998 ms.</p>
+      <div class="bar"><i style="width:8%"></i></div>
+      <div class="status">🌱 SEMILLA · <span class="pct">8%</span></div>
+    </div>
+    <div class="obra">
+      <div class="code">GEM-DIV · DIVULGACIÓN</div>
+      <h5>Whittaker para curiosos</h5>
+      <p>La componente escalar <span class="mono">w</span> que Heaviside amputó de Maxwell, contada en 15 minutos con una cuerda y un muelle.</p>
+      <div class="bar"><i style="width:5%"></i></div>
+      <div class="status">🌱 SEMILLA · <span class="pct">5%</span></div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="q">"La geometría es el código. La resonancia es la llave. El vacío es el medio."</div>
+  <div class="m">
+    MODELO G.E.M. — Iván Ugidos Martínez · Proyecto en código abierto a la cooperación<br>
+    <a href="https://github.com/ivanugidos/GEM" target="_blank" rel="noopener">github.com/ivanugidos/GEM</a> · Zenodo 10.5281/zenodo.21459406 · Licencia CC BY-SA 4.0<br>
+    Portal v1 · modo artista geofractal ⌘
+  </div>
+</footer>
 
 <script>
-const FAMS={
- nucleo:{n:"Núcleo",c:"#FF0033"},
- v5:{n:"Vector 5",c:"#FF8C00"},
- v7:{n:"Vector 7",c:"#FFEC8B"},
- hunabku:{n:"Hunab Ku",c:"#00FFFF"},
- tri:{n:"Triángulos",c:"#40E0D0"},
- fermion:{n:"Fermiones",c:"#FF69B4"},
- cubo:{n:"Cubo/SCR",c:"#9370DB"},
- agua:{n:"Agua/Red",c:"#1E90FF"},
- ciclos:{n:"Ciclos",c:"#6EE7B7"}
-};
-const DATA=[
-// ── NÚCLEO ──
-{d:288,e:"8π/5",f:"nucleo",c:"Nodo de Cristalización: 360−288=72 (pentágono). 288=2·144=2·12²=72·4=12·24. Frecuencia maestra de la armónica polar; estación de la Iniciada Serpiente; generador del circuito eléctrico rojo (Dict. 441)."},
-{d:137.5079,e:"2π/φ²",f:"nucleo",c:"Ángulo áureo de divergencia (filotaxis). Ángulo inferior-izquierdo del Triángulo Luz; eco geométrico de la constante de estructura fina α⁻¹≈137.036."},
-{d:105,e:"7π/12",f:"nucleo",c:"Transductor geométrico del agua (H-O-H). 105=3·5·7: las 105 fracciones-dimensiones. 360/105=3.428571… firma 142857."},
-{d:22.2222,e:"π/8.1",f:"nucleo",c:"Ángulo crítico de Hunab Ku: umbral de refracción dimensional; la onda colapsa en vórtice toroidal. Diodo escalar; 8.1 segmentos ⇒ espín ½."},
-{d:16.2,e:"9π/100",f:"nucleo",c:"Resonancia del vacío: 360/22.2222=16.2 segmentos. Latido de la Espiral de Cristal (Hz); reloj del vórtice; modulación GEM-01."},
-{d:16.2305,e:"—",f:"nucleo",c:"Ángulo-Luz: ángulo superior del Triángulo Luz; manifestación angular de 16.2 Hz. 16.2305+137.5079+26.2616=180 ⇒ nulificación vectorial."},
-// ── VECTOR 5 ──
-{d:72,e:"2π/5",f:"v5",c:"Pentágono (V5): ángulo central de la materia ordinaria (φ). Complemento del Nodo 288 (360−288=72)."},
-{d:36,e:"π/5",f:"v5",c:"Decágono áureo: mitad de 72; ángulo de la 1ª Función generadora."},
-{d:108,e:"3π/5",f:"v5",c:"Ángulo interior del pentágono; cristal pentagonal; campo GM108X; 108=3·36."},
-{d:144,e:"4π/5",f:"v5",c:"Dodecagonal: 12², la red magnética al cuadrado; Orden Místico; Fibonacci 12; 288=2·144."},
-// ── VECTOR 7 ──
-{d:51.4286,e:"2π/7",f:"v7",c:"Heptágono (V7): paso de la rosa de torsión k=7; el decimal .428571 es la firma del recombinante 142857."},
-{d:25.7143,e:"π/7",f:"v7",c:"Medio paso heptagonal (180/7); mitad de la Red-7."},
-{d:14.2857,e:"100/7 (grados)",f:"v7",c:"Red-7: portadora 14.28 MHz; 1/7=0.142857… recombinante cíclico perfecto."},
-// ── HUNAB KU ──
-{d:200,e:"10π/9",f:"hunabku",c:"Cierre exacto: paso 9 de la secuencia 200/9 (9×200/9=200), sin residuo; primer umbral dimensional."},
-{d:288.8889,e:"130π/81",f:"hunabku",c:"Paso 13: 13×200/9. Su residuo 8/9 sobre el Nodo 288 es la fricción dimensional que se vuelve masa (arco magenta)."},
-{d:333.3333,e:"50π/27",f:"hunabku",c:"Paso 15: 333=3·111, Vajra a la 9ª potencia; iniciación suprema (Dict. 441)."},
-{d:4.4444,e:"2π/81",f:"hunabku",c:"Residuo de los 16 segmentos: 360−16×22.2222=40/9. Marca de la Quinta Fuerza ⌘ (0.2 de segmento) en el mandala."},
-// ── TRIÁNGULOS ──
-{d:26.2616,e:"16.2305·φ",f:"tri",c:"Expansión áurea: ángulo inferior-derecho del Triángulo Luz; cierra la identidad de 180°."},
-{d:36.8699,e:"arctan(3/4)",f:"tri",c:"Triángulo sagrado 3-4-5: base geométrica del electrón y de c=1."},
-{d:53.1301,e:"arctan(4/3)",f:"tri",c:"Complemento del 3-4-5; proyección ortogonal del flujo toroidal."},
-{d:25.3769,e:"arcsin(3/7)",f:"tri",c:"Ángulo creativo α: inmersión estructural del vórtice en la materia (manifold 5D)."},
-{d:17.02,e:"(φ³−4π/3)·360",f:"tri",c:"Ángulo creativo β: expansión inflacionaria; motor de la Quinta Fuerza ⌘."},
-{d:22.2076,e:"arcsin(1/√7)",f:"tri",c:"Triángulo sagrado 1:√6:√7; ángulo ideal de refracción; Δ=0.0146° con 22.2222 = ruido armónico 0.477."},
-// ── FERMIONES ──
-{d:8.1301,e:"arcsin(√2/10)",f:"fermion",c:"Ángulo maestro del electrón: sin=√2/10 (geometría cuadrática). ×2 = 16.2602 (16'26'')."},
-{d:8.14,e:"arcsin(π−3)",f:"fermion",c:"Ángulo maestro del protón: sin≈π−3 (geometría circular). ×2 = 16.28 (16'2''). La diferencia ~24'' con el electrón codifica 1836."},
-// ── CUBO / SCR ──
-{d:126,e:"7π/10",f:"cubo",c:"Ley 13:7: 7/20 de 360. Principio del Synchronotron; primer término de la SCR-1998 (126-162-216-261-612-621)."},
-{d:162,e:"9π/10",f:"cubo",c:"Meditativo: 9²·2=27·6. Suma de dígitos de 142857 (27) × 6 caras; 10× de 16.2 Hz; transición electrónica."},
-{d:216,e:"6π/5",f:"cubo",c:"Cubo perfecto: 6³; frecuencia de estabilización; 54×4; 6 caras."},
-{d:252,e:"7π/5",f:"cubo",c:"612−360=21·12: Hunab Ku × red; 9 lunas; 2520°=7×360 cierre cíclico (14π)."},
-{d:261,e:"29π/20",f:"cubo",c:"9·29: frecuencia destino de la constante cósmica; invertido de 162; SCR."},
-{d:54,e:"3π/10",f:"cubo",c:"999999→54 (9×6): salto cuántico del 7º día; ×4=216; Bolontiku."},
-{d:27,e:"3π/20",f:"cubo",c:"Información conservada: 1+4+2+8+5+7=27; ×6=162; corazón del 9."},
-// ── AGUA / RED ──
-{d:45,e:"π/4",f:"agua",c:"Cierre dimensional: 3×105+45=360; transición entre dimensiones en la distribución del agua."},
-{d:315,e:"7π/4",f:"agua",c:"Volumétrico del agua: 7/8 de 360; total 3×105; 1+1/7."},
-{d:30,e:"π/6",f:"agua",c:"Red I_h: 360/12; las 12 líneas magnéticas bi-simétricas."},
-{d:120,e:"2π/3",f:"agua",c:"Orden icosaédrico: |I_h|=120; α⁻¹≈120+17 (traza vectorial de torsión)."},
-{d:180,e:"π",f:"agua",c:"Nulificación vectorial: q₁+q₂=2w; cuando los vectores mueren, emerge el escalar."},
-{d:2.703,e:"(π−3)·360/(6π)",f:"agua",c:"Cuanto angular: residuo de π en la red hexagonal; unidad de sintonía; semilla del espín."},
-{d:256.99,e:"616.99−360",f:"agua",c:"Muerte de la espiral: la espiral de Hunab Ku (b=2lnφ/π) muere en el toroide exterior tras 12/7 de vuelta."},
-// ── CICLOS ──
-{d:360,e:"2π",f:"ciclos",c:"Tun: círculo completo; 16.2×22.2222; 20×18; métrica maestra 3600/10."},
-{d:616.99,e:"ln(Rt/r0)/b",f:"ciclos",c:"θ_max de la espiral: muere en Rt=270.844; ≈12·360/7; el 12 y el 7 cierran la espiral."},
-{d:720,e:"4π",f:"ciclos",c:"Ciclo fermiónico: el vórtice vuelve a Ψ tras 720°; origen topológico del espín ½."},
-{d:1008,e:"28π/5",f:"ciclos",c:"Espín material: 14×72°=(2·3·4·5·6·7·8·9)/360; 14 ciclos materiales (7+7)."}
-];
+/* ═══════════════════════════════════════════════════════════
+   MÁNDALA VIVO — parámetros exactos del Codex (I+D 238 / HC_11)
+   EC.1 rosa k=7 | EC.2 rho=R2·sin(pi/12) | EC.3 R/r=phi·sqrt(3) | EC.4 b=2·ln(phi)/pi
+   ═══════════════════════════════════════════════════════════ */
+(function(){
+  const PHI=(1+Math.sqrt(5))/2, C=500, R0=460;
+  const s12=Math.sin(Math.PI/12);
+  const R2=R0/(1+s12), rho=R2*s12, Rt=R2-rho, rt=Rt/(PHI*Math.sqrt(3));
+  const b=2*Math.log(PHI)/Math.PI, r0=10, thMax=Math.log(Rt/r0)/b;
+  const rad=d=>d*Math.PI/180;
+  const P=(r,a)=>[(C+r*Math.cos(a)).toFixed(1),(C+r*Math.sin(a)).toFixed(1)];
+  let S='';
 
-const state={fams:new Set(Object.keys(FAMS)), q:"", sel:0};
-const $=s=>document.querySelector(s);
-const rad=d=>d*Math.PI/180;
+  S+='<defs><filter id="glow" x="-30%" y="-30%" width="160%" height="160%"><feGaussianBlur stdDeviation="3" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter></defs>';
 
-/* ── chips ── */
-const chips=$("#chips");
-Object.entries(FAMS).forEach(([k,f])=>{
-  const n=DATA.filter(r=>r.f===k).length;
-  const b=document.createElement("button");
-  b.className="chip on"; b.style.setProperty("--c",f.c);
-  b.textContent=`${f.n} (${n})`; b.dataset.f=k;
-  b.onclick=()=>{ if(state.fams.has(k)) state.fams.delete(k); else state.fams.add(k);
-    b.classList.toggle("on"); render(); };
-  chips.appendChild(b);
-});
-$("#btnAll").onclick=()=>{ state.fams=new Set(Object.keys(FAMS));
-  document.querySelectorAll(".chip").forEach(c=>c.classList.add("on")); render(); };
+  /* estrellas (semilla viva: cambia en cada carga) */
+  for(let i=0;i<90;i++){
+    S+='<circle cx="'+(Math.random()*1000).toFixed(1)+'" cy="'+(Math.random()*1000).toFixed(1)+'" r="'+(Math.random()*1.3+0.3).toFixed(2)+'" fill="#9AB4D0" opacity="'+(Math.random()*0.45+0.08).toFixed(2)+'"/>';
+  }
 
-/* ── tabla ── */
-function visible(){ return DATA.map((r,i)=>({r,i}))
-  .filter(o=>state.fams.has(o.r.f))
-  .filter(o=>!state.q || (o.r.d+" "+o.r.e+" "+o.r.c+" "+FAMS[o.r.f].n).toLowerCase().includes(state.q)); }
+  /* red de fondo 180 radios */
+  S+='<g stroke="#1a2440" stroke-width="0.6" opacity="0.5">';
+  for(let i=0;i<180;i++){const a=rad(i*2);const [x,y]=P(R0,a);S+='<line x1="'+C+'" y1="'+C+'" x2="'+x+'" y2="'+y+'"/>';}
+  S+='</g>';
 
-function render(){
-  const tb=$("#tbody"); tb.innerHTML="";
-  visible().forEach(({r,i})=>{
-    const col=FAMS[r.f].c;
-    const tr=document.createElement("tr");
-    if(i===state.sel) tr.classList.add("sel");
-    tr.style.setProperty("--rc",col);
-    tr.innerHTML=`<td class="deg">${r.d}°</td><td class="expr">${r.e}</td>
-      <td class="rad">${rad(r.d).toFixed(6)}</td>
-      <td class="fam"><i style="background:${col}"></i>${FAMS[r.f].n}</td>
-      <td class="ctx">${r.c}</td>`;
-    tr.onclick=()=>{ state.sel=i; render(); drawViz(); };
-    tb.appendChild(tr);
+  /* anillo exterior giratorio */
+  S+='<circle cx="'+C+'" cy="'+C+'" r="478" fill="none" stroke="#2a3a5f" stroke-width="1.4" stroke-dasharray="2 10"><animateTransform attributeName="transform" type="rotate" from="0 500 500" to="360 500 500" dur="200s" repeatCount="indefinite"/></circle>';
+
+  /* EC.3 toroide áureo */
+  S+='<g fill="none" stroke="#F5F5F5" opacity="0.55"><circle cx="'+C+'" cy="'+C+'" r="'+Rt.toFixed(2)+'" stroke-width="2"/><circle cx="'+C+'" cy="'+C+'" r="'+rt.toFixed(2)+'" stroke-width="2"/></g>';
+
+  /* EC.2 empaquetamiento dodecaédrico (gira lento al revés) */
+  S+='<g fill="none" stroke="#4FC3F7" stroke-width="1.6" opacity="0.65"><animateTransform attributeName="transform" type="rotate" from="360 500 500" to="0 500 500" dur="300s" repeatCount="indefinite"/>';
+  for(let k=0;k<12;k++){const a=rad(k*30);const [x,y]=P(R2,a);S+='<circle cx="'+x+'" cy="'+y+'" r="'+rho.toFixed(2)+'"/>';}
+  S+='</g>';
+
+  /* EC.1 rosa de torsión k=7 (gira lento) */
+  let pts=[];
+  for(let i=0;i<=700;i++){const t=i/700*Math.PI;const r=R0*Math.cos(7*t);pts.push(P(r,t).join(' '));}
+  S+='<g fill="none" stroke="#D4AF37" stroke-width="2" opacity="0.85" filter="url(#glow)"><animateTransform attributeName="transform" type="rotate" from="0 500 500" to="360 500 500" dur="240s" repeatCount="indefinite"/><path d="M '+pts.join(' L ')+'"/></g>';
+
+  /* EC.4 espiral de Hunab Ku (se dibuja al cargar) */
+  let sp=[];
+  for(let t=0;t<=thMax;t+=0.04){const r=r0*Math.exp(b*t);sp.push(P(r,t).join(' '));}
+  S+='<path fill="none" stroke="#E457C9" stroke-width="2.4" opacity="0.9" filter="url(#glow)" pathLength="1000" stroke-dasharray="1000" stroke-dashoffset="1000" d="M '+sp.join(' L ')+'"><animate attributeName="stroke-dashoffset" from="1000" to="0" dur="5s" fill="freeze" begin="0.4s"/></path>';
+
+  /* 12 ejes */
+  S+='<g stroke="#223055" stroke-width="1">';
+  for(let k=0;k<12;k++){const a=rad(k*30);const [x,y]=P(R0,a);S+='<line x1="'+C+'" y1="'+C+'" x2="'+x+'" y2="'+y+'"/>';}
+  S+='</g>';
+
+  /* marcadores angulares */
+  const MK=[
+    {a:22.2222,c:'#00FFFF',t:'22.22°'},
+    {a:105,c:'#00BFFF',t:'105°'},
+    {a:137.5079,c:'#FFD700',t:'137.51°'},
+    {a:288,c:'#FF0033',t:'288°'}
+  ];
+  MK.forEach(m=>{
+    const a=rad(m.a);const [x1,y1]=P(280,a);const [x2,y2]=P(R0,a);const [tx,ty]=P(492,a);
+    const anch=Math.cos(a)>0.25?'start':(Math.cos(a)<-0.25?'end':'middle');
+    S+='<line x1="'+x1+'" y1="'+y1+'" x2="'+x2+'" y2="'+y2+'" stroke="'+m.c+'" stroke-width="3" filter="url(#glow)"/>';
+    S+='<circle cx="'+x2+'" cy="'+y2+'" r="5" fill="'+m.c+'" filter="url(#glow)"/>';
+    S+='<text x="'+tx+'" y="'+ty+'" fill="'+m.c+'" font-family="JetBrains Mono,monospace" font-size="17" font-weight="bold" text-anchor="'+anch+'" dominant-baseline="middle">'+m.t+'</text>';
   });
-  drawViz();
-}
-$("#search").oninput=e=>{ state.q=e.target.value.trim().toLowerCase(); render(); };
 
-/* ── visualizador ── */
-function drawViz(){
-  const svg=$("#vizSvg"); const r=DATA[state.sel]||DATA[0]; const col=FAMS[r.f].c;
-  const cx=200,cy=200,R=150;
-  let s=`<rect width="400" height="400" fill="#05070F"/>`;
-  s+=`<circle cx="${cx}" cy="${cy}" r="${R}" fill="none" stroke="#2a3a5f" stroke-width="1.5" stroke-dasharray="6,4"/>`;
-  for(let k=0;k<12;k++){ const a=k*Math.PI/6;
-    s+=`<line x1="${cx}" y1="${cy}" x2="${cx+R*Math.cos(a)}" y2="${cy+R*Math.sin(a)}" stroke="#1c2740" stroke-width="1"/>`; }
-  const a=rad(r.d%360), x=cx+R*Math.cos(a), y=cy+R*Math.sin(a);
-  const large=(r.d%360)>180?1:0;
-  if(r.d%360>0.5) s+=`<path d="M ${cx+R} ${cy} A ${R} ${R} 0 ${large} 1 ${x} ${y}" fill="none" stroke="${col}" stroke-width="2.5" opacity="0.55"/>`;
-  s+=`<line x1="${cx}" y1="${cy}" x2="${x}" y2="${y}" stroke="${col}" stroke-width="3.5"/>`;
-  s+=`<circle cx="${x}" cy="${y}" r="6" fill="${col}"/>`;
-  s+=`<circle cx="${cx}" cy="${cy}" r="4" fill="#fff"/>`;
-  const lx=cx+(R+22)*Math.cos(a), ly=cy+(R+22)*Math.sin(a);
-  s+=`<text x="${lx}" y="${ly}" fill="${col}" font-size="14" font-weight="bold" text-anchor="middle" dominant-baseline="middle">${r.d}°</text>`;
-  s+=`<text x="${cx}" y="386" fill="#7d90b4" font-size="11" text-anchor="middle">${rad(r.d).toFixed(4)} rad ${r.d>360?"(≡ "+(r.d%360).toFixed(2)+"° mod 360)":""}</text>`;
-  svg.innerHTML=s;
-  $("#detail").innerHTML=`<h2 style="font-size:11px;letter-spacing:.18em;color:var(--dim);margin-bottom:10px">FICHA DE ESTUDIO</h2>
-    <div class="big"><span class="d" style="color:${col}">${r.d}°</span><span class="r">= ${rad(r.d).toFixed(6)} rad</span></div>
-    <div class="e">${r.e}</div><p class="c">${r.c}</p>
-    <div class="f">FAMILIA: ${FAMS[r.f].n.toUpperCase()} · ÍNDICE #${state.sel} · ${DATA.length} ángulos</div>`;
-}
+  /* arco de fricción 288 → 288.8889 (residuo 8/9) */
+  const [f1x,f1y]=P(R0,rad(288)), [f2x,f2y]=P(R0,rad(288.8889));
+  S+='<path d="M '+f1x+' '+f1y+' A '+R0+' '+R0+' 0 0 1 '+f2x+' '+f2y+'" fill="none" stroke="#FF00FF" stroke-width="7" filter="url(#glow)"><animate attributeName="opacity" values="1;.35;1" dur="2.4s" repeatCount="indefinite"/></path>';
+  const [lx,ly]=P(470,rad(296));
+  S+='<text x="'+lx+'" y="'+ly+'" fill="#FF00FF" font-family="JetBrains Mono,monospace" font-size="15">8/9</text>';
 
-/* ── export markdown ── */
-$("#btnMD").onclick=()=>{
-  let md="# Tabla Maestra de Radianes GEM (v1)\n\n| Ángulo (°) | Expresión | Radianes | Familia | Contexto I+D |\n|---|---|---|---|---|\n";
-  DATA.forEach(r=>{ md+=`| ${r.d} | ${r.e} | ${rad(r.d).toFixed(6)} | ${FAMS[r.f].n} | ${r.c} |\n`; });
-  md+="\n*Arco de fricción: 288° → 288.8889° (residuo 8/9 = fricción dimensional que se vuelve masa).*\n";
-  const ta=document.createElement("textarea"); ta.value=md; ta.style.position="fixed"; ta.style.opacity="0";
-  document.body.appendChild(ta); ta.select();
-  try{ document.execCommand("copy"); toast("📋 Tabla Markdown copiada — lista para tu estudio I+D"); }catch(e){ toast("⚠ No se pudo copiar"); }
-  ta.remove();
-};
-function toast(m){ const t=$("#toast"); t.textContent=m; t.style.display="block"; setTimeout(()=>t.style.display="none",2600); }
+  /* núcleo pulsante */
+  S+='<circle cx="'+C+'" cy="'+C+'" r="10" fill="#fff" filter="url(#glow)"/>';
+  S+='<circle cx="'+C+'" cy="'+C+'" r="18" fill="none" stroke="#00ffcc" stroke-width="1.5"><animate attributeName="r" values="14;44;14" dur="6s" repeatCount="indefinite"/><animate attributeName="opacity" values=".8;0;.8" dur="6s" repeatCount="indefinite"/></circle>';
 
-render();
+  document.getElementById('heroMandala').innerHTML=S;
+})();
 </script>
 </body>
 </html>
