@@ -1,0 +1,78 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1400" font-family="Helvetica, Arial, sans-serif">
+  <defs>
+    <filter id="glow" x="-80%" y="-80%" width="260%" height="260%">
+      <feGaussianBlur stdDeviation="4" result="b"/>
+      <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <pattern id="grid" width="20" height="20" patternUnits="userSpaceOnUse">
+      <path d="M20,0 H0 V20" fill="none" stroke="#1e1e1e" stroke-width="1"/>
+    </pattern>
+    <rect id="usq" x="-50" y="-50" width="100" height="100" fill="none"/>
+    <ellipse id="petal" cx="500" cy="1120" rx="220" ry="55" fill="none"/>
+    <circle id="dot" cx="500" cy="1000" r="8" fill="#fff"/>
+  </defs>
+
+  <rect width="1000" height="1400" fill="#000"/>
+  <text x="500" y="42" fill="#f2f2f2" font-size="26" font-weight="bold" text-anchor="middle" letter-spacing="2">DINÁMICA DE MATRICES DE FIBONACCI · PRISMA GEM</text>
+  <text x="500" y="70" fill="#8fd8ff" font-size="14" text-anchor="middle" letter-spacing="4">HC_13 — LA ESCALERA DE FIBONACCI Y LA MATRIZ 441</text>
+
+  <!-- ══ BANDA 1: ESPIRAL DE CRISTAL (el continuo φ) ══ -->
+  <g transform="translate(150,100)">
+    <rect width="680" height="420" fill="url(#grid)" stroke="#666" stroke-width="1.5"/>
+    <g fill="none" stroke="#888" stroke-width="1">
+      <rect width="420" height="420"/><rect x="420" width="260" height="260"/>
+      <rect x="520" y="260" width="160" height="160"/><rect x="420" y="320" width="100" height="100"/>
+      <rect x="420" y="260" width="60" height="60"/><rect x="480" y="260" width="40" height="40"/>
+      <rect x="500" y="300" width="20" height="20"/><rect x="480" y="300" width="20" height="20"/>
+    </g>
+    <path fill="none" stroke="#e8e8e8" stroke-width="2" d="M0,420
+      A420,420 0 0 1 420,0  A260,260 0 0 1 680,260  A160,160 0 0 1 520,420
+      A100,100 0 0 0 420,320 A60,60 0 0 1 480,260  A40,40 0 0 1 520,300
+      A20,20 0 0 1 500,320  A20,20 0 0 0 480,300"/>
+    <path fill="none" stroke="#7fd4ff" stroke-width="5" stroke-linecap="round" filter="url(#glow)"
+      d="M0,420 A420,420 0 0 1 420,0"/>
+  </g>
+  <text x="500" y="552" fill="#aaa" font-size="14" text-anchor="middle">ESPIRAL DE CRISTAL — r = a·e^(bθ) · Ángulo-Luz 16.2544° · φ = 1.6180 (Garante de la Armonía)</text>
+
+  <!-- ══ BANDA 2: MATRICES EN ROTACIÓN (ruptura SO(3)→I_h) ══ -->
+  <g stroke="#dcdcdc" stroke-width="1">
+    <g transform="translate(80,705)"><use href="#usq" transform="scale(0.14)"/><use href="#usq" transform="rotate(30) scale(0.14)"/><use href="#usq" transform="rotate(60) scale(0.14)"/></g>
+    <g transform="translate(175,705)"><use href="#usq" transform="scale(0.28)"/><use href="#usq" transform="rotate(30) scale(0.28)"/><use href="#usq" transform="rotate(60) scale(0.28)"/></g>
+    <g transform="translate(290,705)"><use href="#usq" transform="scale(0.42)"/><use href="#usq" transform="rotate(30) scale(0.42)"/><use href="#usq" transform="rotate(60) scale(0.42)"/></g>
+    <g transform="translate(430,705)"><use href="#usq" transform="scale(0.70)"/><use href="#usq" transform="rotate(30) scale(0.70)"/><use href="#usq" transform="rotate(60) scale(0.70)"/></g>
+    <g transform="translate(610,705)"><use href="#usq" transform="scale(1.12)"/><use href="#usq" transform="rotate(30) scale(1.12)"/><use href="#usq" transform="rotate(60) scale(1.12)"/></g>
+    <g transform="translate(840,705)"><use href="#usq" transform="scale(1.82)"/><use href="#usq" transform="rotate(30) scale(1.82)"/><use href="#usq" transform="rotate(60) scale(1.82)"/></g>
+  </g>
+  <g fill="#f2f2f2" font-size="22" text-anchor="middle">
+    <text x="80" y="600">1²</text><text x="175" y="600">2²</text><text x="290" y="600">3²</text>
+    <text x="430" y="600">5²</text><text x="610" y="600">8²</text><text x="840" y="600">13²</text>
+  </g>
+  <text x="500" y="812" fill="#aaa" font-size="14" text-anchor="middle">CUADRADO / MATRIZ EN ROTACIÓN — 3 planos × 4 cuadrantes de torsión = 12 LÍNEAS MAGNÉTICAS (I_h)</text>
+
+  <!-- ══ BANDA 3: MANDALA 21² = 441 (el cristal discreto) ══ -->
+  <text x="500" y="862" fill="#f2f2f2" font-size="30" font-weight="bold" text-anchor="middle">21² = 441</text>
+  <g stroke="#e8e8e8" stroke-width="1.4" opacity="0.9">
+    <use href="#petal"/><use href="#petal" transform="rotate(30 500 1120)"/><use href="#petal" transform="rotate(60 500 1120)"/>
+    <use href="#petal" transform="rotate(90 500 1120)"/><use href="#petal" transform="rotate(120 500 1120)"/><use href="#petal" transform="rotate(150 500 1120)"/>
+  </g>
+  <g filter="url(#glow)">
+    <use href="#dot"/><use href="#dot" transform="rotate(18 500 1120)"/><use href="#dot" transform="rotate(36 500 1120)"/>
+    <use href="#dot" transform="rotate(54 500 1120)"/><use href="#dot" transform="rotate(72 500 1120)"/><use href="#dot" transform="rotate(90 500 1120)"/>
+    <use href="#dot" transform="rotate(108 500 1120)"/><use href="#dot" transform="rotate(126 500 1120)"/><use href="#dot" transform="rotate(144 500 1120)"/>
+    <use href="#dot" transform="rotate(162 500 1120)"/><use href="#dot" transform="rotate(180 500 1120)"/><use href="#dot" transform="rotate(198 500 1120)"/>
+    <use href="#dot" transform="rotate(216 500 1120)"/><use href="#dot" transform="rotate(234 500 1120)"/><use href="#dot" transform="rotate(252 500 1120)"/>
+    <use href="#dot" transform="rotate(270 500 1120)"/><use href="#dot" transform="rotate(288 500 1120)"/><use href="#dot" transform="rotate(306 500 1120)"/>
+    <use href="#dot" transform="rotate(324 500 1120)"/><use href="#dot" transform="rotate(342 500 1120)"/>
+    <circle cx="500" cy="1120" r="10" fill="#fff"/>
+  </g>
+  <path fill="none" stroke="#7fd4ff" stroke-width="5" stroke-linecap="round" filter="url(#glow)" d="M140,1330 Q480,900 870,980"/>
+
+  <g fill="#8fd8ff" font-size="14">
+    <text x="40" y="980">Σ F(n) = 53 → renacimiento Siriano (52+1)</text>
+    <text x="40" y="1006">Σ F(n)² = 273 = 13×21 → ciclo de Hunab Ku 21</text>
+    <text x="40" y="1032">273 = 260 + 13 → Tzolkin + Onda Encantada</text>
+    <text x="40" y="1058">F(12) = 144 = 12² → firma de las 12 Líneas</text>
+  </g>
+
+  <text x="500" y="1378" fill="#777" font-size="13" text-anchor="middle" letter-spacing="2">MODELO GEM · 14.28 MHz (Red-7) · 16.2 Hz (Espiral) · 22.22° (Hunab Ku) · 105° (Transductor) · 1836 (Confinamiento)</text>
+</svg>
