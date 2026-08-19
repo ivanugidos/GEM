@@ -3,11 +3,13 @@
 ## Primera Evidencia Numérica de Confinamiento Topológico en Red Icosaédrica (Proxy Discreta)
 
 **Autor:** Iván Ugidos Martínez + Co-Investigación GEM (Ingeniera Jefa)
-**Fecha:** Agosto 2026 — NS1.39.1.12 · **Estado:** ✅ Congelado v1.0
+**Fecha:** Agosto 2026 — NS1.39.1.25 · **Estado:** ✅ Congelado v1.0
 **Licencia:** CC BY-SA 4.0 · **Relación:** HC_14 (Confinamiento), HC_13 (Escalera 441), HC_06 (Cosmología del 7), Paper v1.1 (Zenodo 21268209)
-**Artefactos:** `hc_14_ex_red_torsion.py` · `HC14_tubo_torsion.png` · logs en `/06_Datos/HC14_*.log`
+**Artefactos:** `hc_14_ex_red_torsion.py` · `HC_14_imagen_tubo_torsion.png` · logs en `/Datos/HC14_simulacion.log`
 
 ---
+
+![alt text](HC_14_imagen_tubo_torsion.png)
 
 ## 0. Resumen Ejecutivo
 
@@ -54,21 +56,16 @@ En la primera corrida, el término de pinning duro produjo `invalid value encoun
 
 *Nada de esto debilita el titular: la linealidad + canalización + ruptura son robustas frente a esos refinamientos.*
 
----
-
-## 4. Próximos Pasos (Checklist HC_14-B)
-
-- [ ] Simulación con grupo de holonomías $I_h$ completo (GPU), comparando $\sigma_{I_h}/\sigma_{Z_3}$.
-- [ ] Límite continuo (3 espaciados de red) y escala física vía $\sigma$.
-- [ ] Estimador de $\xi$ corregido → test de $\xi \propto h^{-1/2}$ (predicción $\sqrt{1.6/0.4}=2.0$).
-- [ ] Depósito de logs + figura en Zenodo (v2 del pre-print, sección "Confinamiento topológico emergente").
-- [ ] Cruce Vía 3 (hermético): el plateau de ruptura como el "7º día" del ciclo 142857 ($999999\to 1$): la cuerda colapsa en la Mónada y renace como par. Registrado como metáfora, no como derivación.
-
----
 
 ## 💫 Síntesis
 
-Compañero, lo que esa línea azul del plot demuestra es que **el universo no necesita una "fuerza fuerte" misteriosa para confinar: le basta con que el vacío sea un cristal**. Cuando el espacio-tiempo tiene estructura discreta icosaédrica, el flujo topológico no tiene dónde esconderse: se hace tubo, crece lineal, y al romperse siembra materia nueva. El confinamiento deja de ser un enigma del Milenio y pasa a ser **geometría de defectos**.
+### El confinamiento Topológico
+
+![alt text](HC_14_confinamiento_topologico.png)
+
+
+
+Compañer@s, lo que esa línea azul del plot demuestra es que **el universo no necesita una "fuerza fuerte" misteriosa para confinar: le basta con que el vacío sea un cristal**. Cuando el espacio-tiempo tiene estructura discreta icosaédrica, el flujo topológico no tiene dónde esconderse: se hace tubo, crece lineal, y al romperse siembra materia nueva. El confinamiento deja de ser un enigma del Milenio y pasa a ser **geometría de D-efectos -> Dimensiones de efectos**.
 
 "La cuerda no confina al quark: el cristal del vacío se niega a terminar sin nudo."
 
@@ -82,3 +79,33 @@ Atentamente, con todo el Amor,
 
 *✿ Pre-print 01:*  
 **Fundamentos Variacionales del Modelo Geométrico-Electromagnético GEM: Formulación Lagrangiana Covariante en Variedades de Riemann-Cartan con Ruptura de Simetría Discreta.** - *Aquí: https://zenodo.org/records/21459406*
+
+> *Documento de I+D_HC_14 - Versión 1*
+> 
+> *Fecha: 19 de agosto | NS1.39.1.25.253.*
+
+---
+# I+D Próximos Pasos
+---
+## Checklist HC_14-B
+
+- [ ] Simulación con grupo de holonomías $I_h$ completo (GPU), comparando $\sigma_{I_h}/\sigma_{Z_3}$.
+- [ ] Límite continuo (3 espaciados de red) y escala física vía sigma ($\sigma$.)
+- [ ] Estimador de Xi ($\xi$) corregido → test de Xi ($\xi \propto h^{-1/2}$) predicción sqrt 1.6/0.4=2.0 ($\sqrt{1.6/0.4}=2.0$).
+- [ ] Depósito de logs + figura en Zenodo (v2 del pre-print, sección "Confinamiento topológico emergente").
+- [ ] Cruce Vía 3 (hermético): el plateau de ruptura como el "7º día" del ciclo 142857 -> salto T-> 0,99999 -> 1 ($999999\to 1$): la cuerda colapsa en la Mónada y renace como par. Registrado como metáfora, no como derivación. ( en I+D ese es el proximo asunto)
+
+---
+
+
+*Atentamente, con todo el Amor,* **Iván Ugidos Martínez.**  
+*- Investigador / Director del Proyecto GEM ⌘*
+ 
+*Modelo G.E.M.* **- Proyecto en Código Abierto a la cooperación.**
+
+ *✿ Fuente - Respositorio en GitHub: https://github.com/ivanugidos/GEM*
+
+ *✿ Pre-print 01:*  
+**Fundamentos Variacionales del Modelo Geométrico-Electromagnético GEM: Formulación Lagrangiana Covariante en Variedades de Riemann-Cartan con Ruptura de Simetría Discreta.** - *Aquí: https://zenodo.org/records/21459406*
+
+---
