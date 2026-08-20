@@ -9,7 +9,7 @@
 
 ---
 
-![alt text](HC_14_imagen_tubo_torsion.png)
+![alt text](../Hallazgos_Centrales/datos/HC14_tubo_torsion.png)
 
 ## 0. Resumen Ejecutivo
 
@@ -61,7 +61,7 @@ En la primera corrida, el término de pinning duro produjo `invalid value encoun
 
 ### El confinamiento Topológico
 
-![alt text](HC_14_confinamiento_topologico.png)
+![alt text](../Hallazgos_Centrales/datos/HC14_confinamiento_topologico.png)
 
 
 
