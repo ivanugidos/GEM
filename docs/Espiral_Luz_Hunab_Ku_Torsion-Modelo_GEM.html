@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Espiral de Luz Hunab Ku 2.7°</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/plotly.js/2.32.0/plotly.min.js"></script>
+<style>
+  html, body {
+    margin: 0;
+    padding: 0;
+    background: #05070a;
+    height: 100%;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  }
+  #header {
+    text-align: center;
+    color: #7fdfff;
+    padding: 14px 8px 4px 8px;
+  }
+  #header h1 {
+    margin: 0;
+    font-size: 18px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+  }
+  #header p {
+    margin: 4px 0 0 0;
+    font-size: 12px;
+    color: #6a8a9a;
+  }
+  #plot {
+    width: 100%;
+    height: calc(100vh - 70px);
+  }
+  #controls {
+    position: absolute;
+    top: 70px;
+    left: 12px;
+    background: rgba(10, 20, 25, 0.85);
+    border: 1px solid #1f3a45;
+    border-radius: 8px;
+    padding: 10px 14px;
+    color: #a9d4e0;
+    font-size: 12px;
+    z-index: 10;
+  }
+  #controls label {
+    display: block;
+    margin-top: 8px;
+  }
+  #controls input[type=range] {
+    width: 160px;
+    vertical-align: middle;
+  }
+  #controls span {
+    color: #7fdfff;
+    font-weight: 600;
+  }
+</style>
+</head>
+<body>
+<div id="header">
+  <h1>Radio-Vector: Espiral de Luz Hunab Ku 2.7°</h1>
+  <p>Modelo GEM — expansión logarítmica con torsión axial</p>
+</div>
+
+<div id="controls">
+  <label>Ángulo α (grados): <span id="alphaVal">2.7</span>°
+    <input type="range" id="alpha" min="0.5" max="15" step="0.1" value="2.7">
+  </label>
+  <label>Tasa expansión k: <span id="kVal">0.10</span>
+    <input type="range" id="k" min="0.02" max="0.3" step="0.01" value="0.1">
+  </label>
+  <label>Vueltas: <span id="turnsVal">5</span>
+    <input type="range" id="turns" min="1" max="12" step="1" value="5">
+  </label>
+</div>
+
+<div id="plot"></div>
+
+<script>
+function computeSpiral(alphaDeg, k, turns) {
+  const alphaRad = alphaDeg * Math.PI / 180;
+  const R0 = 1.0;
+  const phiMax = turns * 2 * Math.PI;
+  const steps = 2000;
+  const x = [], y = [], z = [];
+  for (let i = 0; i < steps; i++) {
+    const phi = (phiMax * i) / (steps - 1);
+    const rho = R0 * Math.exp(k * phi);
+    const zz = rho * Math.tan(alphaRad);
+    x.push(rho * Math.cos(phi));
+    y.push(rho * Math.sin(phi));
+    z.push(zz);
+  }
+  return {x, y, z};
+}
+
+function render() {
+  const alphaDeg = parseFloat(document.getElementById('alpha').value);
+  const k = parseFloat(document.getElementById('k').value);
+  const turns = parseInt(document.getElementById('turns').value);
+
+  document.getElementById('alphaVal').textContent = alphaDeg.toFixed(1);
+  document.getElementById('kVal').textContent = k.toFixed(2);
+  document.getElementById('turnsVal').textContent = turns;
+
+  const {x, y, z} = computeSpiral(alphaDeg, k, turns);
+
+  const trace = {
+    x, y, z,
+    mode: 'lines',
+    type: 'scatter3d',
+    line: {
+      color: z,
+      colorscale: [[0, '#0a4a5c'], [0.5, '#22c9e0'], [1, '#baf3ff']],
+      width: 4
+    },
+    name: `Espiral Luz Hunab Ku (${alphaDeg.toFixed(1)}°)`
+  };
+
+  const layout = {
+    paper_bgcolor: '#05070a',
+    plot_bgcolor: '#05070a',
+    scene: {
+      xaxis: {title: 'X (Radio transversal)', color: '#6a8a9a', gridcolor: '#152530', backgroundcolor: '#05070a'},
+      yaxis: {title: 'Y (Radio transversal)', color: '#6a8a9a', gridcolor: '#152530', backgroundcolor: '#05070a'},
+      zaxis: {title: 'Z (Eje de Torsión)', color: '#6a8a9a', gridcolor: '#152530', backgroundcolor: '#05070a'},
+      camera: {eye: {x: 1.4, y: 1.4, z: 0.9}}
+    },
+    margin: {l: 0, r: 0, t: 10, b: 0},
+    showlegend: false
+  };
+
+  Plotly.react('plot', [trace], layout, {responsive: true, displaylogo: false});
+}
+
+['alpha', 'k', 'turns'].forEach(id => {
+  document.getElementById(id).addEventListener('input', render);
+});
+
+render();
+</script>
+</body>
+</html>
