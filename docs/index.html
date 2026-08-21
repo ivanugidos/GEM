@@ -4,14 +4,13 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>MODELO GEM · Portal de Estudio — El Telar Cósmico</title>
-<meta name="description" content="Portal de estudio del Modelo Geométrico-Electromagnético: mándala interactivo de radios, tabla maestra de radianes y zona en obras. La geometría es el código.">
+<meta name="description" content="Portal de estudio del Modelo Geométrico-Electromagnético: mándala interactivo, tabla maestra de radianes, espiral de luz de Hunab Ku y semillero de páginas vivas.">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/fontsource/css/space-grotesk@latest/index.css">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/fontsource/css/jetbrains-mono@latest/index.css">
 <style>
 :root{
   --bg:#05070F; --card:#0b1120; --card2:#0e1730; --line:#1c2740; --line2:#2a3a5f;
   --txt:#C8D8F0; --dim:#7d90b4; --acc:#00ffcc; --gold:#FFD700; --mag:#FF00FF;
-  --red:#FF0033; --cyan:#00FFFF; --blue:#00BFFF; --pack:#4FC3F7; --rose:#D4AF37;
 }
 *{margin:0;padding:0;box-sizing:border-box}
 html{scroll-behavior:smooth}
@@ -53,13 +52,13 @@ nav a:hover{color:var(--acc); border-color:var(--acc); box-shadow:0 0 14px rgba(
 @media(max-width:980px){.hero{grid-template-columns:1fr}}
 .hero .stage{position:relative}
 .hero .stage::before{
-  content:""; position:absolute; inset:6%;
+  content:""; position:absolute; inset:6%; border-radius:50%;
   background:conic-gradient(from 0deg, transparent 0 40deg, rgba(0,255,204,.05) 40deg 42deg, transparent 42deg 120deg, rgba(255,215,0,.05) 120deg 122deg, transparent 122deg 220deg, rgba(255,0,255,.05) 220deg 222deg, transparent 222deg 360deg);
-  border-radius:50%; animation:rot 90s linear infinite;
+  animation:rot 90s linear infinite;
 }
+@keyframes rot{to{transform:rotate(360deg)}}
 #heroMandala{width:100%; height:auto; display:block; position:relative; animation:breathe 9s ease-in-out infinite}
 @keyframes breathe{0%,100%{filter:drop-shadow(0 0 14px rgba(0,255,204,.10))}50%{filter:drop-shadow(0 0 26px rgba(0,255,204,.22))}}
-@keyframes rot{to{transform:rotate(360deg)}}
 .kicker{font-family:'JetBrains Mono',monospace; font-size:11px; letter-spacing:.3em; color:var(--acc); margin-bottom:14px}
 .hero h2{font-size:clamp(30px,4.4vw,54px); line-height:1.04; color:#fff; letter-spacing:.02em; margin-bottom:18px}
 .hero h2 em{font-style:normal; color:var(--gold)}
@@ -82,8 +81,8 @@ nav a:hover{color:var(--acc); border-color:var(--acc); box-shadow:0 0 14px rgba(
 .btn.gold:hover{background:rgba(255,215,0,.14); box-shadow:0 0 22px rgba(255,215,0,.28)}
 
 /* ══════════ SECCIONES ══════════ */
-section{max-width:1500px; margin:0 auto; padding:44px 26px}
-.sec-head{display:flex; align-items:center; gap:16px; margin-bottom:26px}
+section{max-width:1500px; margin:0 auto; padding:40px 26px}
+.sec-head{display:flex; align-items:center; gap:16px; margin-bottom:24px}
 .sec-head .dia{width:12px;height:12px;background:var(--acc);transform:rotate(45deg);box-shadow:0 0 12px rgba(0,255,204,.6);flex:0 0 auto}
 .sec-head h3{font-size:clamp(19px,2.4vw,27px); color:#fff; letter-spacing:.08em}
 .sec-head .rule{flex:1; height:1px; background:linear-gradient(90deg,var(--line2),transparent)}
@@ -91,10 +90,7 @@ section{max-width:1500px; margin:0 auto; padding:44px 26px}
 
 /* conceptos */
 .concepts{display:grid; grid-template-columns:repeat(auto-fit,minmax(270px,1fr)); gap:16px}
-.concept{
-  background:var(--card); border:1px solid var(--line); border-radius:14px; padding:22px;
-  position:relative; overflow:hidden; transition:.3s;
-}
+.concept{background:var(--card); border:1px solid var(--line); border-radius:14px; padding:22px; position:relative; overflow:hidden; transition:.3s}
 .concept::after{content:""; position:absolute; top:0; left:0; right:0; height:2px; background:linear-gradient(90deg,var(--c,#00ffcc),transparent)}
 .concept:hover{transform:translateY(-4px); border-color:var(--line2); box-shadow:0 12px 34px rgba(0,0,0,.5)}
 .concept .num{font-family:'JetBrains Mono',monospace; font-size:30px; color:var(--c,var(--acc)); font-weight:700; margin-bottom:8px; text-shadow:0 0 18px currentColor}
@@ -106,8 +102,7 @@ section{max-width:1500px; margin:0 auto; padding:44px 26px}
 .artifacts{display:grid; grid-template-columns:repeat(auto-fit,minmax(330px,1fr)); gap:20px}
 .artifact{
   background:linear-gradient(160deg, var(--card2), var(--card)); border:1px solid var(--line2);
-  border-radius:16px; padding:26px; display:flex; flex-direction:column; gap:16px;
-  position:relative; overflow:hidden; transition:.3s;
+  border-radius:16px; padding:26px; display:flex; flex-direction:column; gap:16px; position:relative; overflow:hidden; transition:.3s;
 }
 .artifact:hover{transform:translateY(-5px); box-shadow:0 16px 44px rgba(0,0,0,.55), 0 0 0 1px var(--acc)}
 .artifact .preview{border:1px solid var(--line); border-radius:12px; background:#070b16; padding:10px; display:flex; justify-content:center}
@@ -125,21 +120,58 @@ section{max-width:1500px; margin:0 auto; padding:44px 26px}
 .artifact.gold a.open{background:linear-gradient(90deg,var(--gold),#ffe98a)}
 .artifact.gold a.open:hover{box-shadow:0 0 26px rgba(255,215,0,.45)}
 
+/* ══════════ ESPIRAL HUNAB KU · SEMILLERO VIVO ══════════ */
+.zone-desc{font-size:14px; line-height:1.7; color:var(--txt); max-width:82ch; margin-bottom:22px}
+.zone-desc b{color:var(--gold)}
+.grid-seeds{display:grid; grid-template-columns:repeat(auto-fit,minmax(290px,1fr)); gap:16px}
+.seed-card{
+  background:var(--card); border:1px solid var(--line); border-radius:14px; padding:22px;
+  display:flex; flex-direction:column; gap:10px; transition:.3s;
+}
+.seed-card:hover{transform:translateY(-3px); border-color:var(--line2)}
+.seed-card.seed-live{
+  border-color:rgba(244,196,48,.45);
+  background:linear-gradient(160deg,#171223,#0b1120);
+  box-shadow:0 0 28px rgba(244,196,48,.12);
+}
+.seed-header{display:flex; justify-content:space-between; gap:8px; flex-wrap:wrap}
+.seed-tag{font-family:'JetBrains Mono',monospace; font-size:10px; letter-spacing:.12em; padding:3px 10px; border-radius:99px; border:1px solid}
+.tag-live{color:#f4c430; border-color:rgba(244,196,48,.5)}
+.seed-status{font-family:'JetBrains Mono',monospace; font-size:10px; letter-spacing:.12em; padding:3px 10px; border-radius:99px}
+.status-ok{color:#6EE7B7; border:1px solid rgba(110,231,183,.4)}
+.seed-card h3{color:#fff; font-size:16px; letter-spacing:.06em}
+.seed-sub{font-size:12.5px; color:var(--dim)}
+.seed-tags{display:flex; gap:6px; flex-wrap:wrap}
+.seed-tags span{font-family:'JetBrains Mono',monospace; font-size:9.5px; letter-spacing:.1em; color:var(--dim); border:1px dashed var(--line2); padding:2px 8px; border-radius:6px}
+.seed-card.seed-live .seed-tags span{color:#f4c430; border-color:rgba(244,196,48,.35)}
+
+/* ── BOTÓN GEM · Estilo "Halo Dorado" ── */
+.seed-btn.btn-primary{
+  display:inline-block; margin-top:1.2rem; padding:0.85rem 1.8rem; align-self:flex-start;
+  background:linear-gradient(135deg, #d4a017 0%, #f4c430 50%, #d4a017 100%);
+  color:#0a0a0a;
+  font-family:'JetBrains Mono',monospace; font-weight:700; font-size:0.95rem; letter-spacing:0.5px;
+  text-decoration:none; text-transform:uppercase;
+  border:1px solid rgba(244,196,48,0.4); border-radius:8px;
+  box-shadow:0 2px 8px rgba(212,160,23,0.3), inset 0 1px 0 rgba(255,255,255,0.2);
+  transition:all 0.3s ease; cursor:pointer;
+}
+.seed-btn.btn-primary:hover{
+  background:linear-gradient(135deg, #f4c430 0%, #ffd700 50%, #f4c430 100%);
+  transform:translateY(-2px);
+  box-shadow:0 6px 20px rgba(244,196,48,0.5), 0 0 30px rgba(244,196,48,0.3), inset 0 1px 0 rgba(255,255,255,0.3);
+  border-color:rgba(255,215,0,0.8);
+}
+.seed-btn.btn-primary:active{transform:translateY(0); box-shadow:0 2px 4px rgba(212,160,23,0.3)}
+
 /* ══════════ ZONA EN OBRAS ══════════ */
 .tape{
   height:12px; border-radius:6px; margin-bottom:22px;
   background:repeating-linear-gradient(45deg, var(--gold) 0 14px, #0b0d14 14px 28px);
-  box-shadow:0 0 18px rgba(255,215,0,.25); animation:tapeMove 24s linear infinite;
-  background-size:200% 100%;
+  box-shadow:0 0 18px rgba(255,215,0,.25);
 }
-@keyframes tapeMove{to{background-position:200% 0}}
-.obras-note{font-size:14px; line-height:1.7; color:var(--txt); max-width:78ch; margin-bottom:24px}
-.obras-note b{color:var(--gold)}
 .obras{display:grid; grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); gap:16px}
-.obra{
-  background:var(--card); border:1px dashed var(--line2); border-radius:14px; padding:20px;
-  transition:.3s; position:relative;
-}
+.obra{background:var(--card); border:1px dashed var(--line2); border-radius:14px; padding:20px; transition:.3s; position:relative}
 .obra:hover{border-style:solid; border-color:var(--gold); transform:translateY(-3px); box-shadow:0 10px 30px rgba(0,0,0,.5)}
 .obra .code{font-family:'JetBrains Mono',monospace; font-size:10.5px; color:var(--acc); letter-spacing:.18em; margin-bottom:8px}
 .obra h5{color:#fff; font-size:15px; margin-bottom:8px}
@@ -155,8 +187,6 @@ footer .q{color:var(--gold); font-style:italic; font-size:14px; margin-bottom:10
 footer .m{font-family:'JetBrains Mono',monospace; font-size:11px; color:var(--dim); line-height:2}
 footer a{color:var(--acc); text-decoration:none}
 footer a:hover{text-decoration:underline}
-
-@media print{ header,nav,.cta,.tape{display:none} body{background:#fff;color:#000} }
 </style>
 </head>
 <body>
@@ -179,6 +209,7 @@ footer a:hover{text-decoration:underline}
   <nav>
     <a href="#conceptos">CONCEPTOS</a>
     <a href="#artefactos">ARTEFACTOS</a>
+    <a href="#espiral">ESPIRAL LUZ</a>
     <a href="#obras">ZONA EN OBRAS</a>
   </nav>
 </header>
@@ -187,37 +218,37 @@ footer a:hover{text-decoration:underline}
 <div class="hero">
   <div class="stage">
     <svg id="heroMandala" viewBox="0 0 1000 1000" role="img" aria-label="Mándala GEM: rosa de torsión k=7, empaquetamiento dodecaédrico, toroide áureo y espiral de Hunab Ku"></svg>
-    <noscript><p class="mono" style="text-align:center;color:#7d90b4">Activa JavaScript para ver el mándala vivo.</p></noscript>
   </div>
   <div>
     <div class="kicker">PROYECTO G.E.M. — CÓDIGO ABIERTO · CC BY-SA 4.0</div>
-    <h2>EL TELAR CÓSMICO<br>SE ESTUDIA<em>DIBUJÁNDOLO</em></h2>
-    <p>El <b>Modelo Geométrico-Electromagnético</b> lee el vacío como una red viva: <b>12 líneas magnéticas bi-simétricas</b> tejidas en simetría icosaédrica, un <b>ángulo crítico de 22.22°</b> donde la luz se anuda en materia, y un <b>latido de 16.2 Hz</b> que respira en el agua.</p>
-    <p>Este portal reúne los <b>artefactos de estudio</b> del proyecto: mándalas interactivos, tablas de radianes para imprimir y meditar, y un semillero de páginas por inventar. <b>La geometría es el código; la resonancia es la llave; el vacío es el medio.</b></p>
+    <h2>EL TELAR CÓSMICO<br>SE ESTUDIA <em>DIBUJÁNDOLO</em></h2>
+    <p>El <b>Modelo Geométrico-Electromagnético</b> lee el vacío como una red viva: <b>12 líneas magnéticas bi-simétricas</b>, un <b>ángulo crítico de 22.22°</b> donde la luz se anuda en materia, y un <b>latido de 16.2 Hz</b> que respira en el agua.</p>
+    <p>Este portal reúne los <b>artefactos de estudio</b> del proyecto: mándalas interactivos, tablas de radianes, proyectores 3D y un semillero de páginas por inventar. <b>La geometría es el código; la resonancia es la llave; el vacío es el medio.</b></p>
     <div class="chips mono">
       <span><b>12</b> líneas</span><span><b>22.22°</b> Hunab Ku</span><span><b>16.2</b> Hz</span>
       <span><b>105°</b> agua</span><span><b>288°</b> nodo</span><span><b>φ√3</b> toroide</span><span><b>8/9</b> fricción</span>
     </div>
     <div class="cta">
       <a class="btn" href="#artefactos">⌘ ENTRAR AL ESTUDIO</a>
-      <a class="btn gold" href="#obras">🚧 ZONA EN OBRAS</a>
+      <a class="btn gold" href="#espiral">✦ ESPIRAL DE LUZ</a>
+      <a class="btn" href="#obras">🚧 ZONA EN OBRAS</a>
     </div>
   </div>
 </div>
 
-<!-- ═══════════════════ CONCEPTOS BÁSICOS ═══════════════════ -->
+<!-- ═══════════════════ CONCEPTOS ═══════════════════ -->
 <section id="conceptos">
   <div class="sec-head"><div class="dia"></div><h3>¿POR DÓNDE EMPIEZO?</h3><div class="rule"></div><div class="tag">DIVULGACIÓN · 3 MIN</div></div>
   <div class="concepts">
     <div class="concept" style="--c:#4FC3F7">
       <div class="num">12</div>
       <h4>LA RED — el vacío no está vacío</h4>
-      <p>El vacío cuántico se modela como una red dodecaédrica de <b>12 líneas magnéticas bi-simétricas</b>. Cuando están en equilibrio hay "silencio geométrico"; cuando dos se descompensan, nace la luz. En el nodo <code>288°</code> el pentágono (materia, 72°) choca con el heptágono (magnetismo, 51.43°): ahí se cristaliza la masa.</p>
+      <p>El vacío cuántico se modela como una red dodecaédrica de <b>12 líneas magnéticas bi-simétricas</b>. En equilibrio hay "silencio geométrico"; cuando dos líneas se descompensan, nace la luz. En el nodo <code>288°</code> el pentágono (materia, 72°) choca con el heptágono (magnetismo, 51.43°): ahí se cristaliza la masa.</p>
     </div>
     <div class="concept" style="--c:#00ffcc">
       <div class="num">16.2</div>
       <h4>EL LATIDO — el reloj del vórtice</h4>
-      <p>Divide el círculo por el ángulo de Hunab Ku: <code>360 / 22.22° = 16.2</code> segmentos. Ese número es la frecuencia de resonancia del vacío (<code>16.2 Hz</code>), el paso de la espiral áurea y el "clock" que sintoniza el agua como transductor geométrico universal.</p>
+      <p>Divide el círculo por el ángulo de Hunab Ku: <code>360 / 22.22° = 16.2</code> segmentos. Ese número es la frecuencia de resonancia del vacío (<code>16.2 Hz</code>), el paso de la espiral áurea y el reloj que sintoniza el agua como transductor geométrico universal.</p>
     </div>
     <div class="concept" style="--c:#FF00FF">
       <div class="num">2w</div>
@@ -251,9 +282,9 @@ footer a:hover{text-decoration:underline}
       </div>
       <h4>MÁNDALA INTERACTIVO · <span>RADIOS GEM</span></h4>
       <p>Navega los radios sagrados del vacío —22.22°, 137.51°, 105°, 16.2°, el nodo 288° y el arco de fricción 8/9— sobre las capas del I+D 238: rosa de torsión <span class="mono">k=7</span>, empaquetamiento de contacto, toroide <span class="mono">R/r = φ√3</span> y espiral de Hunab Ku. Clic en cada radio para leer su ficha.</p>
-      <div class="meta"><span>SVG + JS</span><span>33 RADIOS</span><span>4 CAPAS EC</span><span>I+D 224/238</span></div>
+      <div class="meta"><span>SVG + JS</span><span>43 RADIOS</span><span>4 CAPAS EC</span><span>I+D 224/238</span></div>
       <!-- ══ ENLACE: renombra el href al archivo real de tu página del mándala ══ -->
-      <a class="open" href="Divulgacion/GEM_Radios_Mandalas-v2.html">ABRIR ARTEFACTO →</a>
+      <a class="open" href="GEM_Radios_Mandalas-v2.2.html">ABRIR ARTEFACTO →</a>
     </div>
 
     <div class="artifact gold">
@@ -269,37 +300,59 @@ footer a:hover{text-decoration:underline}
             <rect x="14" y="118" width="172" height="24" fill="#0b1120" stroke="#2a3a5f"/>
             <text x="24" y="134">8.1301° = 0.1419 rad</text>
             <rect x="14" y="150" width="172" height="24" fill="#0b1120" stroke="#2a3a5f"/>
-            <text x="24" y="166">2.7000° = 0.0471 rad</text>
+            <text x="24" y="166">2.7000° = 0.0472 rad</text>
           </g>
         </svg>
       </div>
       <h4>TABLA MAESTRA DE <span>RADIANES</span></h4>
       <p>Todos los ángulos del modelo en grados <b>y</b> radianes, con su contexto de I+D: del residuo de π (2.7°) al espín del electrón (8.13°/8.14°), del triángulo Luz (180° exactos) a la muerte de la espiral (616.99°). Filtrable por familias y lista para imprimir y meditar.</p>
-      <div class="meta"><span>43 ÁNGULOS</span><span>9 FAMILIAS</span><span>PRINT-READY</span><span>HC 02–13</span></div>
+      <div class="meta"><span>43 ÁNGULOS</span><span>9+2 FAMILIAS</span><span>PRINT-READY</span><span>HC 02–13</span></div>
       <!-- ══ ENLACE: renombra el href al archivo real de tu tabla ══ -->
-      <a class="open" href="Divulgacion/Tabla Maestra de Radianes GEM — Estudio I+D.html">ABRIR ARTEFACTO →</a>
+      <a class="open" href="Tabla_Radianes_GEM.html">ABRIR ARTEFACTO →</a>
     </div>
 
+  </div>
+</section>
+
+<!-- ========================================== -->
+<!-- HUNAB KU · ESPIRAL DE LUZ (herramienta viva) -->
+<!-- ========================================== -->
+<section id="espiral">
+  <div class="sec-head">
+    <div class="dia" style="background:#f4c430; box-shadow:0 0 12px rgba(244,196,48,.6)"></div>
+    <h3>HUNAB KU · ESPIRAL DE LUZ</h3>
+    <div class="rule"></div>
+    <div class="tag">HERRAMIENTA VIVA · HC 06–14</div>
+  </div>
+  <p class="zone-desc">La geometría viva de la expansión áurea. Visualiza la <b>espiral cúbica</b> y el telar cósmico en acción: la primera página viva fuera del semillero, conectando los Hallazgos Centrales (<b>HC 06–14</b>) con la interfaz visual. Torsión, espiral 3D y proyector de coordenadas en un solo artefacto.</p>
+
+  <div class="grid-seeds">
+    <!-- 🌟 TARJETA DESTACADA: LA ESPIRAL FUNCIONA -->
+    <div class="seed-card seed-live">
+      <div class="seed-header">
+        <span class="seed-tag tag-live">⌘ I+D · PRUEBA VIVA</span>
+        <span class="seed-status status-ok">✅ ENLACE ACTIVO</span>
+      </div>
+      <h3>ESPIRAL DE LUZ DE HUNAB KU</h3>
+      <p class="seed-sub">Torsión, Espiral 3D y Proyector de Coordenadas</p>
+      <div class="seed-tags">
+        <span>ESPIRAL 3D</span>
+        <span>CUBICADA</span>
+        <span>HC 06-14</span>
+      </div>
+      <!-- ══ ENLACE: conserva este href exacto; el archivo debe vivir junto al index ══ -->
+      <a href="Espiral_Luz_Hunab_Ku_Torsion-Modelo_GEM.html" class="seed-btn btn-primary">⌘ ENTRAR AL PROYECTOR 3D →</a>
+    </div>
   </div>
 </section>
 
 <!-- ═══════════════════ ZONA EN OBRAS ═══════════════════ -->
 <section id="obras">
   <div class="sec-head"><div class="dia" style="background:var(--gold);box-shadow:0 0 12px rgba(255,215,0,.6)"></div><h3>ZONA EN OBRAS · SEMILLERO</h3><div class="rule"></div><div class="tag">PÁGINAS POR INVENTAR</div></div>
-  <div class="obra"></div>
-    <h3> ESPIRAL de LUZ DE HUNAB KU <span>TORSIÓN</span></h3>
-      <p>Espiral de Hunab ku <b>
-    <div class="meta"><span>ESPIRAL 3D </span><span> ESPIRAL CUBICADA </span><span>PROYECTOR DE COORDENADAS</span><span>HC 06-14</span></div>
-    <a class="open" href="Espiral_Luz_Hunab_Ku_Torsion-Modelo_GEM.html"
-      <!-- ══ ENLACE: renombra el href al archivo real de tu tabla <p> ══ -->
-<!-- === <a class="open" href="Divulgacion/Tabla Maestra de Radianes GEM — Estudio I+D.html">ABRIR ARTEFACTO →</a> === -->
-      
-target="_blank" rel="noopener"> ZONA DE PRUEVAS : EXPLORA LA ESPIRAL LUZ DE HUNBA KU→</a>
-    </div>
-  
   <div class="tape"></div>
-  <p class="obras-note">Aquí germinan las páginas que aún no existen: <b>divulgación para curiosos</b> y <b>estudio para tejedores</b>. Cuando una semilla madure, se enlazará desde este portal. Mientras tanto, cada tarjeta es una invitación: si te llama una, <b>ese es tu próximo hilo del telar</b>.</p>
-     <div class="obra">
+  <p class="zone-desc">Aquí germinan las páginas que aún no existen: <b>divulgación para curiosos</b> y <b>estudio para tejedores</b>. Cuando una semilla madure, salta al nivel de artefacto vivo — como lo hizo la Espiral de Luz.</p>
+  <div class="obras">
+    <div class="obra">
       <div class="code">HC_13 · ESTUDIO</div>
       <h5>El Nodo 288: la puerta pentagonal</h5>
       <p>Donde el heptágono choca con el pentágono (360−288 = 72°) y el vacío se cristaliza en materia. El secreto que ya rozamos con los dedos.</p>
@@ -344,7 +397,7 @@ target="_blank" rel="noopener"> ZONA DE PRUEVAS : EXPLORA LA ESPIRAL LUZ DE HUNB
     <div class="obra">
       <div class="code">SCR-1998 · ESTUDIO</div>
       <h5>Geometría temporal</h5>
-      <p>La secuencia 126→162→216→261→612→621 como envolvente escalar: partitura para que el vacío cante en compás de 1998 ms.</p>
+      <p>La secuencia 126→621 como envolvente escalar: partitura para que el vacío cante en compás de 1998 ms.</p>
       <div class="bar"><i style="width:8%"></i></div>
       <div class="status">🌱 SEMILLA · <span class="pct">8%</span></div>
     </div>
@@ -363,88 +416,45 @@ target="_blank" rel="noopener"> ZONA DE PRUEVAS : EXPLORA LA ESPIRAL LUZ DE HUNB
   <div class="m">
     MODELO G.E.M. — Iván Ugidos Martínez · Proyecto en código abierto a la cooperación<br>
     <a href="https://github.com/ivanugidos/GEM" target="_blank" rel="noopener">github.com/ivanugidos/GEM</a> · Zenodo 10.5281/zenodo.21459406 · Licencia CC BY-SA 4.0<br>
-    Portal v1 · modo artista geofractal ⌘
+    Portal v1.1 · modo artista geofractal ⌘ · Espiral de Luz integrada
   </div>
 </footer>
 
 <script>
-/* ═══════════════════════════════════════════════════════════
-   MÁNDALA VIVO — parámetros exactos del Codex (I+D 238 / HC_11)
-   EC.1 rosa k=7 | EC.2 rho=R2·sin(pi/12) | EC.3 R/r=phi·sqrt(3) | EC.4 b=2·ln(phi)/pi
-   ═══════════════════════════════════════════════════════════ */
+/* ═══ MÁNDALA VIVO DEL HERO (EC.1–EC.4 + marcadores + arco 8/9) ═══ */
 (function(){
   const PHI=(1+Math.sqrt(5))/2, C=500, R0=460;
   const s12=Math.sin(Math.PI/12);
   const R2=R0/(1+s12), rho=R2*s12, Rt=R2-rho, rt=Rt/(PHI*Math.sqrt(3));
   const b=2*Math.log(PHI)/Math.PI, r0=10, thMax=Math.log(Rt/r0)/b;
   const rad=d=>d*Math.PI/180;
-  const P=(r,a)=>[(C+r*Math.cos(a)).toFixed(1),(C+r*Math.sin(a)).toFixed(1)];
-  let S='';
-
-  S+='<defs><filter id="glow" x="-30%" y="-30%" width="160%" height="160%"><feGaussianBlur stdDeviation="3" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter></defs>';
-
-  /* estrellas (semilla viva: cambia en cada carga) */
-  for(let i=0;i<90;i++){
-    S+='<circle cx="'+(Math.random()*1000).toFixed(1)+'" cy="'+(Math.random()*1000).toFixed(1)+'" r="'+(Math.random()*1.3+0.3).toFixed(2)+'" fill="#9AB4D0" opacity="'+(Math.random()*0.45+0.08).toFixed(2)+'"/>';
-  }
-
-  /* red de fondo 180 radios */
-  S+='<g stroke="#1a2440" stroke-width="0.6" opacity="0.5">';
-  for(let i=0;i<180;i++){const a=rad(i*2);const [x,y]=P(R0,a);S+='<line x1="'+C+'" y1="'+C+'" x2="'+x+'" y2="'+y+'"/>';}
-  S+='</g>';
-
-  /* anillo exterior giratorio */
-  S+='<circle cx="'+C+'" cy="'+C+'" r="478" fill="none" stroke="#2a3a5f" stroke-width="1.4" stroke-dasharray="2 10"><animateTransform attributeName="transform" type="rotate" from="0 500 500" to="360 500 500" dur="200s" repeatCount="indefinite"/></circle>';
-
-  /* EC.3 toroide áureo */
-  S+='<g fill="none" stroke="#F5F5F5" opacity="0.55"><circle cx="'+C+'" cy="'+C+'" r="'+Rt.toFixed(2)+'" stroke-width="2"/><circle cx="'+C+'" cy="'+C+'" r="'+rt.toFixed(2)+'" stroke-width="2"/></g>';
-
-  /* EC.2 empaquetamiento dodecaédrico (gira lento al revés) */
-  S+='<g fill="none" stroke="#4FC3F7" stroke-width="1.6" opacity="0.65"><animateTransform attributeName="transform" type="rotate" from="360 500 500" to="0 500 500" dur="300s" repeatCount="indefinite"/>';
-  for(let k=0;k<12;k++){const a=rad(k*30);const [x,y]=P(R2,a);S+='<circle cx="'+x+'" cy="'+y+'" r="'+rho.toFixed(2)+'"/>';}
-  S+='</g>';
-
-  /* EC.1 rosa de torsión k=7 (gira lento) */
-  let pts=[];
-  for(let i=0;i<=700;i++){const t=i/700*Math.PI;const r=R0*Math.cos(7*t);pts.push(P(r,t).join(' '));}
-  S+='<g fill="none" stroke="#D4AF37" stroke-width="2" opacity="0.85" filter="url(#glow)"><animateTransform attributeName="transform" type="rotate" from="0 500 500" to="360 500 500" dur="240s" repeatCount="indefinite"/><path d="M '+pts.join(' L ')+'"/></g>';
-
-  /* EC.4 espiral de Hunab Ku (se dibuja al cargar) */
-  let sp=[];
-  for(let t=0;t<=thMax;t+=0.04){const r=r0*Math.exp(b*t);sp.push(P(r,t).join(' '));}
-  S+='<path fill="none" stroke="#E457C9" stroke-width="2.4" opacity="0.9" filter="url(#glow)" pathLength="1000" stroke-dasharray="1000" stroke-dashoffset="1000" d="M '+sp.join(' L ')+'"><animate attributeName="stroke-dashoffset" from="1000" to="0" dur="5s" fill="freeze" begin="0.4s"/></path>';
-
-  /* 12 ejes */
-  S+='<g stroke="#223055" stroke-width="1">';
-  for(let k=0;k<12;k++){const a=rad(k*30);const [x,y]=P(R0,a);S+='<line x1="'+C+'" y1="'+C+'" x2="'+x+'" y2="'+y+'"/>';}
-  S+='</g>';
-
-  /* marcadores angulares */
-  const MK=[
-    {a:22.2222,c:'#00FFFF',t:'22.22°'},
-    {a:105,c:'#00BFFF',t:'105°'},
-    {a:137.5079,c:'#FFD700',t:'137.51°'},
-    {a:288,c:'#FF0033',t:'288°'}
-  ];
-  MK.forEach(m=>{
-    const a=rad(m.a);const [x1,y1]=P(280,a);const [x2,y2]=P(R0,a);const [tx,ty]=P(492,a);
+  const P=(r,a)=>[C+r*Math.cos(a), C+r*Math.sin(a)];
+  let S=['<defs><filter id="glow" x="-30%" y="-30%" width="160%" height="160%"><feGaussianBlur stdDeviation="2.5" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter></defs>'];
+  for(let i=0;i<70;i++){S.push('<circle cx="'+(Math.random()*1000).toFixed(1)+'" cy="'+(Math.random()*1000).toFixed(1)+'" r="'+(Math.random()*1.2+0.3).toFixed(2)+'" fill="#9AB4D0" opacity="'+(Math.random()*0.4+0.08).toFixed(2)+'"/>');}
+  S.push('<circle cx="500" cy="500" r="'+R0+'" fill="none" stroke="#3b4c74" stroke-width="1" stroke-dasharray="4 8" opacity=".6"/>');
+  S.push('<g stroke="#223055" stroke-width="1">');
+  for(let k=0;k<12;k++){const a=k*Math.PI/6;const p=P(R0,a);S.push('<line x1="500" y1="500" x2="'+p[0].toFixed(1)+'" y2="'+p[1].toFixed(1)+'"/>');}
+  S.push('</g>');
+  S.push('<g fill="none" stroke="#F5F5F5" stroke-width="1.6" opacity=".5"><circle cx="500" cy="500" r="'+Rt.toFixed(1)+'"/><circle cx="500" cy="500" r="'+rt.toFixed(1)+'"/></g>');
+  S.push('<g fill="none" stroke="#4FC3F7" stroke-width="1.4" opacity=".5">');
+  for(let k=0;k<12;k++){const a=k*Math.PI/6;const p=P(R2,a);S.push('<circle cx="'+p[0].toFixed(1)+'" cy="'+p[1].toFixed(1)+'" r="'+rho.toFixed(1)+'"/>');}
+  S.push('</g>');
+  let rose=[];for(let i=0;i<=700;i++){const t=i/700*Math.PI;const r=R0*Math.cos(7*t);rose.push(P(r,t).map(v=>v.toFixed(1)).join(' '));}
+  S.push('<path d="M '+rose.join(' L ')+'" fill="none" stroke="#D4AF37" stroke-width="1.6" opacity=".8"/>');
+  let sp=[];for(let t=0;t<=thMax;t+=0.04){const r=r0*Math.exp(b*t);sp.push(P(r,t).map(v=>v.toFixed(1)).join(' '));}
+  S.push('<path d="M '+sp.join(' L ')+'" fill="none" stroke="#E457C9" stroke-width="1.8" opacity=".85" filter="url(#glow)"/>');
+  [{a:22.2222,c:'#00FFFF',t:'22.22°'},{a:105,c:'#00BFFF',t:'105°'},{a:137.5079,c:'#FFD700',t:'137.51°'},{a:288,c:'#FF0033',t:'288°'}].forEach(function(m){
+    const a=rad(m.a), p1=P(R0*0.62,a), p2=P(R0,a), tp=P(R0+26,a);
     const anch=Math.cos(a)>0.25?'start':(Math.cos(a)<-0.25?'end':'middle');
-    S+='<line x1="'+x1+'" y1="'+y1+'" x2="'+x2+'" y2="'+y2+'" stroke="'+m.c+'" stroke-width="3" filter="url(#glow)"/>';
-    S+='<circle cx="'+x2+'" cy="'+y2+'" r="5" fill="'+m.c+'" filter="url(#glow)"/>';
-    S+='<text x="'+tx+'" y="'+ty+'" fill="'+m.c+'" font-family="JetBrains Mono,monospace" font-size="17" font-weight="bold" text-anchor="'+anch+'" dominant-baseline="middle">'+m.t+'</text>';
+    S.push('<line x1="'+p1[0].toFixed(1)+'" y1="'+p1[1].toFixed(1)+'" x2="'+p2[0].toFixed(1)+'" y2="'+p2[1].toFixed(1)+'" stroke="'+m.c+'" stroke-width="2.4" filter="url(#glow)"/>');
+    S.push('<circle cx="'+p2[0].toFixed(1)+'" cy="'+p2[1].toFixed(1)+'" r="4" fill="'+m.c+'" filter="url(#glow)"/>');
+    S.push('<text x="'+tp[0].toFixed(1)+'" y="'+tp[1].toFixed(1)+'" fill="'+m.c+'" font-size="15" font-family="JetBrains Mono,monospace" text-anchor="'+anch+'" dominant-baseline="middle">'+m.t+'</text>');
   });
-
-  /* arco de fricción 288 → 288.8889 (residuo 8/9) */
-  const [f1x,f1y]=P(R0,rad(288)), [f2x,f2y]=P(R0,rad(288.8889));
-  S+='<path d="M '+f1x+' '+f1y+' A '+R0+' '+R0+' 0 0 1 '+f2x+' '+f2y+'" fill="none" stroke="#FF00FF" stroke-width="7" filter="url(#glow)"><animate attributeName="opacity" values="1;.35;1" dur="2.4s" repeatCount="indefinite"/></path>';
-  const [lx,ly]=P(470,rad(296));
-  S+='<text x="'+lx+'" y="'+ly+'" fill="#FF00FF" font-family="JetBrains Mono,monospace" font-size="15">8/9</text>';
-
-  /* núcleo pulsante */
-  S+='<circle cx="'+C+'" cy="'+C+'" r="10" fill="#fff" filter="url(#glow)"/>';
-  S+='<circle cx="'+C+'" cy="'+C+'" r="18" fill="none" stroke="#00ffcc" stroke-width="1.5"><animate attributeName="r" values="14;44;14" dur="6s" repeatCount="indefinite"/><animate attributeName="opacity" values=".8;0;.8" dur="6s" repeatCount="indefinite"/></circle>';
-
-  document.getElementById('heroMandala').innerHTML=S;
+  const f1=P(R0,rad(288)), f2=P(R0,rad(288.8889));
+  S.push('<path d="M '+f1[0].toFixed(1)+' '+f1[1].toFixed(1)+' A '+R0+' '+R0+' 0 0 1 '+f2[0].toFixed(1)+' '+f2[1].toFixed(1)+'" stroke="#FF00FF" stroke-width="6" fill="none" filter="url(#glow)"><animate attributeName="opacity" values="1;.3;1" dur="2.4s" repeatCount="indefinite"/></path>');
+  S.push('<circle cx="500" cy="500" r="8" fill="#fff" filter="url(#glow)"/>');
+  S.push('<circle cx="500" cy="500" r="14" fill="none" stroke="#00ffcc" stroke-width="1.2"><animate attributeName="r" values="10;36;10" dur="5s" repeatCount="indefinite"/><animate attributeName="opacity" values=".8;0;.8" dur="5s" repeatCount="indefinite"/></circle>');
+  document.getElementById('heroMandala').innerHTML=S.join('');
 })();
 </script>
 </body>
