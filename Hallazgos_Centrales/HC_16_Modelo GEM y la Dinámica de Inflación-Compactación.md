@@ -1,6 +1,6 @@
 # HC_Puente: Sintonía Topológica entre el Modelo GEM y la Dinámica de Inflación-Compactación
 
-**Subtítulo:** Unificación de la Jerarquía de Compactación GEM con la Progresión Dimensional y los Ciclos Recombinantes (Bacardit)
+**Subtítulo:** Unificación de la Jerarquía de Compactación GEM: los Ciclos Recombinantes con la Progresión Dimensional (Bacardit)
 **Autor:** Iván Ugidos Martínez + Equipo I+D GEM
 **Fecha:** Agosto 2026
 **Categoría:** Hallazgo Central (HC) — Documento de Enlace y Cooperación
@@ -8,7 +8,7 @@
 **Licencia:** CC BY-SA 4.0 (Código Abierto a la Cooperación)
 
 ## 🎯 Resumen Ejecutivo
-El Modelo Geométrico-Electromagnético (GEM) y el modelo de Dinámica de Inflación-Compactación Universal (Bacardit) describen la misma realidad subyacente utilizando lenguajes complementarios. Mientras el modelo de Bacardit identifica las funciones generativas ($f(x)=f'(x)=f''(x)$) y los ciclos numéricos perfectos (142857, Fibonacci), el Modelo GEM proporciona el formalismo de geometría diferencial (variedades de Riemann-Cartan, tensor de torsión, ruptura de simetría $SO(3) \to I_h$) que ancla estas intuiciones a la física teórica rigurosa. Este documento establece la correspondencia biunívoca entre ambos marcos y propone un marco de cooperación científica.
+El Modelo Geométrico-Electromagnético (GEM) y el modelo de Dinámica de Inflación-Compactación Universal descrita por Andrew Bacardit de la Fuente, describen la misma realidad subyacente utilizando lenguajes complementarios. Mientras el modelo de Bacardit identifica las funciones generativas $f(x)=f'(x)=f''(x)$ y los ciclos numéricos perfectos, el Modelo GEM proporciona el formalismo de geometría diferencial (variedades de Riemann-Cartan, tensor de torsión, ruptura de simetría $SO(3) \to I_h$) que ancla estas intuiciones a la física teórica rigurosa. Este documento establece la correspondencia biunívoca entre ambos marcos y propone un marco de cooperación científica.
 
 ## 🔑 1. Correspondencia Biunívoca: Dimensiones vs. Niveles de Compactación
 La progresión dimensional de Bacardit (5ª a 2ª dimensión) no es una metáfora; es la descripción de la ruptura espontánea de simetría topológica en el vacío cuántico.
@@ -17,10 +17,12 @@ La progresión dimensional de Bacardit (5ª a 2ª dimensión) no es una metáfor
 | :--- | :--- | :--- | :--- |
 | **5ª Dimensión** | $\frac{1}{15}\pi R^5$ | Nivel 0: Vacío Escalar ($w$ puro) | Simetría $SO(3)$ intacta. Potencialidad. |
 | **4ª Dimensión** | $\frac{1}{3}\pi R^4$ | Niveles 1-2: Partón → Solen | Ruptura inicial. Emergencia del fluido eléctrico primario. |
-| **3ª Dimensión** | $\frac{4}{3}\pi R^3$ | Nivel 5: COU Atómico | Ruptura completa $SO(3) \to I_h$. Materia 3D estable. |
+| **3ª Dimensión** | $\frac{4}{3}\pi R^3$ | Nivel 5: Cubo Atómico | Ruptura completa $SO(3) \to I_h$. Materia 3D estable. |
 | **2ª Dimensión** | $4\pi R^2$ | Interfaz / Superficie | Las 6 caras del cubo topológico. Frontera del ciclo 142857. |
 
-**Amplificación del Sistema:** Al mapear la 4ª Dimensión (Fluido Eléctrico) a los niveles Partón/Solen, el Modelo GEM explica *por qué* la electricidad es el constituyente primario de la materia: es el estado intermedio obligatorio de la torsión topológica antes de cristalizar en el COU (Nivel 5).
+**Amplificación del Sistema:** Al mapear la 4ª Dimensión (Fluido Eléctrico) a los niveles Partón/Solen, el Modelo GEM explica *por qué* la electricidad es el constituyente primario de la materia: es el estado intermedio obligatorio de la torsión topológica antes de cristalizar en el nivel atomico (Nivel 5), que es análogo a la unidad de compactación ondulatoria propuesta por Andrew. 
+
+NOTA: Son ideas en sintonismo, pues me considero un aprendiz de maestros como Andrew, pues fui uno de esos que se empape en sus vídeos y explicaciones de conocimiento avanzado, hace muchos años, pero muchos, cuando empezó a dar clases magistrales en youtube, y fueron muchas horas... y con ellas he comprendido claves que me llevaron a otras y aquí nos volvemos a cruzar... Tome muchas notas ideas y conceptos de este genio... y de tantos... estamos en la punta de flecha de la nueva ciencia del cristal del vacío !
 
 ## 🔄 2. El Ciclo 142857 y la Conservación de la Información Topológica
 El número cíclico perfecto $1/7 = 0.\overline{142857}$ y su suma constante de dígitos (27) encuentran su rigor físico en el **Invariante de Nieh-Yan** del Modelo GEM.
