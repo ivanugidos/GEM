@@ -45,4 +45,8 @@ El Modelo GEM no busca reemplazar la dinámica de Inflación-Compactación, sino
 
 ---
 **Atentamente, con todo el rigor y la pasión que nos debemos,**
-**Iván Ugidos Martínez** — Investigador / Director del Proyecto GEM ⌘
+**Iván Ugidos Martínez** — Investigador / Director del Proyecto GEM ⌘ 
+
+*Modelo G.E.M.* **- Proyecto en Código Abierto a la cooperación.**
+
+ *✿ Fuente - Respositorio en GitHub: https://github.com/ivanugidos/GEM*
