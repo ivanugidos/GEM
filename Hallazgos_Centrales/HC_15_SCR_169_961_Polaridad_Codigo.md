@@ -1,3 +1,5 @@
+
+
 # HC_15 SCR 169 961 Polaridad Código
 
 > SCR 1998: la Dinámica de Sirio 169 ~ 961 y la Polaridad del Vacio
@@ -121,14 +123,14 @@ Además, el **64** ($27+37$) no es solo el código del ADN; en la geometría del
 ---
 
 
-### Nota I+D
+# I+D Proceso
 
 
 Titulo original : 
 HC_15_La_Dinamica_Siriana_169_961_y_la_Polaridad_del_Vacio.md_
 
 propuesta de nuvo titulo
-HC_15_Dinamica_169_961_Polaridad_Codigo.md
+HC_15_SCR_169_961_Polaridad_Codigo.md
 
 
 
@@ -262,18 +264,21 @@ Otra tarea:  ajustemos el código HTML de nuestra herramienta I+D para que pueda
 ---
 > *Proceso de revision:* **NS1.39.3.16 KIN 40-41  | del 5 al 6 de octrubre de 2026**
 > 
-> **Luna 3, día 16** *- El subconsciente es un vasto almacén de pensamientos no utilizados o rechazados y de impresiones sensoriales.
+> **Luna 3, día 16** *- El subconsciente es un vasto almacén de pensamientos no utilizados o rechazados y de impresiones sensoriales.*
 > 
-> Nota:  Unidad Psi Crono 47*
+> *Nota:  Unidad Psi Crono 47*
 
 
 Atentamente, con todo el Amor, Agente Galactico Maya 138X , Iván Ugidos Martínez. 
 ⌘ Investigador e impulsor del Proyecto GEM  | Contacto: espejogalactico@gmail.com
 
-Documento abierto a la creación colectiva en:
+> **Documento abierto a la creación colectiva en:** *https://github.com/ivanugidos/GEM/blob/main/Hallazgos_Centrales/HC_15_SCR_169_961_Polaridad_Codigo.md*
+> 
+> **Nota:** *en el enlace puedes revisar si hay cambios.*
 
-Nota: en este enlace puedes revisar si hay cambios.
+Documento compartido en PDF - Versión 2 - en la Bitácora 4D Xochipilli 
 
-Documento compartido en PDF - Versión 2 - en la Bitácora 4d Xochipilli 
+* ✿  https://xochipilli.wordpress.com/  
 
+* ✿ https://t.me/s/quetzalxochipilli/2505
 
