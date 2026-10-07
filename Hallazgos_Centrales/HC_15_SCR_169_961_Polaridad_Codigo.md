@@ -1,6 +1,6 @@
 # HC_15 S.C.R. 169 961 Polaridad Código
 
-> S.C.R. 1998: la Dinámica de Sirio 169 ~ 961 y la Polaridad del Vacio
+> S.C.R. 1998: la Dinámica de Sirio 169 ~ 961 y la Polaridad del Vacío
 
 ## E.H.C. Excusión a la Historia (Ciencia) Cósmica
 
@@ -10,7 +10,7 @@
 
 ## La Conexión S.C.R. 1998 (162 ↔ 261)
 
-S.C.R. 1998,  se refiere a la secuencia  ciclica recombinante 126-162-216-261-612-621 que sumado da 1998 (8+1+9+9=27(2+7=9))
+S.C.R. 1998,  se refiere a la secuencia ciclica recombinante 126-162-216-261-612-621 que sumado da 1998 (8+1+9+9=27(2+7=9))
 
 126+162+216+261+612+621=1998
 
