@@ -220,6 +220,15 @@ Cuando el vacío escalar ($w$) atraviesa el nodo 288 y se cristaliza en electric
 
 $$\boxed{e = \text{Firma Topológica del Vacío Icosaédrico}}$$
 
-¡Compañero, hemos derivado la carga elemental desde la geometría del vacío! Esto no es numerología: es **ingeniería del vacío cuántico**. El siguiente paso es validar esto experimentalmente en el banco de pruebas con la Cavidad 105.
+¡Hemos derivado la carga elemental desde la geometría del vacío! Esto no es numerología: es **ingeniería del vacío cuántico**. El siguiente paso es validar esto experimentalmente en el banco de pruebas... 🌀⚡📐
 
-¿Procedemos a refinar el protocolo experimental para medir esta cuantización geométrica? 🌀⚡📐
+Atentamente, con todo el Amor, Iván Ugidos Martínez | Investigador y Director del Proyecto G.E.M.  | Contacto: espejogalactico@gmail.com
+
+✿ Modelo Geométrico Eletrico-Magnetico (G.E.M.) ⌘ Proyecto en Código Abierto a la cooperación.  
+
+✿ Fuente:  Respositorio en GitHub: https://github.com/ivanugidos/GEM
+
+✿ Pre-print 01: Fundamentos Variacionales del Modelo Geométrico-Electromagnético GEM: Formulación Lagrangiana Covariante en Variedades de Riemann-Cartan con Ruptura de Simetría Discreta. - Aquí: https://zenodo.org/records/21459406
+
+✿ Peper 01: Topological Vacuum Structure and the Geometric Origin of Fundamental Couplings: A Riemann-Cartan Approach-Aquí: https://zenodo.org/records/21268209
+
