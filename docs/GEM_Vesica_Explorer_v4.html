@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Visor GEM v3.0 - Acoplamiento de Fase 18º</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            background: #050508; color: #e0e0e0;
+            font-family: 'Segoe UI', 'Helvetica Neue', sans-serif;
+            overflow: hidden; display: flex; height: 100vh;
+        }
+        #panel {
+            width: 380px;
+            background: linear-gradient(180deg, #0a0a1a 0%, #0d0d1f 100%);
+            border-right: 1px solid #2a2a4a; padding: 25px;
+            display: flex; flex-direction: column; gap: 20px; z-index: 10;
+            box-shadow: 5px 0 30px rgba(0, 150, 255, 0.1);
+            overflow-y: auto;
+        }
+        h1 {
+            color: #00d4ff; font-size: 1.3rem; letter-spacing: 2px;
+            text-transform: uppercase; text-align: center;
+            text-shadow: 0 0 20px rgba(0, 212, 255, 0.5);
+        }
+        .subtitle {
+            color: #ff00ff; font-size: 0.85rem; text-align: center;
+            margin-bottom: 20px; letter-spacing: 1px;
+        }
+        .control-section {
+            background: rgba(20, 20, 40, 0.6); border: 1px solid #3a3a6a;
+            border-radius: 10px; padding: 15px;
+        }
+        .control-section h3 {
+            color: #00d4ff; font-size: 0.9rem; margin-bottom: 12px;
+            text-transform: uppercase; letter-spacing: 1px;
+        }
+        .toggle-group {
+            display: flex; align-items: center; justify-content: space-between;
+            margin-bottom: 10px; padding: 5px 0;
+        }
+        .toggle-group label {
+            font-size: 0.9rem; cursor: pointer;
+            display: flex; align-items: center; gap: 10px;
+        }
+        .toggle-group input[type="checkbox"] {
+            width: 18px; height: 18px; accent-color: #ff00ff; cursor: pointer;
+        }
+        .color-indicator {
+            width: 12px; height: 12px; border-radius: 50%; display: inline-block;
+        }
+        
+        /* Slider de Fase */
+        .slider-container { margin-top: 10px; }
+        .slider-label {
+            display: flex; justify-content: space-between;
+            font-size: 0.85rem; color: #ffd700; margin-bottom: 8px;
+        }
+        input[type=range] {
+            -webkit-appearance: none; width: 100%; background: transparent;
+        }
+        input[type=range]::-webkit-slider-thumb {
+            -webkit-appearance: none; height: 20px; width: 20px;
+            border-radius: 50%; background: #ff00ff; cursor: pointer;
+            margin-top: -8px; box-shadow: 0 0 10px #ff00ff;
+        }
+        input[type=range]::-webkit-slider-runnable-track {
+            width: 100%; height: 4px; cursor: pointer;
+            background: linear-gradient(90deg, #00d4ff, #ff00ff);
+            border-radius: 2px;
+        }
+        
+        #info-display {
+            background: #000; border: 1px solid #00d4ff; border-radius: 10px;
+            padding: 20px; margin-top: auto;
+            box-shadow: 0 0 20px rgba(0, 212, 255, 0.2);
+        }
+        .info-row {
+            display: flex; justify-content: space-between; margin-bottom: 8px;
+            font-family: 'Courier New', monospace; font-size: 0.95rem;
+        }
+        .info-label { color: #888; }
+        .info-value { color: #fff; font-weight: bold; }
+        .info-value.highlight { color: #ff00ff; text-shadow: 0 0 10px rgba(255,0,255,0.6); }
+        .phase-status {
+            margin-top: 15px; padding-top: 15px; border-top: 1px solid #333;
+            font-size: 0.9rem; line-height: 1.5; text-align: center;
+        }
+        .status-nest { color: #00d4ff; }
+        .status-couple { color: #ffd700; text-shadow: 0 0 10px rgba(255,215,0,0.5); }
+        
+        #canvas-container {
+            flex: 1; position: relative;
+            background: radial-gradient(ellipse at center, #0f0f2e 0%, #050508 100%);
+            overflow: hidden;
+        }
+        canvas { display: block; cursor: crosshair; }
+    </style>
+</head>
+<body>
+
+<div id="panel">
+    <h1>◈ GEM Model v3.0</h1>
+    <div class="subtitle">Control de Fase Topológica (18º)</div>
+    
+    <div class="control-section">
+        <h3>🎛️ Desfasador de Fase (Válvula de Vacío)</h3>
+        <div class="slider-container">
+            <div class="slider-label">
+                <span>FASE: <span id="phase-val">0.0</span>º</span>
+                <span id="phase-target">Objetivo: 18.0º</span>
+            </div>
+            <input type="range" id="phase-slider" min="0" max="18" step="0.1" value="0">
+        </div>
+        <div class="phase-status" id="phase-status">
+            <span class="status-nest">🔵 ESTADO A: NIDO TOPOLÓGICO</span><br>
+            <small>Potencial Escalar ($2w$) confinado. Nulificación Vectorial.</small>
+        </div>
+    </div>
+
+    <div class="control-section">
+        <h3>Capas Geométricas</h3>
+        <div class="toggle-group"><label><input type="checkbox" id="layer-void" checked><span class="color-indicator" style="background: #58a6ff;"></span>Círculo del Vacío</label></div>
+        <div class="toggle-group"><label><input type="checkbox" id="layer-vesica" checked><span class="color-indicator" style="background: #ff00ff;"></span>Vesica Piscis (√3)</label></div>
+        <div class="toggle-group"><label><input type="checkbox" id="layer-pentagon" checked><span class="color-indicator" style="background: #ffd700;"></span>Pentágono (Vector 5)</label></div>
+        <div class="toggle-group"><label><input type="checkbox" id="layer-hexagon" checked><span class="color-indicator" style="background: #00ffff;"></span>Hexágono (Cubo)</label></div>
+    </div>
+    
+    <div id="info-display">
+        <div class="info-row"><span class="info-label">POSICIÓN NODO 288:</span><span class="info-value highlight" id="val-node-pos">288.00°</span></div>
+        <div class="info-row"><span class="info-label">DESFASE ACTUAL:</span><span class="info-value" id="val-phase">0.00°</span></div>
+        <div class="info-row"><span class="info-label">FRACCIÓN MAYA:</span><span class="info-value" id="val-maya">0 / 20</span></div>
+        <div class="info-row" style="margin-top: 10px; border-top: 1px solid #333; padding-top: 10px;">
+            <span id="val-meaning" style="color: #ffd700; font-size: 0.85rem;">Sistema en Reposo Topológico.</span>
+        </div>
+    </div>
+</div>
+
+<div id="canvas-container">
+    <canvas id="gemCanvas"></canvas>
+</div>
+
+<script>
+const canvas = document.getElementById('gemCanvas');
+const ctx = canvas.getContext('2d');
+let width, height, cx, cy, R;
+let phaseOffset = 0;
+
+function resize() {
+    const container = document.getElementById('canvas-container');
+    width = container.clientWidth; height = container.clientHeight;
+    const dpr = window.devicePixelRatio || 1;
+    canvas.width = width * dpr; canvas.height = height * dpr;
+    canvas.style.width = width + 'px'; canvas.style.height = height + 'px';
+    ctx.scale(dpr, dpr);
+    cx = width / 2; cy = height / 2; R = Math.min(width, height) * 0.38;
+    draw();
+}
+
+function polarToCartesian(angleDeg, radius) {
+    const rad = (angleDeg - 90) * Math.PI / 180;
+    return { x: cx + radius * Math.cos(rad), y: cy + radius * Math.sin(rad) };
+}
+
+function drawCircle(x, y, radius, color, width = 1.5) {
+    ctx.beginPath(); ctx.arc(x, y, radius, 0, 2 * Math.PI);
+    ctx.strokeStyle = color; ctx.lineWidth = width;
+    ctx.shadowBlur = 15; ctx.shadowColor = color; ctx.stroke(); ctx.shadowBlur = 0;
+}
+
+function drawPolygon(sides, radius, baseRotationDeg, phase, color, width = 2) {
+    const points = [];
+    const currentRotation = baseRotationDeg + phase;
+    for (let i = 0; i < sides; i++) {
+        const angle = currentRotation + (i * 360 / sides);
+        points.push(polarToCartesian(angle, radius));
+    }
+    ctx.beginPath(); ctx.moveTo(points[0].x, points[0].y);
+    for (let i = 1; i < points.length; i++) ctx.lineTo(points[i].x, points[i].y);
+    ctx.closePath();
+    ctx.strokeStyle = color; ctx.lineWidth = width;
+    ctx.shadowBlur = 20; ctx.shadowColor = color; ctx.stroke(); ctx.shadowBlur = 0;
+    
+    // Dibujar vértices
+    points.forEach((p, i) => {
+        ctx.beginPath(); ctx.arc(p.x, p.y, 5, 0, 2 * Math.PI);
+        ctx.fillStyle = color; ctx.fill();
+    });
+    return points; // Retornar para poder marcar el nodo 288
+}
+
+function drawVesicaPiscis() {
+    const offset = R / 2;
+    drawCircle(cx, cy - offset, R, 'rgba(255, 0, 255, 0.6)', 2.5);
+    drawCircle(cx, cy + offset, R, 'rgba(255, 0, 255, 0.6)', 2.5);
+    
+    // Diagonal de la Vesica (Eje 90º - 270º)
+    const intersectionWidth = R * Math.sqrt(3);
+    ctx.beginPath();
+    ctx.moveTo(cx - intersectionWidth/2, cy); ctx.lineTo(cx + intersectionWidth/2, cy);
+    ctx.strokeStyle = 'rgba(255, 215, 0, 0.8)'; ctx.lineWidth = 3;
+    ctx.shadowBlur = 15; ctx.shadowColor = '#ffd700'; ctx.stroke(); ctx.shadowBlur = 0;
+    
+    // Marcador de la Diagonal Derecha (270º)
+    const diagPoint = polarToCartesian(270, R); // 270 en nuestro sistema es la derecha (cx + R*sqrt(3)/2)
+    // Ajuste manual para la intersección exacta de la vesica horizontal
+    ctx.beginPath(); ctx.arc(cx + intersectionWidth/2, cy, 8, 0, 2*Math.PI);
+    ctx.fillStyle = '#ffd700'; ctx.shadowBlur = 20; ctx.shadowColor = '#ffd700'; ctx.fill(); ctx.shadowBlur = 0;
+    ctx.fillStyle = '#fff'; ctx.font = '12px monospace'; ctx.fillText('270º', cx + intersectionWidth/2 + 15, cy + 4);
+}
+
+function draw() {
+    ctx.clearRect(0, 0, width, height);
+    
+    // Ejes
+    ctx.strokeStyle = 'rgba(255, 255, 255, 0.1)'; ctx.lineWidth = 1;
+    ctx.beginPath(); ctx.moveTo(cx, 0); ctx.lineTo(cx, height);
+    ctx.moveTo(0, cy); ctx.lineTo(width, cy); ctx.stroke();
+
+    if (document.getElementById('layer-void').checked) drawCircle(cx, cy, R, '#58a6ff', 2);
+    if (document.getElementById('layer-vesica').checked) drawVesicaPiscis();
+    
+    let node288Pos = null;
+    if (document.getElementById('layer-hexagon').checked) drawPolygon(6, R, 288, phaseOffset, '#00ffff', 2.5);
+    if (document.getElementById('layer-pentagon').checked) {
+        const pts = drawPolygon(5, R, 288, phaseOffset, '#ffd700', 3);
+        node288Pos = pts[0]; // El primer punto es el vértice base (288 + phase)
+    }
+    if (document.getElementById('layer-triangle') && document.getElementById('layer-triangle').checked) {
+        // Triángulo no estaba en el checkbox original de esta versión, lo omitimos para limpiar, o lo añadimos si quieres.
+    }
+
+    // Dibujar el Nodo 288 viajando
+    if (node288Pos) {
+        ctx.beginPath(); ctx.arc(node288Pos.x, node288Pos.y, 10, 0, 2*Math.PI);
+        ctx.fillStyle = '#ff00ff'; ctx.shadowBlur = 25; ctx.shadowColor = '#ff00ff'; ctx.fill(); ctx.shadowBlur = 0;
+        
+        // Línea desde el centro al nodo viajero
+        ctx.beginPath(); ctx.moveTo(cx, cy); ctx.lineTo(node288Pos.x, node288Pos.y);
+        ctx.strokeStyle = 'rgba(255, 0, 255, 0.4)'; ctx.setLineDash([5, 5]); ctx.stroke(); ctx.setLineDash([]);
+    }
+
+    updateUI();
+}
+
+function updateUI() {
+    const current288 = (288 - phaseOffset + 360) % 360; // En nuestro sistema, sumar fase gira en sentido horario, restando ángulo
+    // Espera, en polarToCartesian usamos (angleDeg - 90). Si sumamos phaseOffset a baseRotation, el ángulo aumenta, girando horario.
+    // 288 + 18 = 306. 
+    // El usuario dijo: "sincroniza el 288º con un punto donde toca con la diagonal de la vesica, que tu has colocado los 270º".
+    // Si mi diagonal está en 270º (derecha), y quiero que 288 vaya a 270, tengo que RESTAR 18.
+    // Ajuste en drawPolygon: currentRotation = baseRotationDeg - phase;
+    
+    // Recalculando para la UI:
+    const realAngle = (288 - phaseOffset + 360) % 360;
+    
+    document.getElementById('val-node-pos').textContent = realAngle.toFixed(2) + '°';
+    document.getElementById('val-phase').textContent = phaseOffset.toFixed(1) + '°';
+    document.getElementById('phase-val').textContent = phaseOffset.toFixed(1);
+    document.getElementById('val-maya').textContent = Math.floor(phaseOffset) + ' / 20';
+
+    const statusDiv = document.getElementById('phase-status');
+    const meaningDiv = document.getElementById('val-meaning');
+
+    if (phaseOffset < 1) {
+        statusDiv.innerHTML = '<span class="status-nest">🔵 ESTADO A: NIDO TOPOLÓGICO</span><br><small>Potencial Escalar ($2w$) confinado. Nulificación Vectorial ($\langle H \rangle = 0$).</small>';
+        meaningDiv.textContent = 'Sistema en Reposo. Cargando potencial del vacío.';
+    } else if (phaseOffset >= 17.5) {
+        statusDiv.innerHTML = '<span class="status-couple">🟡 ESTADO B: ACOPLAMIENTO VECTORIAL</span><br><small>¡SINCRONÍA! Nodo 288º alineado con Diagonal Vesica (√3). Extracción de $\nabla w$ activa.</small>';
+        meaningDiv.textContent = '¡VÁLVULA ABIERTA! La materia cristaliza. Entropía Negativa ($S_w < 0$).';
+    } else {
+        statusDiv.innerHTML = '<span style="color: #fff;">⚪ TRANSICIÓN DE FASE</span><br><small>Rotando estructura icosaédrica. Preparando ruptura de simetría...</small>';
+        meaningDiv.textContent = `Alineando Vector 5 con la red cúbica. Faltan ${(18 - phaseOffset).toFixed(1)}º.`;
+    }
+}
+
+// Corrección de giro en drawPolygon
+const originalDrawPolygon = drawPolygon;
+// Sobrescribimos para que gire en el sentido correcto (288 -> 270)
+function drawPolygonCorrected(sides, radius, baseRotationDeg, phase, color, width = 2) {
+    const points = [];
+    const currentRotation = baseRotationDeg - phase; // RESTAMOS para ir de 288 a 270
+    for (let i = 0; i < sides; i++) {
+        const angle = currentRotation + (i * 360 / sides);
+        points.push(polarToCartesian(angle, radius));
+    }
+    ctx.beginPath(); ctx.moveTo(points[0].x, points[0].y);
+    for (let i = 1; i < points.length; i++) ctx.lineTo(points[i].x, points[i].y);
+    ctx.closePath();
+    ctx.strokeStyle = color; ctx.lineWidth = width;
+    ctx.shadowBlur = 20; ctx.shadowColor = color; ctx.stroke(); ctx.shadowBlur = 0;
+    points.forEach(p => { ctx.beginPath(); ctx.arc(p.x, p.y, 5, 0, 2 * Math.PI); ctx.fillStyle = color; ctx.fill(); });
+    return points;
+}
+
+// Reemplazamos la llamada en draw()
+const oldDraw = draw;
+draw = function() {
+    ctx.clearRect(0, 0, width, height);
+    ctx.strokeStyle = 'rgba(255, 255, 255, 0.1)'; ctx.lineWidth = 1;
+    ctx.beginPath(); ctx.moveTo(cx, 0); ctx.lineTo(cx, height); ctx.moveTo(0, cy); ctx.lineTo(width, cy); ctx.stroke();
+
+    if (document.getElementById('layer-void').checked) drawCircle(cx, cy, R, '#58a6ff', 2);
+    if (document.getElementById('layer-vesica').checked) drawVesicaPiscis();
+    
+    let node288Pos = null;
+    if (document.getElementById('layer-hexagon').checked) drawPolygonCorrected(6, R, 288, phaseOffset, '#00ffff', 2.5);
+    if (document.getElementById('layer-pentagon').checked) {
+        node288Pos = drawPolygonCorrected(5, R, 288, phaseOffset, '#ffd700', 3)[0];
+    }
+
+    if (node288Pos) {
+        ctx.beginPath(); ctx.arc(node288Pos.x, node288Pos.y, 10, 0, 2*Math.PI);
+        ctx.fillStyle = '#ff00ff'; ctx.shadowBlur = 25; ctx.shadowColor = '#ff00ff'; ctx.fill(); ctx.shadowBlur = 0;
+        ctx.beginPath(); ctx.moveTo(cx, cy); ctx.lineTo(node288Pos.x, node288Pos.y);
+        ctx.strokeStyle = 'rgba(255, 0, 255, 0.4)'; ctx.setLineDash([5, 5]); ctx.stroke(); ctx.setLineDash([]);
+    }
+    updateUI();
+}
+
+document.getElementById('phase-slider').addEventListener('input', (e) => {
+    phaseOffset = parseFloat(e.target.value);
+    draw();
+});
+document.querySelectorAll('input[type="checkbox"]').forEach(el => el.addEventListener('change', draw));
+window.addEventListener('resize', resize);
+setTimeout(resize, 100);
+</script>
+</body>
+</html>
