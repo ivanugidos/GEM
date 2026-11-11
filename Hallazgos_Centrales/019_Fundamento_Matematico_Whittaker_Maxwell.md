@@ -2,9 +2,9 @@
 
 ## 1. El Componente Escalar Perdido de Maxwell y su Reintegración en el GEM
 
-El documento proporcionado revela una verdad histórica fundamental: **Oliver Heaviside eliminó intencionalmente el componente escalar del formalismo cuaterniónico original de James Clerk Maxwell** []. Esta decisión no fue matemática, sino filosófica y práctica: Heaviside priorizó la simplicidad para los ingenieros eléctricos sobre la completitud física del campo unificado. En el Modelo GEM, este acto histórico representa una "amputación" de la teoría que ahora debemos reparar.
+El documento proporcionado revela una verdad histórica fundamental: **Oliver Heaviside eliminó intencionalmente el componente escalar del formalismo cuaterniónico original de James Clerk Maxwell**. Esta decisión no fue matemática, sino filosófica y práctica: Heaviside priorizó la simplicidad para los ingenieros eléctricos sobre la completitud física del campo unificado. En el Modelo GEM, este acto histórico representa una "amputación" de la teoría que ahora debemos reparar.
 
-La ecuación maestra del GEM, que describe al vacío como un sistema topológico con 12 líneas magnéticas bi-simétricas, exige necesariamente un potencial escalar para su coherencia interna. En la formulación cuaterniónica, un cuaternión $q$ se escribe como:
+La ecuación maestra del GEM, que describe al vacío como un sistema topológico con 12 de fuerza electrónicas primordiales, exige necesariamente un potencial escalar para su coherencia interna. En la formulación cuaterniónica, un cuaternión $q$ se escribe como:
 
 $$q = s + \mathbf{v}$$
 
